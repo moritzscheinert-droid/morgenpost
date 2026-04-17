@@ -1,47 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>Morgenpost – Zweimal wöchentlicher Nachrichten-Digest</title>
+  <title>Na und? – Zweimal wöchentlicher Nachrichten-Digest</title>
   <description>Automatisch erstellter Nachrichten-Digest von Links bis Rechts</description>
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Fri, 17 Apr 2026 17:03:43 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 17 Apr 2026 17:18:41 +0000</lastBuildDate>
   <item>
-    <title>Morgenpost – 2026-04-17</title>
-    <description>Gesundheitsreform: Streit um Mitversicherung und Psychotherapie-Honorare</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-17_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-17_morgenpost.html</guid>
-    <pubDate>Fri, 17 Apr 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-17_morgenpost_2.jpg" type="image/jpeg"/>
-  </item>  <item>
-    <title>Morgenpost – 2026-04-17</title>
-    <description>Nahost-Waffenruhe: Rückkehr, Unsicherheit und regionale Folgewirkungen</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-17_mittagspost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-17_mittagspost.html</guid>
-    <pubDate>Fri, 17 Apr 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-17_mittagspost_1.jpg" type="image/jpeg"/>
-  </item>  <item>
-    <title>Morgenpost – 2026-04-17</title>
+    <title>Na und? – 2026-04-17</title>
     <description>Straße von Hormus – Zwischen vorläufiger Öffnung und geopolitischer Dauerspannung</description>
     <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-17_abendpost.html</link>
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-17_abendpost.html</guid>
     <pubDate>Fri, 17 Apr 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-17_abendpost_1.jpg" type="image/jpeg"/>
   </item>  <item>
-    <title>Morgenpost – 2026-04-16</title>
-    <description>Tankrabatt: Bundestag berät über Mineralölsteuersenkung</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-16_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-16_morgenpost.html</guid>
-    <pubDate>Thu, 16 Apr 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-16_morgenpost_3.jpg" type="image/jpeg"/>
-  </item>  <item>
-    <title>Morgenpost – 2026-04-15</title>
-    <description></description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-15_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-15_morgenpost.html</guid>
-    <pubDate>Wed, 15 Apr 2026 07:00:00 +0000</pubDate>
-    
+    <title>Na und? – 2026-04-17</title>
+    <description>Straße von Hormus – Fragile Öffnung und internationale Reaktionen</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-17_na-und.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-17_na-und.html</guid>
+    <pubDate>Fri, 17 Apr 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-17_na-und_1.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>
