@@ -1,0 +1,269 @@
+/* ═══════════════════════════════════════════════════════
+   Na und? — App CSS
+   Toolbar · Dunkelmodus · Suche · Banner · Toast
+═══════════════════════════════════════════════════════ */
+
+/* ── Lesefortschrittsbalken ──────────────────────────── */
+#naund-prog {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0;
+  background: #F6CB2F;
+  z-index: 10000;
+  transition: width 0.12s linear;
+  pointer-events: none;
+}
+
+/* ── Toolbar-Pill ────────────────────────────────────── */
+#naund-toolbar {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: #111;
+  border-radius: 40px;
+  padding: 6px 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  z-index: 9999;
+}
+
+#naund-toolbar button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 13px;
+  font-family: system-ui, sans-serif;
+  font-weight: 600;
+  padding: 5px 8px;
+  border-radius: 24px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+#naund-toolbar button:hover { background: #2a2a2a; }
+#naund-toolbar button.active { background: #F6CB2F; color: #000; }
+
+/* ── Toast ───────────────────────────────────────────── */
+.naund-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: #111;
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  padding: 9px 18px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 10001;
+  pointer-events: none;
+}
+.naund-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Thema-Share-Button ──────────────────────────────── */
+.naund-topic-share {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid #dfdfdf;
+  color: #555;
+  font-size: 11px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 8px;
+  vertical-align: middle;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1;
+}
+.naund-topic-share:hover { background: #F6CB2F; border-color: #F6CB2F; color: #000; }
+
+/* ── Neue Ausgabe Banner ─────────────────────────────── */
+#naund-new-banner {
+  position: sticky;
+  top: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #F6CB2F;
+  color: #000;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  padding: 10px 16px;
+  flex-wrap: wrap;
+}
+#naund-new-banner a {
+  font-weight: 700;
+  color: #000;
+  text-decoration: underline;
+  margin-left: auto;
+}
+#naund-banner-close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+  color: #000;
+  flex-shrink: 0;
+}
+
+/* ── Benachrichtigungs-Prompt ────────────────────────── */
+#naund-notif-prompt {
+  position: fixed;
+  bottom: 80px;
+  left: 16px;
+  right: 16px;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #dfdfdf;
+  border-left: 3px solid #567B95;
+  padding: 14px 16px;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  z-index: 9998;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+#naund-notif-prompt span { flex: 1; min-width: 200px; }
+#btn-notif-yes {
+  background: #567B95; color: #fff; border: none;
+  padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 12px;
+}
+#btn-notif-no {
+  background: none; border: none; color: #555; cursor: pointer; font-size: 12px;
+}
+
+/* ── Suche (Index) ───────────────────────────────────── */
+#naund-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+#naund-search {
+  flex: 1;
+  border: 1px solid #dfdfdf;
+  border-radius: 0;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 0.85em;
+  outline: none;
+  background: #fff;
+  color: #000;
+}
+#naund-search:focus { border-color: #567B95; }
+#naund-search-count {
+  font-size: 0.78em;
+  color: #555;
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════
+   DUNKELMODUS
+══════════════════════════════════════════════════════ */
+html.naund-dark body {
+  background: #111 !important;
+  color: #e0e0e0 !important;
+}
+html.naund-dark .masthead {
+  border-top-color: #444 !important;
+  border-bottom-color: #444 !important;
+}
+html.naund-dark .masthead-title,
+html.naund-dark h1 {
+  color: #f0f0f0 !important;
+}
+html.naund-dark .masthead-side-left,
+html.naund-dark .masthead-side-right,
+html.naund-dark .masthead-date-strip,
+html.naund-dark .masthead-right,
+html.naund-dark .subline,
+html.naund-dark .subheader {
+  color: #888 !important;
+  border-color: #333 !important;
+}
+html.naund-dark .masthead-rule { border-color: #444 !important; }
+html.naund-dark .gzf-thema-title {
+  color: #f0f0f0 !important;
+  border-top-color: #e0e0e0 !important;
+  border-bottom-color: #333 !important;
+}
+html.naund-dark .gzf-thema-body,
+html.naund-dark .gzf-intro-text,
+html.naund-dark .gzf-intro-text p { color: #d8d8d8 !important; }
+html.naund-dark .gzf-intro {
+  border-left-color: #F6CB2F !important;
+  background: #1a1a1a !important;
+}
+html.naund-dark .gzf-intro-label { color: #aaa !important; }
+html.naund-dark .gzf-perspektiven {
+  background: #1a1a1a !important;
+  border-left-color: #F6CB2F !important;
+}
+html.naund-dark .gzf-perspektiven-label { color: #bbb !important; }
+html.naund-dark .toc-box {
+  background: #1a1a1a !important;
+  border-color: #333 !important;
+}
+html.naund-dark .toc-label { color: #aaa !important; }
+html.naund-dark .toc-item a { color: #d0d0d0 !important; }
+html.naund-dark .subheader,
+html.naund-dark .footer { color: #555 !important; border-color: #333 !important; }
+html.naund-dark .analytics-heading { color: #7aadcc !important; border-color: #333 !important; }
+html.naund-dark .analytics-box { background: #1a1a1a !important; border-color: #333 !important; }
+html.naund-dark .analytics-box-title { color: #aaa !important; border-color: #333 !important; }
+html.naund-dark .wf-bar { background: #7aadcc !important; }
+html.naund-dark .wf-bar-wrap { background: #333 !important; }
+html.naund-dark a { color: #7aadcc !important; }
+html.naund-dark .gzf-fortsetzung-badge { color: #7aadcc !important; border-color: #7aadcc !important; }
+
+/* Index Dark */
+html.naund-dark .featured { background: #1a1a1a !important; border-color: #333 !important; }
+html.naund-dark .featured-title { color: #f0f0f0 !important; }
+html.naund-dark .featured-date,
+html.naund-dark .featured-topic,
+html.naund-dark .featured-label { color: #888 !important; }
+html.naund-dark .arch-card { background: #1a1a1a !important; border-color: #333 !important; color: #e0e0e0 !important; }
+html.naund-dark .arch-card:hover { border-color: #7aadcc !important; }
+html.naund-dark .arch-topic { color: #888 !important; }
+html.naund-dark .arch-img-empty { background: #2a2a2a !important; }
+html.naund-dark .info { background: #1a1a1a !important; border-color: #333 !important; color: #aaa !important; }
+html.naund-dark .info strong { color: #e0e0e0 !important; }
+html.naund-dark .subscribe { background: #1a1a1a !important; border-color: #333 !important; }
+html.naund-dark .subscribe h3 { color: #f0f0f0 !important; }
+html.naund-dark .subscribe p,
+html.naund-dark .subscribe-hint { color: #888 !important; }
+html.naund-dark .feedback { background: #1a1a1a !important; border-color: #333 !important; }
+html.naund-dark .feedback h3 { color: #f0f0f0 !important; }
+html.naund-dark .feedback > p { color: #888 !important; }
+html.naund-dark .feedback textarea { background: #222 !important; border-color: #444 !important; color: #e0e0e0 !important; }
+html.naund-dark .footer { border-top-color: #333 !important; }
+html.naund-dark #naund-search { background: #1a1a1a !important; border-color: #333 !important; color: #e0e0e0 !important; }
+html.naund-dark #naund-search::placeholder { color: #555 !important; }
+html.naund-dark .naund-topic-share { border-color: #444 !important; color: #888 !important; }
+html.naund-dark #naund-toolbar { background: #222 !important; box-shadow: 0 4px 24px rgba(0,0,0,0.6); }
+
+/* ── Mobile ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  #naund-toolbar { bottom: 16px; right: 12px; padding: 5px 8px; gap: 1px; }
+  #naund-toolbar button { font-size: 12px; padding: 4px 6px; }
+  #naund-notif-prompt { bottom: 70px; }
+}
