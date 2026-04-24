@@ -79,6 +79,11 @@
   color: #FFF1E5;
 }
 
+#naund-toolbar button.tts-paused {
+  background: #d4eeef;
+  color: #0D7680;
+}
+
 /* ── TTS: Aktiver Abschnitt ──────────────────────────── */
 .naund-tts-reading {
   outline: 2px solid #0D7680;

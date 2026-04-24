@@ -62,37 +62,32 @@
   }
 
   // ── TTS ─────────────────────────────────────────────────────────────────────
-  let ttsState = { on: false, idx: 0, chunks: [], voice: null };
+  // status: 'idle' | 'playing' | 'paused'
+  let ttsState = { status: 'idle', idx: 0, chunks: [], voice: null, keepAlive: null };
 
   function pickGermanVoice() {
     const voices = speechSynthesis.getVoices();
     const de = voices.filter(v => v.lang.startsWith('de'));
     if (!de.length) return null;
-    // Bevorzuge Premium/Enhanced-Stimmen auf macOS / Google Deutsch auf Chrome
     const preferred = ['Yannick', 'Anna', 'Thomas', 'Google Deutsch', 'Microsoft Stefan'];
     for (const name of preferred) {
       const found = de.find(v => v.name.includes(name));
       if (found) return found;
     }
-    // Fallback: erste lokale Stimme (meist besser als remote)
     return de.find(v => v.localService) || de[0];
   }
 
   function buildTTSChunks() {
     const chunks = [];
-    // Kurzbriefing
     const intro = document.querySelector('.gzf-intro-text');
     if (intro) {
       chunks.push({ label: null, text: 'Kurzbriefing. ' + intro.textContent.trim() });
     }
-    // Themenblöcke
     document.querySelectorAll('[id^="thema-"]').forEach((section, i) => {
       const titleEl = section.querySelector('.gzf-thema-title');
       const paras   = [...section.querySelectorAll('.gzf-thema-body p')];
       if (!paras.length) return;
-      const title = titleEl
-        ? titleEl.textContent.replace(/[↗↑↗]/g, '').trim()
-        : '';
+      const title = titleEl ? titleEl.textContent.replace(/[↗↑]/g, '').trim() : '';
       chunks.push({
         label: section.id,
         text: `Thema ${i + 1}${title ? ': ' + title : ''}. ` + paras.map(p => p.textContent).join(' ')
@@ -105,77 +100,92 @@
     document.querySelectorAll('.naund-tts-reading').forEach(el => el.classList.remove('naund-tts-reading'));
     if (id) {
       const el = document.getElementById(id);
-      if (el) {
-        el.classList.add('naund-tts-reading');
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (el) { el.classList.add('naund-tts-reading'); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     }
   }
 
-  function speakChunk(idx) {
-    if (idx >= ttsState.chunks.length) {
-      stopTTS();
-      return;
-    }
-    ttsState.idx = idx;
-    const chunk = ttsState.chunks[idx];
-    highlightSection(chunk.label);
-
-    // Fortschrittsanzeige im Button aktualisieren
+  function updateTTSButton() {
     const btn = document.getElementById('btn-tts');
-    const total = ttsState.chunks.length;
-    if (btn) btn.title = `Vorlesen (${idx + 1}/${total})`;
+    if (!btn) return;
+    const icon  = btn.querySelector('.btn-icon');
+    const total = ttsState.chunks.length || '?';
+    btn.classList.remove('active', 'tts-paused');
+    if (ttsState.status === 'playing') {
+      if (icon) icon.textContent = '⏸';
+      btn.classList.add('active');
+      btn.title = `Pause (${ttsState.idx + 1}/${total})`;
+    } else if (ttsState.status === 'paused') {
+      if (icon) icon.textContent = '▶';
+      btn.classList.add('tts-paused');
+      btn.title = `Weiter (${ttsState.idx + 1}/${total})`;
+    } else {
+      if (icon) icon.textContent = '▶';
+      btn.title = 'Vorlesen';
+    }
+  }
 
-    const utt = new SpeechSynthesisUtterance(chunk.text);
-    utt.lang = 'de-DE';
-    utt.rate = 0.90;
+  function stopTTS() {
+    if (ttsState.keepAlive) { clearInterval(ttsState.keepAlive); ttsState.keepAlive = null; }
+    speechSynthesis.cancel();
+    ttsState.status = 'idle';
+    ttsState.idx = 0;
+    highlightSection(null);
+    updateTTSButton();
+  }
+
+  function speakChunk(idx) {
+    if (idx >= ttsState.chunks.length) { stopTTS(); return; }
+    ttsState.idx = idx;
+    updateTTSButton();
+    highlightSection(ttsState.chunks[idx].label);
+
+    const utt = new SpeechSynthesisUtterance(ttsState.chunks[idx].text);
+    utt.lang  = 'de-DE';
+    utt.rate  = 0.90;
     utt.pitch = 1.0;
     if (ttsState.voice) utt.voice = ttsState.voice;
 
     utt.onend = () => {
-      if (ttsState.on) speakChunk(idx + 1);
+      if (ttsState.status === 'playing') speakChunk(idx + 1);
     };
-    utt.onerror = () => {
-      if (ttsState.on) speakChunk(idx + 1);
+    utt.onerror = (e) => {
+      // 'interrupted'/'canceled' kommt beim Pause/Stop – kein Fehler
+      if (e.error === 'interrupted' || e.error === 'canceled') return;
+      if (ttsState.status === 'playing') speakChunk(idx + 1);
     };
     speechSynthesis.speak(utt);
   }
 
-  function stopTTS() {
-    speechSynthesis.cancel();
-    ttsState.on = false;
-    highlightSection(null);
-    const btn = document.getElementById('btn-tts');
-    if (btn) {
-      btn.classList.remove('active');
-      btn.title = 'Vorlesen';
-      btn.querySelector('.btn-icon').textContent = '▶';
-    }
-  }
-
   function toggleTTS() {
-    const btn = document.getElementById('btn-tts');
-    if (ttsState.on) {
-      stopTTS();
-    } else {
+    if (ttsState.status === 'idle') {
       const chunks = buildTTSChunks();
       if (!chunks.length) { toast('Kein Text zum Vorlesen'); return; }
       ttsState.chunks = chunks;
-      ttsState.on = true;
-      // Stimme laden (ggf. asynchron – getVoices() ist auf manchen Browsern lazy)
+      ttsState.status = 'playing';
       const trySpeak = () => {
         ttsState.voice = pickGermanVoice();
         speakChunk(0);
       };
-      if (speechSynthesis.getVoices().length) {
-        trySpeak();
-      } else {
-        speechSynthesis.addEventListener('voiceschanged', trySpeak, { once: true });
-      }
-      if (btn) {
-        btn.classList.add('active');
-        btn.querySelector('.btn-icon').textContent = '⏹';
-      }
+      if (speechSynthesis.getVoices().length) { trySpeak(); }
+      else { speechSynthesis.addEventListener('voiceschanged', trySpeak, { once: true }); }
+      // Chrome-Bug: speechSynthesis friert nach ~15s ein → periodisch aufwecken
+      ttsState.keepAlive = setInterval(() => {
+        if (ttsState.status === 'playing' && speechSynthesis.speaking && !speechSynthesis.paused) {
+          speechSynthesis.pause();
+          speechSynthesis.resume();
+        }
+      }, 12000);
+      updateTTSButton();
+
+    } else if (ttsState.status === 'playing') {
+      speechSynthesis.pause();
+      ttsState.status = 'paused';
+      updateTTSButton();
+
+    } else if (ttsState.status === 'paused') {
+      speechSynthesis.resume();
+      ttsState.status = 'playing';
+      updateTTSButton();
     }
   }
 
