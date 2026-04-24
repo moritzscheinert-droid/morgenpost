@@ -14,7 +14,7 @@
   function applyDark(on) {
     document.documentElement.classList.toggle('naund-dark', on);
     const btn = document.getElementById('btn-dark');
-    if (btn) btn.textContent = on ? '☀' : '🌙';
+    if (btn) btn.setAttribute('aria-label', on ? 'Hellmodus' : 'Dunkelmodus');
   }
 
   // ── Schriftgröße ────────────────────────────────────────────────────────────
@@ -62,23 +62,120 @@
   }
 
   // ── TTS ─────────────────────────────────────────────────────────────────────
-  let ttsOn = false;
+  let ttsState = { on: false, idx: 0, chunks: [], voice: null };
+
+  function pickGermanVoice() {
+    const voices = speechSynthesis.getVoices();
+    const de = voices.filter(v => v.lang.startsWith('de'));
+    if (!de.length) return null;
+    // Bevorzuge Premium/Enhanced-Stimmen auf macOS / Google Deutsch auf Chrome
+    const preferred = ['Yannick', 'Anna', 'Thomas', 'Google Deutsch', 'Microsoft Stefan'];
+    for (const name of preferred) {
+      const found = de.find(v => v.name.includes(name));
+      if (found) return found;
+    }
+    // Fallback: erste lokale Stimme (meist besser als remote)
+    return de.find(v => v.localService) || de[0];
+  }
+
+  function buildTTSChunks() {
+    const chunks = [];
+    // Kurzbriefing
+    const intro = document.querySelector('.gzf-intro-text');
+    if (intro) {
+      chunks.push({ label: null, text: 'Kurzbriefing. ' + intro.textContent.trim() });
+    }
+    // Themenblöcke
+    document.querySelectorAll('[id^="thema-"]').forEach((section, i) => {
+      const titleEl = section.querySelector('.gzf-thema-title');
+      const paras   = [...section.querySelectorAll('.gzf-thema-body p')];
+      if (!paras.length) return;
+      const title = titleEl
+        ? titleEl.textContent.replace(/[↗↑↗]/g, '').trim()
+        : '';
+      chunks.push({
+        label: section.id,
+        text: `Thema ${i + 1}${title ? ': ' + title : ''}. ` + paras.map(p => p.textContent).join(' ')
+      });
+    });
+    return chunks;
+  }
+
+  function highlightSection(id) {
+    document.querySelectorAll('.naund-tts-reading').forEach(el => el.classList.remove('naund-tts-reading'));
+    if (id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('naund-tts-reading');
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }
+
+  function speakChunk(idx) {
+    if (idx >= ttsState.chunks.length) {
+      stopTTS();
+      return;
+    }
+    ttsState.idx = idx;
+    const chunk = ttsState.chunks[idx];
+    highlightSection(chunk.label);
+
+    // Fortschrittsanzeige im Button aktualisieren
+    const btn = document.getElementById('btn-tts');
+    const total = ttsState.chunks.length;
+    if (btn) btn.title = `Vorlesen (${idx + 1}/${total})`;
+
+    const utt = new SpeechSynthesisUtterance(chunk.text);
+    utt.lang = 'de-DE';
+    utt.rate = 0.90;
+    utt.pitch = 1.0;
+    if (ttsState.voice) utt.voice = ttsState.voice;
+
+    utt.onend = () => {
+      if (ttsState.on) speakChunk(idx + 1);
+    };
+    utt.onerror = () => {
+      if (ttsState.on) speakChunk(idx + 1);
+    };
+    speechSynthesis.speak(utt);
+  }
+
+  function stopTTS() {
+    speechSynthesis.cancel();
+    ttsState.on = false;
+    highlightSection(null);
+    const btn = document.getElementById('btn-tts');
+    if (btn) {
+      btn.classList.remove('active');
+      btn.title = 'Vorlesen';
+      btn.querySelector('.btn-icon').textContent = '▶';
+    }
+  }
+
   function toggleTTS() {
     const btn = document.getElementById('btn-tts');
-    if (ttsOn) {
-      speechSynthesis.cancel();
-      ttsOn = false;
-      if (btn) { btn.textContent = '▶'; btn.classList.remove('active'); }
+    if (ttsState.on) {
+      stopTTS();
     } else {
-      const paras = [...document.querySelectorAll('.gzf-intro-text, .gzf-thema-body p')];
-      if (!paras.length) { toast('Kein Text zum Vorlesen'); return; }
-      const utt = new SpeechSynthesisUtterance(paras.map(p => p.textContent).join(' '));
-      utt.lang = 'de-DE';
-      utt.rate = 0.92;
-      utt.onend = () => { ttsOn = false; if (btn) { btn.textContent = '▶'; btn.classList.remove('active'); } };
-      speechSynthesis.speak(utt);
-      ttsOn = true;
-      if (btn) { btn.textContent = '⏹'; btn.classList.add('active'); }
+      const chunks = buildTTSChunks();
+      if (!chunks.length) { toast('Kein Text zum Vorlesen'); return; }
+      ttsState.chunks = chunks;
+      ttsState.on = true;
+      // Stimme laden (ggf. asynchron – getVoices() ist auf manchen Browsern lazy)
+      const trySpeak = () => {
+        ttsState.voice = pickGermanVoice();
+        speakChunk(0);
+      };
+      if (speechSynthesis.getVoices().length) {
+        trySpeak();
+      } else {
+        speechSynthesis.addEventListener('voiceschanged', trySpeak, { once: true });
+      }
+      if (btn) {
+        btn.classList.add('active');
+        btn.querySelector('.btn-icon').textContent = '⏹';
+      }
     }
   }
 
@@ -93,39 +190,56 @@
       btn.innerHTML = '&#8599;';
       btn.addEventListener('click', e => {
         e.stopPropagation();
-        share(title.textContent.replace('Weiterentwicklung','').trim(),
+        share(title.textContent.replace(/[↗]/g, '').trim(),
               location.origin + location.pathname + '#' + el.id);
       });
       title.appendChild(btn);
     });
   }
 
-  // ── Toolbar ──────────────────────────────────────────────────────────────────
+  // ── Toolbar (FT-Stil) ────────────────────────────────────────────────────────
   function buildToolbar() {
     if (document.getElementById('naund-toolbar')) return;
 
-    // Fortschrittsbalken
+    // Lesefortschrittsbalken
     const prog = document.createElement('div');
     prog.id = 'naund-prog';
     document.body.prepend(prog);
 
-    // Toolbar-Pill
     const tb = document.createElement('div');
     tb.id = 'naund-toolbar';
+    tb.setAttribute('role', 'toolbar');
+    tb.setAttribute('aria-label', 'Lesewerkzeuge');
+
+    // Label "Na und?"
+    const lbl = document.createElement('span');
+    lbl.className = 'naund-tb-label';
+    lbl.textContent = 'Na und?';
+    tb.appendChild(lbl);
+
+    const sep0 = document.createElement('span');
+    sep0.className = 'naund-tb-sep';
+    tb.appendChild(sep0);
 
     const buttons = [
-      { id: 'btn-dark',      label: '🌙',  title: 'Dunkelmodus'    },
-      { id: 'btn-font-down', label: 'A−',  title: 'Schrift kleiner' },
-      { id: 'btn-font-up',   label: 'A+',  title: 'Schrift größer'  },
-      { id: 'btn-tts',       label: '▶',   title: 'Vorlesen'        },
-      { id: 'btn-share',     label: '↑',   title: 'Seite teilen'    },
+      { id: 'btn-dark',      icon: '☽',  title: 'Dunkelmodus'    },
+      { id: 'btn-font-down', icon: 'A−', title: 'Schrift kleiner' },
+      { id: 'btn-font-up',   icon: 'A+', title: 'Schrift größer'  },
+      { id: 'btn-tts',       icon: '▶',  title: 'Vorlesen'        },
+      { id: 'btn-share',     icon: '↑',  title: 'Seite teilen'    },
     ];
 
-    buttons.forEach(({ id, label, title }) => {
+    buttons.forEach(({ id, icon, title }, i) => {
+      if (i > 0) {
+        const sep = document.createElement('span');
+        sep.className = 'naund-tb-sep';
+        tb.appendChild(sep);
+      }
       const btn = document.createElement('button');
       btn.id = id;
-      btn.textContent = label;
       btn.title = title;
+      btn.setAttribute('aria-label', title);
+      btn.innerHTML = `<span class="btn-icon">${icon}</span>`;
       tb.appendChild(btn);
     });
 
@@ -167,7 +281,6 @@
       if (seen && seen !== latest.filename) {
         showNewIssueBanner(latest);
       }
-      // Lese-Tracking: beim Öffnen einer Ausgabe als "gesehen" markieren
     } catch (_) {}
   }
 
@@ -214,7 +327,6 @@
 
   // ── Ausgabe als gesehen markieren ────────────────────────────────────────────
   function markSeen() {
-    // Auf einer Ausgaben-Seite: Dateiname aus URL extrahieren
     const match = location.pathname.match(/([^/]+\.html)$/);
     if (match) localStorage.setItem(SEEN_KEY, match[1]);
   }
@@ -229,7 +341,6 @@
   // ── Benachrichtigungen ───────────────────────────────────────────────────────
   function initNotifications() {
     if (!('Notification' in window) || Notification.permission !== 'default') return;
-    // Sanfter Hinweis nach 8 Sekunden nur auf der Index-Seite
     if (!document.querySelector('.featured')) return;
     setTimeout(() => {
       const banner = document.createElement('div');
@@ -286,7 +397,6 @@
       if (ready()) { obs.disconnect(); cb(); }
     });
     obs.observe(document.body, { childList: true, subtree: true });
-    // Fallback: nach 3s auf jeden Fall starten
     setTimeout(() => { obs.disconnect(); cb(); }, 3000);
   }
 
