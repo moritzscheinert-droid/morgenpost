@@ -21,6 +21,16 @@
   let fontStep = parseInt(localStorage.getItem(FONT_KEY) || '0');
   function applyFont() {
     document.body.style.fontSize = (11 + fontStep) + 'pt';
+    // Artikel-Selektoren haben fixe pt-Werte → separater <style>-Override nötig
+    let el = document.getElementById('naund-font-style');
+    if (!el) {
+      el = document.createElement('style');
+      el.id = 'naund-font-style';
+      document.head.appendChild(el);
+    }
+    if (fontStep === 0) { el.textContent = ''; return; }
+    const pt = (9 + fontStep * 1.5).toFixed(1);
+    el.textContent = `.gzf-thema-body,.gzf-thema-body p,.gzf-intro-text{font-size:${pt}pt!important}`;
   }
 
   // ── Lesefortschritt ─────────────────────────────────────────────────────────
