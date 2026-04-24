@@ -3,6 +3,29 @@
    Toolbar · Dunkelmodus · Suche · Banner · Toast · TTS
 ═══════════════════════════════════════════════════════ */
 
+/* ── Zurück-Button ───────────────────────────────────── */
+.naund-back {
+  display: inline-block;
+  font-family: Georgia, serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0D7680;
+  text-decoration: none;
+  padding: 10px 16px 8px;
+  border-bottom: 1px solid #e8d9c8;
+  width: 100%;
+  box-sizing: border-box;
+  background: #FFF1E5;
+}
+.naund-back:hover { color: #0a5c64; text-decoration: underline; }
+html.naund-dark .naund-back {
+  background: #111 !important;
+  color: #0D7680 !important;
+  border-bottom-color: #333 !important;
+}
+
 /* ── Lesefortschrittsbalken ──────────────────────────── */
 #naund-prog {
   position: fixed;
