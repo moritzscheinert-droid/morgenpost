@@ -3,6 +3,21 @@
    Toolbar · Dunkelmodus · Suche · Banner · Toast · TTS
 ═══════════════════════════════════════════════════════ */
 
+/* ── Kostenanzeige ───────────────────────────────────── */
+.naund-cost-note {
+  font-family: Georgia, serif;
+  font-size: 8pt;
+  color: #66605C;
+  border-top: 1px solid #e8d9c8;
+  padding: 10px 0 4px;
+  margin-top: 24px;
+  text-align: right;
+}
+html.naund-dark .naund-cost-note {
+  color: #7a6e64 !important;
+  border-top-color: #3a3228 !important;
+}
+
 /* ── Zurück-Button ───────────────────────────────────── */
 .naund-back {
   display: inline-block;
