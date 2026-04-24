@@ -2,7 +2,7 @@
  * Na und? – Service Worker
  * Offline-Support: Network-first mit Cache-Fallback
  */
-const CACHE = 'naund-v3';
+const CACHE = 'naund-v4';
 const STATIC = [
   '/morgenpost/',
   '/morgenpost/manifest.json',
