@@ -29,10 +29,10 @@ html.naund-dark .naund-cost-note {
   color: #0D7680;
   text-decoration: none;
   padding: 10px 16px 8px;
-  border-bottom: 1px solid #e8d9c8;
+  border-bottom: 1px solid #dddddd;
   width: 100%;
   box-sizing: border-box;
-  background: #FFF1E5;
+  background: #ffffff;
 }
 .naund-back:hover { color: #0a5c64; text-decoration: underline; }
 html.naund-dark .naund-back {
