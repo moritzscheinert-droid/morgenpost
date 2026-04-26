@@ -93,18 +93,112 @@
   }
 
   // ── HTML5 Audio (vorberechnete MP3) ──────────────────────────────────────────
+  function buildAudioBar() {
+    if (document.getElementById('naund-audiobar')) return;
+    const bar = document.createElement('div');
+    bar.id = 'naund-audiobar';
+    bar.setAttribute('role', 'toolbar');
+    bar.setAttribute('aria-label', 'Audio-Steuerung');
+
+    const lbl = document.createElement('span');
+    lbl.id = 'naund-chapter-lbl';
+    bar.appendChild(lbl);
+
+    [
+      { id: 'btn-prev-ch',  icon: '⏮', title: 'Voriges Thema',   hidden: true },
+      { id: 'btn-back15',   icon: '⏪', title: '15 Sekunden zurück' },
+      { id: 'btn-fwd15',    icon: '⏩', title: '15 Sekunden vor'    },
+      { id: 'btn-next-ch',  icon: '⏭', title: 'Nächstes Thema',  hidden: true },
+    ].forEach(({ id, icon, title, hidden }) => {
+      const btn = document.createElement('button');
+      btn.id = id; btn.title = title;
+      btn.setAttribute('aria-label', title);
+      btn.innerHTML = `<span class="btn-icon">${icon}</span>`;
+      if (hidden) btn.style.display = 'none';
+      bar.appendChild(btn);
+    });
+    document.body.appendChild(bar);
+  }
+
   function initAudioPlayer() {
     const audio = document.getElementById('naund-audio');
     if (!audio) return false;
+
+    buildAudioBar();
+    document.getElementById('naund-audiobar').style.display = 'flex';
 
     audio.addEventListener('play',  () => updateTTSButton('playing'));
     audio.addEventListener('pause', () => updateTTSButton(audio.ended ? 'idle' : 'paused'));
     audio.addEventListener('ended', () => updateTTSButton('idle'));
 
     document.getElementById('btn-tts').addEventListener('click', () => {
-      if (audio.paused) { audio.play(); }
-      else              { audio.pause(); }
+      if (audio.paused) audio.play();
+      else              audio.pause();
     });
+
+    // Skip ±15s
+    document.getElementById('btn-back15').addEventListener('click', () => {
+      audio.currentTime = Math.max(0, audio.currentTime - 15);
+      if (audio.paused) audio.play();
+    });
+    document.getElementById('btn-fwd15').addEventListener('click', () => {
+      audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 15);
+      if (audio.paused) audio.play();
+    });
+
+    // Chapter navigation
+    let chapters = null;
+
+    function getCurrentChIdx() {
+      if (!chapters) return 0;
+      let idx = 0;
+      chapters.forEach((ch, i) => { if (audio.currentTime >= ch.time) idx = i; });
+      return idx;
+    }
+
+    function updateChapterLabel() {
+      if (!chapters) return;
+      const lbl = document.getElementById('naund-chapter-lbl');
+      if (lbl) lbl.textContent = chapters[getCurrentChIdx()]?.title || '';
+    }
+
+    audio.addEventListener('timeupdate', updateChapterLabel);
+
+    document.getElementById('btn-prev-ch').addEventListener('click', () => {
+      if (!chapters) return;
+      const idx = getCurrentChIdx();
+      const chStart = chapters[idx]?.time || 0;
+      const target = (audio.currentTime - chStart > 3 || idx === 0)
+        ? chStart : (chapters[idx - 1]?.time || 0);
+      audio.currentTime = target;
+      if (audio.paused) audio.play();
+    });
+
+    document.getElementById('btn-next-ch').addEventListener('click', () => {
+      if (!chapters || getCurrentChIdx() + 1 >= chapters.length) return;
+      audio.currentTime = chapters[getCurrentChIdx() + 1].time;
+      if (audio.paused) audio.play();
+    });
+
+    const chapSrc = audio.dataset.chapters;
+    if (chapSrc) {
+      fetch(chapSrc).then(r => r.json()).then(data => {
+        function activate(duration) {
+          chapters = data.sections.map(s => ({
+            title: s.title,
+            time: (s.char_offset / (data.total_chars || 1)) * duration,
+          }));
+          ['btn-prev-ch', 'btn-next-ch'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = '';
+          });
+          updateChapterLabel();
+        }
+        if (audio.duration) activate(audio.duration);
+        else audio.addEventListener('loadedmetadata', () => activate(audio.duration), { once: true });
+      }).catch(() => {});
+    }
+
     return true;
   }
 

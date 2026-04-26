@@ -41,6 +41,67 @@ html.naund-dark .naund-back {
   border-bottom-color: #333 !important;
 }
 
+/* ── Audio-Leiste (Kapitel + Skip) ──────────────────── */
+#naund-audiobar {
+  position: fixed;
+  bottom: 76px;
+  right: 22px;
+  display: none;
+  align-items: center;
+  gap: 0;
+  background: #FFF1E5;
+  border: 1px solid #c8b89e;
+  border-top: 3px solid #0D7680;
+  border-radius: 1px;
+  padding: 4px 8px;
+  box-shadow: 0 2px 14px rgba(51,48,46,0.18);
+  z-index: 9998;
+  font-family: Georgia, 'Times New Roman', serif;
+  max-width: 420px;
+}
+#naund-chapter-lbl {
+  font-size: 9px;
+  color: #66605C;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0 8px 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+#naund-audiobar button {
+  background: none;
+  border: none;
+  color: #33302E;
+  font-size: 12px;
+  font-family: Georgia, 'Times New Roman', serif;
+  padding: 4px 7px;
+  cursor: pointer;
+  line-height: 1;
+  border-radius: 0;
+  transition: background 0.12s, color 0.12s;
+  white-space: nowrap;
+}
+#naund-audiobar button:hover {
+  background: #0D7680;
+  color: #FFF1E5;
+}
+html.naund-dark #naund-audiobar {
+  background: #111 !important;
+  border-color: #333 !important;
+  color: #e8d0b8 !important;
+}
+html.naund-dark #naund-audiobar button { color: #e8d0b8 !important; }
+html.naund-dark #naund-audiobar button:hover { background: #0D7680 !important; color: #FFF1E5 !important; }
+html.naund-dark #naund-chapter-lbl { color: #aaa !important; }
+@media (max-width: 600px) {
+  #naund-audiobar { bottom: 68px; right: 12px; padding: 3px 6px; }
+  #naund-audiobar button { font-size: 11px; padding: 3px 6px; }
+  #naund-chapter-lbl { max-width: 100px; }
+}
+
 /* ── Lesefortschrittsbalken ──────────────────────────── */
 #naund-prog {
   position: fixed;
