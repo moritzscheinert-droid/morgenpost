@@ -257,6 +257,8 @@ hr,
   background: transparent !important;
 }
 .masthead-title {
+  font-family: var(--font-display) !important;
+  font-weight: 900 !important;
   color: var(--color-text) !important;
 }
 .masthead-side-left,

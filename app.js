@@ -5,18 +5,29 @@
 (function () {
   'use strict';
 
-  const DARK_KEY   = 'naund-dark';   // bestehender Key, bleibt für Rückwärtskompatibilität
-  const FONT_KEY   = 'naund-font';
-  const scrollKey  = () => 'naund-scroll' + location.pathname;
-  const SEEN_KEY   = 'naund-last-seen';
+  const DARK_KEY  = 'naund-dark';
+  const FONT_KEY  = 'naund-font';
+  const scrollKey = () => 'naund-scroll' + location.pathname;
+  const SEEN_KEY  = 'naund-last-seen';
 
-  // ── Dunkelmodus — steuert data-theme Attribut auf <html> ───────────────────
+  // ── SVG-Icons ────────────────────────────────────────────────────────────────
+  const SVG_MOON  = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="14" height="14"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  const SVG_SUN   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" width="14" height="14"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  const SVG_PLAY  = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="13" height="13"><path d="M5 3l14 9-14 9V3z"/></svg>';
+  const SVG_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="13" height="13"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+  const SVG_SHARE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="13" height="13"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16,6 12,2 8,6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>';
+
+  // ── Dunkelmodus ──────────────────────────────────────────────────────────────
   function applyDark(on) {
     document.documentElement.setAttribute('data-theme', on ? 'dark' : 'light');
-    // Klasse für ältere CSS-Regeln entfernen (Migration)
     document.documentElement.classList.remove('naund-dark');
     const btn = document.getElementById('btn-dark');
-    if (btn) btn.setAttribute('aria-label', on ? 'Hellmodus' : 'Dunkelmodus');
+    if (btn) {
+      btn.setAttribute('aria-label', on ? 'Hellmodus aktivieren' : 'Dunkelmodus aktivieren');
+      btn.title = on ? 'Hellmodus' : 'Dunkelmodus';
+      const icon = btn.querySelector('.btn-icon');
+      if (icon) icon.innerHTML = on ? SVG_MOON : SVG_SUN;
+    }
   }
 
   // ── Schriftgröße ────────────────────────────────────────────────────────────
@@ -81,15 +92,15 @@
     const icon = btn.querySelector('.btn-icon');
     btn.classList.remove('active', 'tts-paused');
     if (status === 'playing') {
-      if (icon) icon.textContent = '⏸';
+      if (icon) icon.innerHTML = SVG_PAUSE;
       btn.classList.add('active');
       btn.title = 'Pause';
     } else if (status === 'paused') {
-      if (icon) icon.textContent = '▶';
+      if (icon) icon.innerHTML = SVG_PLAY;
       btn.classList.add('tts-paused');
       btn.title = 'Weiter';
     } else {
-      if (icon) icon.textContent = '▶';
+      if (icon) icon.innerHTML = SVG_PLAY;
       btn.title = 'Vorlesen';
     }
   }
@@ -299,11 +310,10 @@
     });
   }
 
-  // ── Toolbar (FT-Stil) ────────────────────────────────────────────────────────
+  // ── Toolbar ──────────────────────────────────────────────────────────────────
   function buildToolbar() {
     if (document.getElementById('naund-toolbar')) return;
 
-    // Lesefortschrittsbalken
     const prog = document.createElement('div');
     prog.id = 'naund-prog';
     document.body.prepend(prog);
@@ -313,7 +323,6 @@
     tb.setAttribute('role', 'toolbar');
     tb.setAttribute('aria-label', 'Lesewerkzeuge');
 
-    // Label "Na und?"
     const lbl = document.createElement('span');
     lbl.className = 'naund-tb-label';
     lbl.textContent = 'Na und?';
@@ -323,12 +332,13 @@
     sep0.className = 'naund-tb-sep';
     tb.appendChild(sep0);
 
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const buttons = [
-      { id: 'btn-dark',      icon: '☽',  title: 'Dunkelmodus'    },
+      { id: 'btn-dark',      icon: isDark ? SVG_MOON : SVG_SUN, title: isDark ? 'Hellmodus' : 'Dunkelmodus' },
       { id: 'btn-font-down', icon: 'A−', title: 'Schrift kleiner' },
       { id: 'btn-font-up',   icon: 'A+', title: 'Schrift größer'  },
-      { id: 'btn-tts',       icon: '▶',  title: 'Vorlesen'        },
-      { id: 'btn-share',     icon: '↑',  title: 'Seite teilen'    },
+      { id: 'btn-tts',       icon: SVG_PLAY, title: 'Vorlesen'    },
+      { id: 'btn-share',     icon: SVG_SHARE, title: 'Seite teilen' },
     ];
 
     buttons.forEach(({ id, icon, title }, i) => {

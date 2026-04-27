@@ -45,51 +45,50 @@
   right: 22px;
   display: none;
   align-items: center;
-  gap: 0;
+  gap: 2px;
   background: var(--color-surface);
   border: var(--border-width) solid var(--color-border);
-  border-top: 3px solid var(--color-accent);
+  border-top: 2px solid var(--color-accent);
   border-radius: var(--radius-sm);
-  padding: 4px 8px;
+  padding: 5px 6px;
   box-shadow: var(--shadow-card);
   z-index: 9998;
-  font-family: var(--font-serif);
-  max-width: 420px;
+  max-width: 340px;
 }
 #naund-chapter-lbl {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: uppercase;
   font-family: var(--font-sans);
-  font-weight: 600;
-  padding: 0 8px 0 2px;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0 6px 0 2px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 200px;
+  max-width: 160px;
 }
 #naund-audiobar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
-  color: var(--color-text);
-  font-size: 12px;
-  font-family: var(--font-serif);
-  padding: 4px 7px;
+  color: var(--color-text-muted);
+  width: 28px;
+  height: 28px;
   cursor: pointer;
-  line-height: 1;
-  border-radius: 0;
+  border-radius: var(--radius-sm);
   transition: background var(--transition-fast), color var(--transition-fast);
-  white-space: nowrap;
+  flex-shrink: 0;
 }
 #naund-audiobar button:hover {
   background: var(--color-accent);
   color: #fff;
 }
 @media (max-width: 600px) {
-  #naund-audiobar { bottom: 68px; right: 12px; padding: 3px 6px; }
-  #naund-audiobar button { font-size: 11px; padding: 3px 6px; }
-  #naund-chapter-lbl { max-width: 100px; }
+  #naund-audiobar { bottom: 72px; right: 12px; }
+  #naund-chapter-lbl { max-width: 90px; }
 }
 
 /* ── Lesefortschrittsbalken ──────────────────────────── */
@@ -111,48 +110,52 @@
   right: 22px;
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 2px;
   background: var(--color-surface);
   border: var(--border-width) solid var(--color-border);
-  border-top: 3px solid var(--color-accent);
-  border-radius: var(--radius-sm);
+  border-top: 2px solid var(--color-accent);
+  border-radius: var(--radius-md);
   padding: 5px 8px;
   box-shadow: var(--shadow-card);
   z-index: 9999;
-  font-family: var(--font-serif);
 }
 .naund-tb-label {
   font-family: var(--font-sans);
-  font-size: var(--font-size-xs);
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-text-muted);
-  padding: 0 8px 0 2px;
+  padding: 0 6px 0 2px;
   user-select: none;
+  white-space: nowrap;
 }
 .naund-tb-sep {
   display: block;
   width: 1px;
-  height: 16px;
+  height: 14px;
   background: var(--color-border);
-  margin: 0 2px;
+  margin: 0 3px;
   flex-shrink: 0;
 }
 #naund-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
-  color: var(--color-text);
-  font-size: 11px;
-  font-family: var(--font-serif);
-  font-weight: 600;
-  padding: 5px 9px;
-  border-radius: 0;
+  color: var(--color-text-muted);
+  min-width: 30px;
+  height: 30px;
+  padding: 0 7px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  line-height: 1;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   transition: background var(--transition-fast), color var(--transition-fast);
   white-space: nowrap;
-  letter-spacing: 0.02em;
 }
 #naund-toolbar button:hover,
 #naund-toolbar button.active {
