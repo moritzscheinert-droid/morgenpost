@@ -1,47 +1,44 @@
 /* ═══════════════════════════════════════════════════════
    Na und? — App CSS
-   Toolbar · Dunkelmodus · Suche · Banner · Toast · TTS
+   Toolbar · Audiobar · Lesefortschritt · Toast · Banner
+   Alle Farben via design-tokens.css Custom Properties.
 ═══════════════════════════════════════════════════════ */
+@import url('./design-tokens.css');
 
 /* ── Kostenanzeige ───────────────────────────────────── */
 .naund-cost-note {
-  font-family: Georgia, serif;
-  font-size: 8pt;
-  color: #66605C;
-  border-top: 1px solid #e8d9c8;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  border-top: var(--border-width) solid var(--color-border);
   padding: 10px 0 4px;
   margin-top: 24px;
   text-align: right;
-}
-html.naund-dark .naund-cost-note {
-  color: #7a6e64 !important;
-  border-top-color: #3a3228 !important;
 }
 
 /* ── Zurück-Button ───────────────────────────────────── */
 .naund-back {
   display: inline-block;
-  font-family: Georgia, serif;
-  font-size: 11px;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
-  color: #0D7680;
+  color: var(--color-accent);
   text-decoration: none;
   padding: 10px 16px 8px;
-  border-bottom: 1px solid #dddddd;
+  border-bottom: var(--border-width) solid var(--color-border);
+  background: var(--color-surface);
   width: 100%;
   box-sizing: border-box;
-  background: #ffffff;
+  transition: color var(--transition-fast);
 }
-.naund-back:hover { color: #0a5c64; text-decoration: underline; }
-html.naund-dark .naund-back {
-  background: #111 !important;
-  color: #0D7680 !important;
-  border-bottom-color: #333 !important;
+.naund-back:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
 }
 
-/* ── Audio-Leiste (Kapitel + Skip) ──────────────────── */
+/* ── Audio-Leiste ────────────────────────────────────── */
 #naund-audiobar {
   position: fixed;
   bottom: 76px;
@@ -49,21 +46,22 @@ html.naund-dark .naund-back {
   display: none;
   align-items: center;
   gap: 0;
-  background: #FFF1E5;
-  border: 1px solid #c8b89e;
-  border-top: 3px solid #0D7680;
-  border-radius: 1px;
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-top: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
   padding: 4px 8px;
-  box-shadow: 0 2px 14px rgba(51,48,46,0.18);
+  box-shadow: var(--shadow-card);
   z-index: 9998;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-serif);
   max-width: 420px;
 }
 #naund-chapter-lbl {
-  font-size: 9px;
-  color: #66605C;
-  letter-spacing: 0.06em;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
+  font-family: var(--font-sans);
   font-weight: 600;
   padding: 0 8px 0 2px;
   white-space: nowrap;
@@ -74,28 +72,20 @@ html.naund-dark .naund-back {
 #naund-audiobar button {
   background: none;
   border: none;
-  color: #33302E;
+  color: var(--color-text);
   font-size: 12px;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-serif);
   padding: 4px 7px;
   cursor: pointer;
   line-height: 1;
   border-radius: 0;
-  transition: background 0.12s, color 0.12s;
+  transition: background var(--transition-fast), color var(--transition-fast);
   white-space: nowrap;
 }
 #naund-audiobar button:hover {
-  background: #0D7680;
-  color: #FFF1E5;
+  background: var(--color-accent);
+  color: #fff;
 }
-html.naund-dark #naund-audiobar {
-  background: #111 !important;
-  border-color: #333 !important;
-  color: #e8d0b8 !important;
-}
-html.naund-dark #naund-audiobar button { color: #e8d0b8 !important; }
-html.naund-dark #naund-audiobar button:hover { background: #0D7680 !important; color: #FFF1E5 !important; }
-html.naund-dark #naund-chapter-lbl { color: #aaa !important; }
 @media (max-width: 600px) {
   #naund-audiobar { bottom: 68px; right: 12px; padding: 3px 6px; }
   #naund-audiobar button { font-size: 11px; padding: 3px 6px; }
@@ -108,13 +98,13 @@ html.naund-dark #naund-chapter-lbl { color: #aaa !important; }
   top: 0; left: 0;
   height: 2px;
   width: 0;
-  background: #0D7680;
+  background: var(--color-accent);
   z-index: 10000;
   transition: width 0.12s linear;
   pointer-events: none;
 }
 
-/* ── Toolbar (FT-Zeitungsstil) ───────────────────────── */
+/* ── Toolbar ─────────────────────────────────────────── */
 #naund-toolbar {
   position: fixed;
   bottom: 28px;
@@ -122,73 +112,64 @@ html.naund-dark #naund-chapter-lbl { color: #aaa !important; }
   display: flex;
   align-items: center;
   gap: 0;
-  background: #FFF1E5;
-  border: 1px solid #c8b89e;
-  border-top: 3px solid #0D7680;
-  border-radius: 1px;
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-top: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
   padding: 5px 8px;
-  box-shadow: 0 2px 14px rgba(51,48,46,0.18);
+  box-shadow: var(--shadow-card);
   z-index: 9999;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-serif);
 }
-
 .naund-tb-label {
-  font-size: 9px;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
-  color: #66605C;
+  color: var(--color-text-muted);
   padding: 0 8px 0 2px;
-  font-family: Georgia, serif;
   user-select: none;
 }
-
 .naund-tb-sep {
   display: block;
   width: 1px;
   height: 16px;
-  background: #d9c9b5;
+  background: var(--color-border);
   margin: 0 2px;
   flex-shrink: 0;
 }
-
 #naund-toolbar button {
   background: none;
   border: none;
-  color: #33302E;
+  color: var(--color-text);
   font-size: 11px;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-weight: 600;
   padding: 5px 9px;
   border-radius: 0;
   cursor: pointer;
   line-height: 1;
-  transition: background 0.12s, color 0.12s;
+  transition: background var(--transition-fast), color var(--transition-fast);
   white-space: nowrap;
   letter-spacing: 0.02em;
 }
-
-#naund-toolbar button:hover {
-  background: #0D7680;
-  color: #FFF1E5;
-}
-
+#naund-toolbar button:hover,
 #naund-toolbar button.active {
-  background: #0D7680;
-  color: #FFF1E5;
+  background: var(--color-accent);
+  color: #fff;
 }
-
 #naund-toolbar button.tts-paused {
-  background: #d4eeef;
-  color: #0D7680;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
 }
 
-/* ── TTS: Aktiver Abschnitt ──────────────────────────── */
+/* ── TTS: aktiver Abschnitt ──────────────────────────── */
 .naund-tts-reading {
-  outline: 2px solid #0D7680;
+  outline: 2px solid var(--color-accent);
   outline-offset: 6px;
-  border-radius: 1px;
-  transition: outline 0.2s;
+  border-radius: var(--radius-sm);
+  transition: outline var(--transition-normal);
 }
 
 /* ── Toast ───────────────────────────────────────────── */
@@ -197,16 +178,17 @@ html.naund-dark #naund-chapter-lbl { color: #aaa !important; }
   bottom: 80px;
   left: 50%;
   transform: translateX(-50%) translateY(12px);
-  background: #33302E;
-  color: #FFF1E5;
-  font-family: Georgia, serif;
-  font-size: 12px;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
   padding: 9px 18px;
-  border-top: 2px solid #0D7680;
+  border-top: 2px solid var(--color-accent);
   opacity: 0;
   transition: opacity 0.25s, transform 0.25s;
   z-index: 10001;
   pointer-events: none;
+  border-radius: var(--radius-sm);
 }
 .naund-toast.show {
   opacity: 1;
@@ -219,8 +201,8 @@ html.naund-dark #naund-chapter-lbl { color: #aaa !important; }
   align-items: center;
   justify-content: center;
   background: none;
-  border: 1px solid #c8b89e;
-  color: #66605C;
+  border: var(--border-width) solid var(--color-border);
+  color: var(--color-text-muted);
   font-size: 11px;
   width: 20px;
   height: 20px;
@@ -228,10 +210,14 @@ html.naund-dark #naund-chapter-lbl { color: #aaa !important; }
   cursor: pointer;
   margin-left: 8px;
   vertical-align: middle;
-  transition: background 0.15s, color 0.15s;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
   line-height: 1;
 }
-.naund-topic-share:hover { background: #0D7680; border-color: #0D7680; color: #fff; }
+.naund-topic-share:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
 
 /* ── Neue Ausgabe Banner ─────────────────────────────── */
 #naund-new-banner {
@@ -241,17 +227,17 @@ html.naund-dark #naund-chapter-lbl { color: #aaa !important; }
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #0D7680;
-  color: #FFF1E5;
-  font-family: Georgia, serif;
-  font-size: 13px;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
   padding: 9px 16px;
   flex-wrap: wrap;
-  border-bottom: 1px solid #0a5c64;
+  border-bottom: var(--border-width) solid var(--color-border-strong);
 }
 #naund-new-banner a {
   font-weight: 700;
-  color: #FFF1E5;
+  color: #fff;
   text-decoration: underline;
   margin-left: auto;
 }
@@ -261,7 +247,7 @@ html.naund-dark #naund-chapter-lbl { color: #aaa !important; }
   font-size: 16px;
   cursor: pointer;
   padding: 0 4px;
-  color: #FFF1E5;
+  color: #fff;
   flex-shrink: 0;
 }
 
@@ -273,149 +259,46 @@ html.naund-dark #naund-chapter-lbl { color: #aaa !important; }
   right: 16px;
   max-width: 480px;
   margin: 0 auto;
-  background: #FFF1E5;
-  border: 1px solid #c8b89e;
-  border-top: 3px solid #0D7680;
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-top: 3px solid var(--color-accent);
   padding: 14px 16px;
-  font-family: Georgia, serif;
-  font-size: 13px;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-sm);
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
   z-index: 9998;
-  box-shadow: 0 4px 20px rgba(51,48,46,0.15);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-sm);
 }
-#naund-notif-prompt span { flex: 1; min-width: 200px; color: #33302E; }
+#naund-notif-prompt span {
+  flex: 1;
+  min-width: 200px;
+  color: var(--color-text);
+}
 #btn-notif-yes {
-  background: #0D7680; color: #FFF1E5; border: none;
-  padding: 6px 14px; border-radius: 1px; cursor: pointer; font-size: 12px;
-  font-family: Georgia, serif;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-family: var(--font-sans);
+  transition: background var(--transition-fast);
+}
+#btn-notif-yes:hover {
+  background: var(--color-accent-hover);
 }
 #btn-notif-no {
-  background: none; border: none; color: #66605C; cursor: pointer; font-size: 12px;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
 }
-
-/* ── Suche (Index) ───────────────────────────────────── */
-#naund-search-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-#naund-search {
-  flex: 1;
-  border: 1px solid #c8b89e;
-  border-radius: 0;
-  padding: 8px 12px;
-  font-family: Georgia, serif;
-  font-size: 0.85em;
-  outline: none;
-  background: #FFF1E5;
-  color: #33302E;
-}
-#naund-search:focus { border-color: #0D7680; }
-#naund-search-count {
-  font-size: 0.78em;
-  color: #66605C;
-  white-space: nowrap;
-  font-family: Georgia, serif;
-}
-
-/* ══════════════════════════════════════════════════════
-   DUNKELMODUS
-══════════════════════════════════════════════════════ */
-html.naund-dark body {
-  background: #111 !important;
-  color: #e0e0e0 !important;
-}
-html.naund-dark .masthead {
-  border-top-color: #444 !important;
-  border-bottom-color: #444 !important;
-}
-html.naund-dark .masthead-title,
-html.naund-dark h1 {
-  color: #f0f0f0 !important;
-}
-html.naund-dark .masthead-side-left,
-html.naund-dark .masthead-side-right,
-html.naund-dark .masthead-date-strip,
-html.naund-dark .masthead-right,
-html.naund-dark .subline,
-html.naund-dark .subheader {
-  color: #888 !important;
-  border-color: #333 !important;
-}
-html.naund-dark .masthead-rule { border-color: #444 !important; }
-html.naund-dark .gzf-thema-title {
-  color: #f0f0f0 !important;
-  border-top-color: #e0e0e0 !important;
-  border-bottom-color: #333 !important;
-}
-html.naund-dark .gzf-thema-body,
-html.naund-dark .gzf-intro-text,
-html.naund-dark .gzf-intro-text p { color: #d8d8d8 !important; }
-html.naund-dark .gzf-intro {
-  border-left-color: #0D7680 !important;
-  background: #1a1a1a !important;
-}
-html.naund-dark .gzf-intro-label { color: #aaa !important; }
-html.naund-dark .gzf-perspektiven {
-  background: #1a1a1a !important;
-  border-left-color: #0D7680 !important;
-}
-html.naund-dark .gzf-perspektiven-label { color: #bbb !important; }
-html.naund-dark .toc-box {
-  background: #1a1a1a !important;
-  border-color: #333 !important;
-}
-html.naund-dark .toc-label { color: #aaa !important; }
-html.naund-dark .toc-item a { color: #d0d0d0 !important; }
-html.naund-dark .subheader,
-html.naund-dark .footer { color: #555 !important; border-color: #333 !important; }
-html.naund-dark .analytics-heading { color: #7aadcc !important; border-color: #333 !important; }
-html.naund-dark .analytics-box { background: #1a1a1a !important; border-color: #333 !important; }
-html.naund-dark .analytics-box-title { color: #aaa !important; border-color: #333 !important; }
-html.naund-dark .wf-bar { background: #7aadcc !important; }
-html.naund-dark .wf-bar-wrap { background: #333 !important; }
-html.naund-dark a { color: #7aadcc !important; }
-html.naund-dark .gzf-fortsetzung-badge { color: #7aadcc !important; border-color: #7aadcc !important; }
-
-/* Index Dark */
-html.naund-dark .featured { background: #1a1a1a !important; border-color: #333 !important; }
-html.naund-dark .featured-title { color: #f0f0f0 !important; }
-html.naund-dark .featured-date,
-html.naund-dark .featured-topic,
-html.naund-dark .featured-label { color: #888 !important; }
-html.naund-dark .arch-card { background: #1a1a1a !important; border-color: #333 !important; color: #e0e0e0 !important; }
-html.naund-dark .arch-card:hover { border-color: #0D7680 !important; }
-html.naund-dark .arch-topic { color: #888 !important; }
-html.naund-dark .arch-img-empty { background: #2a2a2a !important; }
-html.naund-dark .info { background: #1a1a1a !important; border-color: #333 !important; color: #aaa !important; }
-html.naund-dark .info strong { color: #e0e0e0 !important; }
-html.naund-dark .subscribe { background: #1a1a1a !important; border-color: #333 !important; }
-html.naund-dark .subscribe h3 { color: #f0f0f0 !important; }
-html.naund-dark .subscribe p,
-html.naund-dark .subscribe-hint { color: #888 !important; }
-html.naund-dark .feedback { background: #1a1a1a !important; border-color: #333 !important; }
-html.naund-dark .feedback h3 { color: #f0f0f0 !important; }
-html.naund-dark .feedback > p { color: #888 !important; }
-html.naund-dark .feedback textarea { background: #222 !important; border-color: #444 !important; color: #e0e0e0 !important; }
-html.naund-dark .footer { border-top-color: #333 !important; }
-html.naund-dark #naund-search { background: #1a1a1a !important; border-color: #333 !important; color: #e0e0e0 !important; }
-html.naund-dark #naund-search::placeholder { color: #555 !important; }
-html.naund-dark .naund-topic-share { border-color: #444 !important; color: #888 !important; }
-html.naund-dark #naund-toolbar {
-  background: #1e1a16 !important;
-  border-color: #3a3228 !important;
-  border-top-color: #0D7680 !important;
-  box-shadow: 0 2px 14px rgba(0,0,0,0.5);
-}
-html.naund-dark .naund-tb-label { color: #7a6e64 !important; }
-html.naund-dark .naund-tb-sep { background: #3a3228 !important; }
-html.naund-dark #naund-toolbar button { color: #e8d0b8 !important; }
-html.naund-dark #naund-toolbar button:hover,
-html.naund-dark #naund-toolbar button.active { background: #0D7680 !important; color: #FFF1E5 !important; }
 
 /* ── Mobile ──────────────────────────────────────────── */
 @media (max-width: 640px) {

@@ -5,14 +5,16 @@
 (function () {
   'use strict';
 
-  const DARK_KEY   = 'naund-dark';
+  const DARK_KEY   = 'naund-dark';   // bestehender Key, bleibt für Rückwärtskompatibilität
   const FONT_KEY   = 'naund-font';
   const scrollKey  = () => 'naund-scroll' + location.pathname;
   const SEEN_KEY   = 'naund-last-seen';
 
-  // ── Dunkelmodus ─────────────────────────────────────────────────────────────
+  // ── Dunkelmodus — steuert data-theme Attribut auf <html> ───────────────────
   function applyDark(on) {
-    document.documentElement.classList.toggle('naund-dark', on);
+    document.documentElement.setAttribute('data-theme', on ? 'dark' : 'light');
+    // Klasse für ältere CSS-Regeln entfernen (Migration)
+    document.documentElement.classList.remove('naund-dark');
     const btn = document.getElementById('btn-dark');
     if (btn) btn.setAttribute('aria-label', on ? 'Hellmodus' : 'Dunkelmodus');
   }
@@ -345,12 +347,8 @@
 
     document.body.appendChild(tb);
 
-    // Events binden
-    const dark = localStorage.getItem(DARK_KEY) === '1';
-    applyDark(dark);
-
     document.getElementById('btn-dark').addEventListener('click', () => {
-      const on = !document.documentElement.classList.contains('naund-dark');
+      const on = document.documentElement.getAttribute('data-theme') !== 'dark';
       localStorage.setItem(DARK_KEY, on ? '1' : '0');
       applyDark(on);
     });
@@ -463,7 +461,10 @@
 
   // ── Init ─────────────────────────────────────────────────────────────────────
   function onReady() {
-    applyDark(localStorage.getItem(DARK_KEY) === '1');
+    // Gespeicherten Wert lesen; falls keiner gesetzt ist, System-Preference nutzen
+    const stored = localStorage.getItem(DARK_KEY);
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyDark(stored !== null ? stored === '1' : prefersDark);
     applyFont();
     buildToolbar();
     registerSW();

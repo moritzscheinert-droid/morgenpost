@@ -1,0 +1,522 @@
+/* ═══════════════════════════════════════════════════════════════
+   Na und? — Design-System „Rotholz"
+   Zentrale CSS-Custom-Properties + Basis-Styles + Artikel-Overrides
+   Wird von app.css per @import eingebunden.
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Schriften (lokal, woff2) ────────────────────────────────── */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  src: url('/morgenpost/fonts/playfair-display-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/morgenpost/fonts/source-serif-4-regular-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/morgenpost/fonts/source-serif-4-italic-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/morgenpost/fonts/inter-latin.woff2') format('woff2');
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TOKENS — Dunkelmodus (Standard)
+════════════════════════════════════════════════════════════════ */
+:root,
+[data-theme="dark"] {
+  /* Farben */
+  --color-bg:           #0e0c0c;
+  --color-surface:      #1c1818;
+  --color-surface-alt:  #241f1f;
+  --color-text:         #e4dfdb;
+  --color-text-muted:   #8a8380;
+  --color-accent:       #c45a4a;
+  --color-accent-hover: #d46858;
+  --color-accent-soft:  #2a1c1a;
+  --color-border:       #382828;
+  --color-border-strong:#5a3a38;
+
+  /* Schatten (im Dunkelmodus kaum sichtbar) */
+  --shadow-subtle: 0 1px 4px rgba(0,0,0,0.4);
+  --shadow-card:   0 2px 12px rgba(0,0,0,0.5);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TOKENS — Hellmodus
+════════════════════════════════════════════════════════════════ */
+[data-theme="light"] {
+  --color-bg:           #f7f3ef;
+  --color-surface:      #ede6df;
+  --color-surface-alt:  #e5ddd5;
+  --color-text:         #1e1816;
+  --color-text-muted:   #7a706a;
+  --color-accent:       #993c2a;
+  --color-accent-hover: #b04535;
+  --color-accent-soft:  #f0ddd8;
+  --color-border:       #d4c4bb;
+  --color-border-strong:#b8a49a;
+
+  --shadow-subtle: 0 1px 3px rgba(30,24,22,0.10);
+  --shadow-card:   0 2px 10px rgba(30,24,22,0.12);
+}
+
+/* System-Fallback: prefers-color-scheme (greift wenn kein data-theme gesetzt) */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --color-bg:           #f7f3ef;
+    --color-surface:      #ede6df;
+    --color-surface-alt:  #e5ddd5;
+    --color-text:         #1e1816;
+    --color-text-muted:   #7a706a;
+    --color-accent:       #993c2a;
+    --color-accent-hover: #b04535;
+    --color-accent-soft:  #f0ddd8;
+    --color-border:       #d4c4bb;
+    --color-border-strong:#b8a49a;
+    --shadow-subtle: 0 1px 3px rgba(30,24,22,0.10);
+    --shadow-card:   0 2px 10px rgba(30,24,22,0.12);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TOKENS — Typografie
+════════════════════════════════════════════════════════════════ */
+:root {
+  /* Schrift-Stacks */
+  --font-display:  'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-serif:    'Source Serif 4', Georgia, serif;
+  --font-sans:     'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Modulare Skala (Basis 16px) */
+  --font-size-xs:  0.72rem;   /* ~11.5px */
+  --font-size-sm:  0.82rem;   /* ~13px   */
+  --font-size-md:  1rem;      /* 16px    */
+  --font-size-lg:  1.15rem;   /* ~18px   */
+  --font-size-xl:  1.4rem;    /* ~22px   */
+  --font-size-2xl: 1.8rem;    /* ~29px   */
+  --font-size-3xl: 2.4rem;    /* ~38px   */
+  --font-size-4xl: 3.2rem;    /* ~51px   */
+
+  /* Zeilenhöhen */
+  --line-height-tight:   1.2;
+  --line-height-normal:  1.55;
+  --line-height-relaxed: 1.75;
+
+  /* Buchstabenabstand */
+  --letter-spacing-tight:  -0.02em;
+  --letter-spacing-normal:  0;
+  --letter-spacing-wide:    0.12em;  /* gesperrte Labels */
+  --letter-spacing-wider:   0.18em;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TOKENS — Abstände (8px-Raster)
+════════════════════════════════════════════════════════════════ */
+:root {
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   16px;
+  --space-lg:   24px;
+  --space-xl:   40px;
+  --space-2xl:  64px;
+  --space-3xl:  96px;
+  --space-4xl:  128px;
+
+  --content-width: 720px;
+  --page-width:    1100px;
+  --page-padding:  clamp(16px, 3vw, 48px);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TOKENS — Sonstiges
+════════════════════════════════════════════════════════════════ */
+:root {
+  --radius-sm:      2px;
+  --radius-md:      4px;
+  --transition-fast:   150ms ease;
+  --transition-normal: 300ms ease;
+  --border-width:   1px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   GLOBALE BASIS-STYLES
+════════════════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Sanfter Farb-Übergang bei Theme-Wechsel */
+html {
+  transition:
+    background-color var(--transition-normal),
+    color var(--transition-normal);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Überschriften ───────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--font-size-4xl); font-weight: 900; letter-spacing: var(--letter-spacing-tight); }
+h2 { font-size: var(--font-size-2xl); }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+
+/* ── Fließtext ───────────────────────────────────────────────── */
+p {
+  font-family: var(--font-serif);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+/* ── Links ───────────────────────────────────────────────────── */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* ── Uppercase-Labels / Meta-Text ────────────────────────────── */
+.label,
+.meta {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-text-muted);
+}
+
+/* ── Trennlinie ──────────────────────────────────────────────── */
+hr,
+.divider {
+  border: none;
+  border-top: var(--border-width) solid var(--color-border);
+  margin: var(--space-lg) 0;
+}
+
+/* ── Textauswahl ─────────────────────────────────────────────── */
+::selection {
+  background-color: var(--color-accent-soft);
+  color: var(--color-text);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ARTIKEL-OVERRIDES — Rotholz auf .gzf-* und .masthead
+
+   Diese Regeln überschreiben die hardgecodeten Farben aus
+   template.html für Web-Rendering (alte und neue Ausgaben).
+   Spezifität bewusst minimal gehalten — nur was nötig ist.
+════════════════════════════════════════════════════════════════ */
+
+/* ── Masthead ────────────────────────────────────────────────── */
+.masthead {
+  border-top-color: var(--color-accent) !important;
+  border-bottom-color: var(--color-border) !important;
+  background: transparent !important;
+}
+.masthead-title {
+  color: var(--color-text) !important;
+}
+.masthead-side-left,
+.masthead-side-right,
+.masthead-date-strip,
+.masthead-right,
+.masthead-period {
+  color: var(--color-text-muted) !important;
+  border-color: var(--color-border) !important;
+}
+.masthead-rule {
+  border-top-color: var(--color-border-strong) !important;
+}
+.subheader,
+.subline {
+  color: var(--color-text-muted) !important;
+  border-bottom-color: var(--color-border) !important;
+  border-color: var(--color-border) !important;
+}
+
+/* ── Kurzbriefing ────────────────────────────────────────────── */
+.gzf-intro {
+  border-top-color: var(--color-accent) !important;
+  border-bottom-color: var(--color-border) !important;
+  border-left-color: var(--color-accent) !important;
+  background: var(--color-surface) !important;
+}
+.gzf-intro-label {
+  color: var(--color-text-muted) !important;
+}
+.gzf-intro-text,
+.gzf-intro-text p {
+  color: var(--color-text) !important;
+}
+.gzf-intro-text a {
+  color: var(--color-accent) !important;
+}
+
+/* ── Thema-Blöcke ────────────────────────────────────────────── */
+.gzf-thema-title {
+  color: var(--color-text) !important;
+  border-top-color: var(--color-accent) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+.gzf-thema-body,
+.gzf-thema-body p {
+  color: var(--color-text) !important;
+}
+.gzf-thema-body > p:first-child::first-letter {
+  color: var(--color-accent) !important;
+}
+.gzf-thema-img {
+  border-color: var(--color-border) !important;
+}
+
+/* ── Perspektiven-Box ────────────────────────────────────────── */
+.gzf-perspektiven {
+  background: var(--color-surface) !important;
+  border-left-color: var(--color-accent) !important;
+}
+.gzf-perspektiven-label {
+  color: var(--color-text-muted) !important;
+}
+
+/* ── Fortsetzung-Badge ───────────────────────────────────────── */
+.gzf-fortsetzung-badge {
+  color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+}
+
+/* ── Inhaltsverzeichnis ──────────────────────────────────────── */
+.toc-box {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+.toc-label {
+  color: var(--color-text-muted) !important;
+}
+.toc-item a {
+  color: var(--color-text) !important;
+}
+.toc-item::before {
+  color: var(--color-accent) !important;
+}
+
+/* ── Medienanalyse ───────────────────────────────────────────── */
+.analytics-heading {
+  color: var(--color-accent) !important;
+  border-top-color: var(--color-accent) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+.analytics-box {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+.analytics-box-title {
+  color: var(--color-text-muted) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+.wf-bar {
+  background: var(--color-accent) !important;
+}
+.wf-bar-wrap {
+  background: var(--color-border) !important;
+}
+.wf-rank,
+.wf-count {
+  color: var(--color-text-muted) !important;
+}
+.sp-bar-wrap {
+  background: var(--color-border) !important;
+}
+
+/* ── Quellenverzeichnis (Details) ────────────────────────────── */
+details summary {
+  color: var(--color-accent) !important;
+  cursor: pointer;
+}
+details summary:hover {
+  color: var(--color-accent-hover) !important;
+}
+
+/* ── Index-Seite: Featured Card ──────────────────────────────── */
+.featured {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+.featured-title {
+  color: var(--color-text) !important;
+}
+.featured-date,
+.featured-topic {
+  color: var(--color-text-muted) !important;
+}
+.featured-label {
+  color: var(--color-accent) !important;
+}
+.featured-cta {
+  background: var(--color-accent) !important;
+  color: #fff !important;
+}
+.featured-cta:hover {
+  background: var(--color-accent-hover) !important;
+}
+
+/* ── Index-Seite: Archiv-Karten ──────────────────────────────── */
+.arch-card {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast) !important;
+}
+.arch-card:hover {
+  border-color: var(--color-accent) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+.arch-topic {
+  color: var(--color-text-muted) !important;
+}
+.arch-img-empty {
+  background: var(--color-surface-alt) !important;
+}
+
+/* ── Index-Seite: Info / Subscribe / Feedback ────────────────── */
+.info {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+  border-left-color: var(--color-accent) !important;
+  color: var(--color-text-muted) !important;
+}
+.info strong {
+  color: var(--color-text) !important;
+}
+.subscribe {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+.subscribe h3 {
+  color: var(--color-text) !important;
+}
+.subscribe p,
+.subscribe-hint {
+  color: var(--color-text-muted) !important;
+}
+.subscribe-btn {
+  background: var(--color-accent) !important;
+  color: #fff !important;
+}
+.subscribe-btn:hover {
+  background: var(--color-accent-hover) !important;
+}
+.feedback {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+.feedback h3 {
+  color: var(--color-text) !important;
+}
+.feedback > p {
+  color: var(--color-text-muted) !important;
+}
+.feedback textarea {
+  background: var(--color-surface-alt) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+.feedback textarea:focus {
+  border-color: var(--color-accent) !important;
+}
+.feedback-submit {
+  background: var(--color-accent) !important;
+  color: #fff !important;
+}
+.feedback-submit:hover {
+  background: var(--color-accent-hover) !important;
+}
+.feedback-msg.success {
+  color: var(--color-accent) !important;
+}
+
+/* ── Index-Seite: Section-Headings (h2) ──────────────────────── */
+h2.section-heading,
+.archive-section h2,
+.container h2 {
+  color: var(--color-text-muted) !important;
+  border-top-color: var(--color-accent) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+
+/* ── RSS-Link ────────────────────────────────────────────────── */
+.rss-link {
+  color: var(--color-accent) !important;
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.footer {
+  color: var(--color-text-muted) !important;
+  border-top-color: var(--color-border) !important;
+}
+
+/* ── Allgemeine Links in Artikeln ────────────────────────────── */
+body a:not(.naund-back):not(.featured-cta):not(.subscribe-btn):not(.rss-link) {
+  color: var(--color-accent);
+}
+
+/* ── Suche (Index) ───────────────────────────────────────────── */
+#naund-search {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+#naund-search:focus {
+  border-color: var(--color-accent) !important;
+}
+#naund-search::placeholder {
+  color: var(--color-text-muted) !important;
+}
+
+/* ── Kostenanzeige ───────────────────────────────────────────── */
+.naund-cost-note {
+  color: var(--color-text-muted) !important;
+  border-top-color: var(--color-border) !important;
+}
