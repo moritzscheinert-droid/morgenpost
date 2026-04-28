@@ -121,6 +121,9 @@
     const items = document.querySelectorAll('.gzf-thema');
     if (!items.length) return;
 
+    // Klasse erst jetzt setzen → opacity: 0 greift nur wenn JS aktiv ist
+    document.documentElement.classList.add('art-fade-ready');
+
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
