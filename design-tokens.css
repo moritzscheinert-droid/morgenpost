@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   Na und? — Design-System „Rotholz"
+   Na und? — Design-System „NYT-Stil"
    Zentrale CSS-Custom-Properties + Basis-Styles + Artikel-Overrides
    Wird von app.css per @import eingebunden.
 ═══════════════════════════════════════════════════════════════ */
@@ -38,62 +38,87 @@
 }
 
 /* ════════════════════════════════════════════════════════════════
-   TOKENS — Dunkelmodus (Standard)
+   TOKENS — Hellmodus (Standard) — Direkt von der NYT abgeleitet
 ════════════════════════════════════════════════════════════════ */
 :root,
-[data-theme="dark"] {
+[data-theme="light"] {
   /* Farben */
-  --color-bg:           #0e0c0c;
-  --color-surface:      #1c1818;
-  --color-surface-alt:  #241f1f;
-  --color-text:         #e4dfdb;
-  --color-text-muted:   #8a8380;
-  --color-accent:       #c45a4a;
-  --color-accent-hover: #d46858;
-  --color-accent-soft:  #2a1c1a;
-  --color-border:       #382828;
-  --color-border-strong:#5a3a38;
+  --color-bg:           #ffffff;   /* Reines Weiß, wie NYT */
+  --color-surface:      #f7f7f7;   /* Sehr helles Grau für Cards, Boxen */
+  --color-surface-alt:  #efefef;   /* Leicht dunklere Oberfläche */
+  --color-text:         #121212;   /* NYT-Textfarbe: fast-Schwarz */
+  --color-text-muted:   #727272;   /* Sekundärtext: Datum, Lesezeit — 4.6:1 auf #fff ✓ */
+  --color-accent:       #326891;   /* NYT-Linkblau: gedecktes Stahlblau — 5.9:1 auf #fff ✓ */
+  --color-accent-hover: #1d4f6e;   /* Dunkleres Blau für Hover */
+  --color-accent-soft:  #e8f0f7;   /* Aufgehelltes Akzentblau für Badges */
+  --color-border:       #e2e2e2;   /* NYT-Trennlinien: helles Grau */
+  --color-border-heavy: #cccccc;   /* Stärkere Trennlinien */
+  --color-border-rule:  #000000;   /* Prominente Trennlinie: schwarz wie NYT-Masthead-Linie */
+  --color-border-strong: #999999;  /* Mittlere Stärke */
+  --color-live:         #d0021b;   /* NYT-Rot: NUR für Breaking/Live — 6.0:1 auf #fff ✓ */
+  --color-opinion:      #a8a8a8;   /* Grau für Meinungs-Kennzeichnungen */
 
-  /* Schatten (im Dunkelmodus kaum sichtbar) */
+  /* Schatten — im Hellmodus sichtbar */
+  --shadow-subtle: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-card:   0 2px 8px rgba(0,0,0,0.10);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TOKENS — Dunkelmodus — Intelligent vom NYT-Geist abgeleitet
+   (NYT hat keinen offiziellen Dunkelmodus — minimalistisch,
+   typografiezentriert, keine bunten Ablenkungen)
+════════════════════════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --color-bg:           #121212;   /* Tiefes Schwarz — spiegelt NYT-Textwert */
+  --color-surface:      #1e1e1e;   /* Leicht heller für Cards, Boxen */
+  --color-surface-alt:  #272727;   /* Noch etwas heller für verschachtelte Flächen */
+  --color-text:         #e8e8e8;   /* Warmes Off-White — 15:1 auf #121212 ✓ */
+  --color-text-muted:   #999999;   /* Gedämpftes Grau — 6.2:1 auf #121212 ✓ */
+  --color-accent:       #5b9bd5;   /* Aufgehelltes NYT-Blau für Kontrast auf Dunkel — 6.9:1 ✓ */
+  --color-accent-hover: #7db3e0;   /* Noch heller für Hover */
+  --color-accent-soft:  #1a2a38;   /* Dunkler Akzent-Hintergrund für Badges */
+  --color-border:       #333333;   /* Dezente Trennlinien */
+  --color-border-heavy: #555555;   /* Stärkere Trennlinien */
+  --color-border-rule:  #e8e8e8;   /* Invertierte prominente Trennlinie: hell auf dunkel */
+  --color-border-strong: #444444;  /* Mittlere Stärke */
+  --color-live:         #e8453a;   /* Aufgehelltes Rot für Lesbarkeit — 5.1:1 auf #121212 ✓ */
+  --color-opinion:      #6a6a6a;   /* Gedämpftes Grau */
+
   --shadow-subtle: 0 1px 4px rgba(0,0,0,0.4);
   --shadow-card:   0 2px 12px rgba(0,0,0,0.5);
 }
 
-/* ════════════════════════════════════════════════════════════════
-   TOKENS — Hellmodus
-════════════════════════════════════════════════════════════════ */
-[data-theme="light"] {
-  --color-bg:           #f7f3ef;
-  --color-surface:      #ede6df;
-  --color-surface-alt:  #e5ddd5;
-  --color-text:         #1e1816;
-  --color-text-muted:   #7a706a;
-  --color-accent:       #993c2a;
-  --color-accent-hover: #b04535;
-  --color-accent-soft:  #f0ddd8;
-  --color-border:       #d4c4bb;
-  --color-border-strong:#b8a49a;
-
-  --shadow-subtle: 0 1px 3px rgba(30,24,22,0.10);
-  --shadow-card:   0 2px 10px rgba(30,24,22,0.12);
+/* System-Fallback: greift wenn kein data-theme gesetzt ist */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-bg:           #121212;
+    --color-surface:      #1e1e1e;
+    --color-surface-alt:  #272727;
+    --color-text:         #e8e8e8;
+    --color-text-muted:   #999999;
+    --color-accent:       #5b9bd5;
+    --color-accent-hover: #7db3e0;
+    --color-accent-soft:  #1a2a38;
+    --color-border:       #333333;
+    --color-border-heavy: #555555;
+    --color-border-rule:  #e8e8e8;
+    --color-border-strong: #444444;
+    --color-live:         #e8453a;
+    --color-opinion:      #6a6a6a;
+    --shadow-subtle: 0 1px 4px rgba(0,0,0,0.4);
+    --shadow-card:   0 2px 12px rgba(0,0,0,0.5);
+  }
 }
 
-/* System-Fallback: prefers-color-scheme (greift wenn kein data-theme gesetzt) */
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) {
-    --color-bg:           #f7f3ef;
-    --color-surface:      #ede6df;
-    --color-surface-alt:  #e5ddd5;
-    --color-text:         #1e1816;
-    --color-text-muted:   #7a706a;
-    --color-accent:       #993c2a;
-    --color-accent-hover: #b04535;
-    --color-accent-soft:  #f0ddd8;
-    --color-border:       #d4c4bb;
-    --color-border-strong:#b8a49a;
-    --shadow-subtle: 0 1px 3px rgba(30,24,22,0.10);
-    --shadow-card:   0 2px 10px rgba(30,24,22,0.12);
-  }
+/* ════════════════════════════════════════════════════════════════
+   TOKENS — Trennlinien-System (NYT-Stil)
+   NYT nutzt verschiedene Linienstärken, NIE bunte Farben
+════════════════════════════════════════════════════════════════ */
+:root {
+  --border-thin:   1px solid var(--color-border);         /* Standard-Trenner */
+  --border-thick:  2px solid var(--color-border-heavy);   /* Abschnitts-Trenner */
+  --border-rule:   3px solid var(--color-border-rule);    /* Masthead/Haupttrenner */
+  --border-double: 4px double var(--color-border-heavy);  /* Doppellinie NYT-Stil */
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -123,7 +148,7 @@
   /* Buchstabenabstand */
   --letter-spacing-tight:  -0.02em;
   --letter-spacing-normal:  0;
-  --letter-spacing-wide:    0.12em;  /* gesperrte Labels */
+  --letter-spacing-wide:    0.12em;
   --letter-spacing-wider:   0.18em;
 }
 
@@ -150,7 +175,7 @@
 ════════════════════════════════════════════════════════════════ */
 :root {
   --radius-sm:      2px;
-  --radius-md:      4px;
+  --radius-md:      3px;
   --transition-fast:   150ms ease;
   --transition-normal: 300ms ease;
   --border-width:   1px;
@@ -215,6 +240,7 @@ a {
 }
 a:hover {
   color: var(--color-accent-hover);
+  text-decoration: underline;
 }
 
 /* ── Uppercase-Labels / Meta-Text ────────────────────────────── */
@@ -228,32 +254,37 @@ a:hover {
   color: var(--color-text-muted);
 }
 
-/* ── Trennlinie ──────────────────────────────────────────────── */
+/* ── Trennlinie — NYT-Stil: immer neutral, nie Akzentfarbe ────── */
 hr,
 .divider {
   border: none;
-  border-top: var(--border-width) solid var(--color-border);
+  border-top: var(--border-thin);
   margin: var(--space-lg) 0;
 }
 
 /* ── Textauswahl ─────────────────────────────────────────────── */
+/* Hellmodus: Blauer Hintergrund, weißer Text */
 ::selection {
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
+/* Dunkelmodus: Abgedunkelter Akzent-Hintergrund */
+[data-theme="dark"] ::selection {
   background-color: var(--color-accent-soft);
   color: var(--color-text);
 }
 
 /* ════════════════════════════════════════════════════════════════
-   ARTIKEL-OVERRIDES — Rotholz auf .gzf-* und .masthead
+   ARTIKEL-OVERRIDES — NYT-Stil auf .gzf-* und .masthead
 
    Diese Regeln überschreiben die hardgecodeten Farben aus
    template.html für Web-Rendering (alte und neue Ausgaben).
-   Spezifität bewusst minimal gehalten — nur was nötig ist.
 ════════════════════════════════════════════════════════════════ */
 
 /* ── Masthead ────────────────────────────────────────────────── */
 .masthead {
-  border-top-color: var(--color-accent) !important;
-  border-bottom-color: var(--color-border) !important;
+  border-top: var(--border-rule) !important;   /* prominente schwarze/weiße Linie */
+  border-bottom: var(--border-thin) !important;
   background: transparent !important;
 }
 .masthead-title {
@@ -270,7 +301,7 @@ hr,
   border-color: var(--color-border) !important;
 }
 .masthead-rule {
-  border-top-color: var(--color-border-strong) !important;
+  border-top-color: var(--color-border-heavy) !important;
 }
 .subheader,
 .subline {
@@ -281,9 +312,9 @@ hr,
 
 /* ── Kurzbriefing ────────────────────────────────────────────── */
 .gzf-intro {
-  border-top-color: var(--color-accent) !important;
+  border-top-color: var(--color-border-rule) !important;
   border-bottom-color: var(--color-border) !important;
-  border-left-color: var(--color-accent) !important;
+  border-left-color: var(--color-border-rule) !important;
   background: var(--color-surface) !important;
 }
 .gzf-intro-label {
@@ -300,15 +331,16 @@ hr,
 /* ── Thema-Blöcke ────────────────────────────────────────────── */
 .gzf-thema-title {
   color: var(--color-text) !important;
-  border-top-color: var(--color-accent) !important;
+  border-top-color: var(--color-border-rule) !important;
   border-bottom-color: var(--color-border) !important;
 }
 .gzf-thema-body,
 .gzf-thema-body p {
   color: var(--color-text) !important;
 }
+/* Drop Cap: neutral schwarz/weiß statt Akzentfarbe */
 .gzf-thema-body > p:first-child::first-letter {
-  color: var(--color-accent) !important;
+  color: var(--color-text) !important;
 }
 .gzf-thema-img {
   border-color: var(--color-border) !important;
@@ -317,7 +349,7 @@ hr,
 /* ── Perspektiven-Box ────────────────────────────────────────── */
 .gzf-perspektiven {
   background: var(--color-surface) !important;
-  border-left-color: var(--color-accent) !important;
+  border-left-color: var(--color-border-heavy) !important;
 }
 .gzf-perspektiven-label {
   color: var(--color-text-muted) !important;
@@ -340,14 +372,15 @@ hr,
 .toc-item a {
   color: var(--color-text) !important;
 }
+/* NYT-Stil: neutrale Aufzählung, kein Farbpunkt */
 .toc-item::before {
-  color: var(--color-accent) !important;
+  color: var(--color-text-muted) !important;
 }
 
 /* ── Medienanalyse ───────────────────────────────────────────── */
 .analytics-heading {
-  color: var(--color-accent) !important;
-  border-top-color: var(--color-accent) !important;
+  color: var(--color-text) !important;
+  border-top-color: var(--color-border-rule) !important;
   border-bottom-color: var(--color-border) !important;
 }
 .analytics-box {
@@ -358,8 +391,9 @@ hr,
   color: var(--color-text-muted) !important;
   border-bottom-color: var(--color-border) !important;
 }
+/* Balkendiagramme: neutral grau statt Akzentfarbe */
 .wf-bar {
-  background: var(--color-accent) !important;
+  background: var(--color-text-muted) !important;
 }
 .wf-bar-wrap {
   background: var(--color-border) !important;
@@ -393,15 +427,19 @@ details summary:hover {
 .featured-topic {
   color: var(--color-text-muted) !important;
 }
+/* NYT: Labels sind grau, nicht farbig */
 .featured-label {
-  color: var(--color-accent) !important;
+  color: var(--color-text-muted) !important;
 }
+/* CTA-Button NYT-Stil: schwarz/weiß, kantig, kontrastreich */
 .featured-cta {
-  background: var(--color-accent) !important;
-  color: #fff !important;
+  background: var(--color-text) !important;
+  color: var(--color-bg) !important;
+  border: 2px solid var(--color-text) !important;
 }
 .featured-cta:hover {
-  background: var(--color-accent-hover) !important;
+  background: transparent !important;
+  color: var(--color-text) !important;
 }
 
 /* ── Index-Seite: Archiv-Karten ──────────────────────────────── */
@@ -412,7 +450,7 @@ details summary:hover {
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast) !important;
 }
 .arch-card:hover {
-  border-color: var(--color-accent) !important;
+  border-color: var(--color-border-heavy) !important;
   box-shadow: var(--shadow-card) !important;
 }
 .arch-topic {
@@ -422,11 +460,20 @@ details summary:hover {
   background: var(--color-surface-alt) !important;
 }
 
+/* ── Index-Seite: Section-Headings (h2) ──────────────────────── */
+h2.section-heading,
+.archive-section h2,
+.container h2 {
+  color: var(--color-text) !important;
+  border-top: var(--border-rule) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+
 /* ── Index-Seite: Info / Subscribe / Feedback ────────────────── */
 .info {
   background: var(--color-surface) !important;
   border-color: var(--color-border) !important;
-  border-left-color: var(--color-accent) !important;
+  border-left-color: var(--color-border-heavy) !important;
   color: var(--color-text-muted) !important;
 }
 .info strong {
@@ -443,12 +490,15 @@ details summary:hover {
 .subscribe-hint {
   color: var(--color-text-muted) !important;
 }
+/* Subscribe-Button NYT-Stil */
 .subscribe-btn {
-  background: var(--color-accent) !important;
-  color: #fff !important;
+  background: var(--color-text) !important;
+  color: var(--color-bg) !important;
+  border: 2px solid var(--color-text) !important;
 }
 .subscribe-btn:hover {
-  background: var(--color-accent-hover) !important;
+  background: transparent !important;
+  color: var(--color-text) !important;
 }
 .feedback {
   background: var(--color-surface) !important;
@@ -468,24 +518,18 @@ details summary:hover {
 .feedback textarea:focus {
   border-color: var(--color-accent) !important;
 }
+/* Feedback-Submit NYT-Stil */
 .feedback-submit {
-  background: var(--color-accent) !important;
-  color: #fff !important;
+  background: var(--color-text) !important;
+  color: var(--color-bg) !important;
+  border: 2px solid var(--color-text) !important;
 }
 .feedback-submit:hover {
-  background: var(--color-accent-hover) !important;
+  background: transparent !important;
+  color: var(--color-text) !important;
 }
 .feedback-msg.success {
   color: var(--color-accent) !important;
-}
-
-/* ── Index-Seite: Section-Headings (h2) ──────────────────────── */
-h2.section-heading,
-.archive-section h2,
-.container h2 {
-  color: var(--color-text-muted) !important;
-  border-top-color: var(--color-accent) !important;
-  border-bottom-color: var(--color-border) !important;
 }
 
 /* ── RSS-Link ────────────────────────────────────────────────── */
