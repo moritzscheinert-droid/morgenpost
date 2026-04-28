@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archiv – Na und?</title>
+  <meta name="description" content="Alle Ausgaben des dreimal-wöchentlichen Nachrichten-Digests Na und?.">
+  <meta name="robots" content="noindex">
+  <link rel="manifest" href="/morgenpost/manifest.json">
+  <link rel="icon" href="/morgenpost/icons/icon-192.png" type="image/png">
+  <link rel="stylesheet" href="/morgenpost/design-tokens.css">
+  <link rel="stylesheet" href="/morgenpost/app.css">
+  <link rel="stylesheet" href="/morgenpost/archive-layout.css">
+  <!-- Theme vor erstem Paint setzen, um Flackern zu vermeiden -->
+  <script>
+    (function () {
+      var stored = localStorage.getItem('naund-dark');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var dark = stored === '1' || (stored === null && prefersDark);
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    })();
+  </script>
+</head>
+<body>
+
+<!-- Lesefortschrittsbalken (via app.js injiziert) -->
+<div id="naund-prog" role="progressbar" aria-hidden="true"></div>
+
+<div class="arch-page">
+
+  <!-- ══════════════════════════════════════════════════════
+       Masthead — identisch zur Startseite
+  ══════════════════════════════════════════════════════ -->
+  <header class="arch-masthead">
+    <div class="arch-masthead-inner">
+      <a href="/morgenpost/" class="arch-masthead-title" aria-label="Na und? – Zur Startseite">
+        Na und?
+      </a>
+      <p class="arch-masthead-sub" aria-hidden="true">
+        Dreimal wöchentlicher Nachrichten-Digest<br>
+        Von Links bis Rechts · Internationales Spektrum
+      </p>
+    </div>
+    <nav class="arch-masthead-nav" aria-label="Hauptnavigation">
+      <a href="/morgenpost/">Startseite</a>
+      <a href="/morgenpost/archiv.html" aria-current="page">Archiv</a>
+    </nav>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════
+       Haupt-Inhalt
+  ══════════════════════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- Seiten-Titel -->
+    <div class="arch-header">
+      <h1>Archiv</h1>
+      <p class="arch-header-meta" id="arch-meta" aria-live="polite">
+        Ausgaben werden geladen…
+      </p>
+    </div>
+
+    <!-- Filterleiste -->
+    <section class="arch-filter" aria-label="Ausgaben filtern und sortieren">
+      <label class="sr-only" for="arch-search">Ausgaben durchsuchen</label>
+      <input
+        type="search"
+        id="arch-search"
+        class="arch-search"
+        placeholder="Ausgaben durchsuchen…"
+        autocomplete="off"
+        spellcheck="false"
+        aria-controls="arch-list arch-empty"
+      >
+      <span class="arch-filter-sort-label" aria-hidden="true">Sortierung:</span>
+      <label class="sr-only" for="arch-sort">Sortierung</label>
+      <select id="arch-sort" class="arch-sort">
+        <option value="desc">Neueste zuerst</option>
+        <option value="asc">Älteste zuerst</option>
+      </select>
+    </section>
+
+    <!-- Ergebnis-Container — aria-live für Screenreader -->
+    <div aria-live="polite" aria-atomic="false">
+      <ul class="arch-list" id="arch-list" aria-label="Ausgaben"></ul>
+
+      <div class="arch-empty" id="arch-empty" role="status">
+        <p class="arch-empty-msg" id="arch-empty-msg">Keine Ausgaben gefunden.</p>
+        <button class="arch-empty-reset" id="arch-reset-btn" type="button">
+          Suche zurücksetzen
+        </button>
+      </div>
+    </div>
+
+    <noscript>
+      <p style="font-family:sans-serif;padding:2rem 0;color:#666;font-size:15px">
+        JavaScript ist deaktiviert. Bitte aktiviere JavaScript, um das Archiv anzuzeigen.
+      </p>
+    </noscript>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       Footer
+  ══════════════════════════════════════════════════════ -->
+  <footer class="arch-footer">
+    <p>Na und? · Dreimal wöchentlich · Analyse &amp; Zusammenfassung</p>
+    <p><a href="/morgenpost/feed.xml">RSS-Feed</a> · &copy; 2026 Na und?</p>
+  </footer>
+
+</div><!-- /arch-page -->
+
+<!-- Toolbar + Dunkelmodus + Schriftgröße (injiziert von app.js) -->
+<script src="/morgenpost/app.js" defer></script>
+
+<!-- ══════════════════════════════════════════════════════════
+     Archiv-Daten & Rendering
+══════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ─────────────────────────────────────────────────────────
+     AUSGABEN-DATEN (Variante A – inline)
+
+     Für Variante B (externe JSON-Datei) diese Funktion ersetzen:
+       function ladeAusgaben() {
+         return fetch('/morgenpost/ausgaben.json').then(r => r.json());
+       }
+     Das Datenformat bleibt identisch.
+  ───────────────────────────────────────────────────────── */
+  var AUSGABEN = [
+    {
+      datum:    '2026-04-28',
+      titel:    'Na und? – Dienstag, 28. April 2026',
+      teaser:   'Iran-Konflikt – Verhärtete Fronten, Moskauer Schachzug und Piraterie-Vorwürfe',
+      lesezeit: 22,
+      bild:     '/morgenpost/issues/images/2026-04-28_na-und_1.jpg',
+      url:      '/morgenpost/issues/2026-04-28_na-und.html'
+    },
+    {
+      datum:    '2026-04-26',
+      titel:    'Na und? – Sonntag, 26. April 2026',
+      teaser:   'Sicherheitsvorfall beim Trump-Dinner – Neue Details, offene Fragen',
+      lesezeit: 21,
+      bild:     '/morgenpost/issues/images/2026-04-26_na-und_1.jpg',
+      url:      '/morgenpost/issues/2026-04-26_na-und.html'
+    },
+    {
+      datum:    '2026-04-24',
+      titel:    'Na und? – Freitag, 24. April 2026',
+      teaser:   ‘EU-Gipfel in Zypern – Merz’ Iran-Diplomatie und das FCAS-Projekt’,
+      lesezeit: 21,
+      bild:     '/morgenpost/issues/images/2026-04-24_na-und_2.jpg',
+      url:      '/morgenpost/issues/2026-04-24_na-und.html'
+    }
+  ];
+
+  function ladeAusgaben() {
+    return Promise.resolve(AUSGABEN);
+  }
+
+  /* ── Hilfsfunktionen ──────────────────────────────────── */
+  var DE_MONTHS = ['Januar','Februar','März','April','Mai','Juni',
+                   'Juli','August','September','Oktober','November','Dezember'];
+  var DE_DAYS   = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+
+  function formatDatum(iso) {
+    var parts = iso.split('-').map(Number);
+    var dt = new Date(parts[0], parts[1] - 1, parts[2]);
+    return DE_DAYS[dt.getDay()] + ', ' + parts[2] + '. ' + DE_MONTHS[parts[1] - 1] + ' ' + parts[0];
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  /* ── Karte als <li>-Element erstellen ─────────────────── */
+  function erstelleKarte(ausgabe) {
+    var li = document.createElement('li');
+    li.className = 'arch-issue';
+    li.dataset.suchtext = (ausgabe.titel + ' ' + ausgabe.teaser + ' ' + ausgabe.datum).toLowerCase();
+
+    var a = document.createElement('a');
+    a.href = ausgabe.url;
+    a.className = 'arch-issue-link';
+
+    /* Bild */
+    if (ausgabe.bild) {
+      var img = document.createElement('img');
+      img.src = ausgabe.bild;
+      img.alt = '';
+      img.className = 'arch-issue-img';
+      img.width = 200;
+      img.height = 130;
+      img.loading = 'lazy';
+      img.setAttribute('aria-hidden', 'true');
+      img.onerror = function () {
+        var ph = erstellePlatzhalter();
+        if (this.parentNode) this.parentNode.replaceChild(ph, this);
+      };
+      a.appendChild(img);
+    } else {
+      a.appendChild(erstellePlatzhalter());
+    }
+
+    /* Textbereich */
+    var body = document.createElement('div');
+    body.className = 'arch-issue-body';
+    body.innerHTML =
+      '<span class="arch-issue-date">' + escapeHtml(formatDatum(ausgabe.datum)) + '</span>' +
+      '<span class="arch-issue-title">' + escapeHtml(ausgabe.titel) + '</span>' +
+      '<span class="arch-issue-teaser">' + escapeHtml(ausgabe.teaser) + '</span>' +
+      '<span class="arch-issue-meta">ca. ' + ausgabe.lesezeit + ' Min. Lesezeit</span>' +
+      '<span class="arch-issue-cta" aria-hidden="true">Lesen →</span>';
+
+    a.appendChild(body);
+    li.appendChild(a);
+    return li;
+  }
+
+  function erstellePlatzhalter() {
+    var ph = document.createElement('div');
+    ph.className = 'arch-issue-img-ph';
+    ph.setAttribute('aria-hidden', 'true');
+    ph.textContent = '✶';
+    return ph;
+  }
+
+  /* ── IntersectionObserver für Einblend-Animation ──────── */
+  var io;
+
+  function beobachteKarten(kartenElemente) {
+    if (io) io.disconnect();
+
+    if (!('IntersectionObserver' in window)) {
+      kartenElemente.forEach(function (li) { li.classList.add('visible'); });
+      return;
+    }
+
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+
+    kartenElemente.forEach(function (li) { io.observe(li); });
+  }
+
+  /* ── Meta-Zeile (Anzahl + ältestes Datum) ─────────────── */
+  function aktualisiereMetaZeile(daten) {
+    var metaEl = document.getElementById('arch-meta');
+    if (!metaEl || !daten.length) return;
+
+    var datums = daten.map(function (a) { return a.datum; }).sort();
+    var oldest = datums[0].split('-').map(Number);
+    var seit = oldest[2] + '. ' + DE_MONTHS[oldest[1] - 1] + ' ' + oldest[0];
+
+    metaEl.textContent = 'Alle Ausgaben · ' + daten.length + ' Ausgaben seit ' + seit;
+  }
+
+  /* ── Liste rendern (mit DocumentFragment) ─────────────── */
+  var aktuelleSortierung = 'desc';
+  var aktuelleQuery      = '';
+
+  function rendern() {
+    var q = aktuelleQuery.trim().toLowerCase();
+
+    var sortiert = AUSGABEN.slice().sort(function (a, b) {
+      var diff = a.datum < b.datum ? -1 : a.datum > b.datum ? 1 : 0;
+      return aktuelleSortierung === 'asc' ? diff : -diff;
+    });
+
+    var gefiltert = q
+      ? sortiert.filter(function (a) {
+          return (a.titel + ' ' + a.teaser + ' ' + a.datum).toLowerCase().indexOf(q) !== -1;
+        })
+      : sortiert;
+
+    var list  = document.getElementById('arch-list');
+    var empty = document.getElementById('arch-empty');
+    var emptyMsg = document.getElementById('arch-empty-msg');
+    var frag  = document.createDocumentFragment();
+    var karten = gefiltert.map(erstelleKarte);
+
+    karten.forEach(function (li) { frag.appendChild(li); });
+    list.innerHTML = '';
+    list.appendChild(frag);
+    beobachteKarten(karten);
+
+    if (gefiltert.length === 0) {
+      emptyMsg.textContent = q
+        ? 'Keine Ausgaben gefunden für „' + q + '“.'
+        : 'Keine Ausgaben vorhanden.';
+      empty.classList.add('visible');
+    } else {
+      empty.classList.remove('visible');
+    }
+  }
+
+  /* ── Debounce ─────────────────────────────────────────── */
+  function debounce(fn, ms) {
+    var timer;
+    return function () {
+      var ctx = this, args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function () { fn.apply(ctx, args); }, ms);
+    };
+  }
+
+  /* ── Init ─────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', function () {
+    ladeAusgaben().then(function (daten) {
+      /* AUSGABEN global aktualisieren falls Variante B genutzt wird */
+      AUSGABEN = daten;
+      aktualisiereMetaZeile(daten);
+      rendern();
+
+      var searchInput = document.getElementById('arch-search');
+      var sortSelect  = document.getElementById('arch-sort');
+      var resetBtn    = document.getElementById('arch-reset-btn');
+
+      searchInput.addEventListener('input', debounce(function () {
+        aktuelleQuery = searchInput.value;
+        rendern();
+      }, 150));
+
+      sortSelect.addEventListener('change', function () {
+        aktuelleSortierung = sortSelect.value;
+        rendern();
+      });
+
+      resetBtn.addEventListener('click', function () {
+        searchInput.value = '';
+        aktuelleQuery = '';
+        rendern();
+        searchInput.focus();
+      });
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
