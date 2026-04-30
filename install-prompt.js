@@ -18,8 +18,7 @@
   const visits = parseInt(localStorage.getItem(VISIT_KEY) || '0', 10) + 1;
   localStorage.setItem(VISIT_KEY, visits);
 
-  // Nicht zeigen wenn: erstes Besuch, bereits dismissed, bereits als PWA geöffnet
-  if (visits < 2) return;
+  // Nicht zeigen wenn: bereits dismissed oder bereits als PWA geöffnet
   if (localStorage.getItem(DISMISS_KEY)) return;
   if (window.matchMedia('(display-mode: standalone)').matches) return;
   if (window.navigator.standalone) return; // iOS Safari PWA
