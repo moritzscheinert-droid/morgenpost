@@ -6,11 +6,28 @@
   <title>Archiv – Na und?</title>
   <meta name="description" content="Alle Ausgaben des dreimal-wöchentlichen Nachrichten-Digests Na und?.">
   <meta name="robots" content="noindex">
+  <meta name="author" content="Na und?">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Na und? — Nachrichten-Digest">
+  <meta property="og:title" content="Archiv — Na und?">
+  <meta property="og:description" content="Alle Ausgaben des Nachrichten-Digests im Überblick.">
+  <meta property="og:image" content="https://moritzscheinert-droid.github.io/morgenpost/icons/icon-1024.png">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:url" content="https://moritzscheinert-droid.github.io/morgenpost/archiv.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Archiv — Na und?">
+  <meta name="twitter:description" content="Alle Ausgaben des Nachrichten-Digests im Überblick.">
+  <meta name="twitter:image" content="https://moritzscheinert-droid.github.io/morgenpost/icons/icon-1024.png">
   <link rel="manifest" href="/morgenpost/manifest.json">
-  <link rel="icon" href="/morgenpost/icons/icon-192.png" type="image/png">
-  <link rel="stylesheet" href="/morgenpost/design-tokens.css">
+  <link rel="icon" href="/morgenpost/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/morgenpost/icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="/morgenpost/icons/icon-512.png">
+  <link rel="alternate" type="application/rss+xml" title="Na und? RSS Feed" href="/morgenpost/feed.xml">
   <link rel="stylesheet" href="/morgenpost/app.css">
   <link rel="stylesheet" href="/morgenpost/archive-layout.css">
+  <link rel="stylesheet" href="/morgenpost/print.css" media="print">
   <!-- Theme vor erstem Paint setzen, um Flackern zu vermeiden -->
   <script>
     (function () {
@@ -22,6 +39,8 @@
   </script>
 </head>
 <body>
+
+<a href="#main-content" class="skip-link">Zum Inhalt springen</a>
 
 <!-- Lesefortschrittsbalken (via app.js injiziert) -->
 <div id="naund-prog" role="progressbar" aria-hidden="true"></div>
@@ -196,6 +215,7 @@
       img.width = 200;
       img.height = 130;
       img.loading = 'lazy';
+      img.decoding = 'async';
       img.setAttribute('aria-hidden', 'true');
       img.onerror = function () {
         var ph = erstellePlatzhalter();

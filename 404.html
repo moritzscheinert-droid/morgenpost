@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seite nicht gefunden – Na und?</title>
+  <meta name="description" content="Diese Seite existiert nicht oder wurde verschoben.">
+  <meta name="robots" content="noindex">
+  <meta name="author" content="Na und?">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+  <!-- Theme vor erstem Paint setzen, um Flackern zu vermeiden -->
+  <script>
+    (function () {
+      var stored = localStorage.getItem('naund-dark');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var dark = stored === '1' || (stored === null && prefersDark);
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    })();
+  </script>
+  <link rel="manifest" href="/morgenpost/manifest.json">
+  <link rel="icon" href="/morgenpost/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/morgenpost/icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="/morgenpost/icons/icon-512.png">
+  <link rel="alternate" type="application/rss+xml" title="Na und? RSS Feed" href="/morgenpost/feed.xml">
+  <link rel="stylesheet" href="/morgenpost/app.css">
+  <link rel="stylesheet" href="/morgenpost/archive-layout.css">
+  <link rel="stylesheet" href="/morgenpost/print.css" media="print">
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+<div id="naund-prog" role="progressbar" aria-hidden="true"></div>
+
+<div class="arch-page">
+
+  <header class="arch-masthead" role="banner">
+    <div class="arch-masthead-inner">
+      <a href="/morgenpost/" class="arch-masthead-title" aria-label="Na und? – Zur Startseite">
+        Na und?
+      </a>
+      <p class="arch-masthead-sub" aria-hidden="true">
+        Dreimal wöchentlicher Nachrichten-Digest<br>
+        Von Links bis Rechts · Internationales Spektrum
+      </p>
+    </div>
+    <nav class="arch-masthead-nav" aria-label="Hauptnavigation">
+      <a href="/morgenpost/">Startseite</a>
+      <a href="/morgenpost/archiv.html">Archiv</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="not-found-main">
+    <p class="not-found-code">404</p>
+    <h1 class="not-found-headline">Seite nicht gefunden</h1>
+    <p class="not-found-desc">
+      Die angeforderte Seite existiert nicht oder wurde verschoben.
+    </p>
+    <nav class="not-found-links" aria-label="Weiterführende Links">
+      <a href="/morgenpost/">Zur Startseite →</a>
+      <a href="/morgenpost/archiv.html">Zum Archiv →</a>
+    </nav>
+  </main>
+
+  <footer class="arch-footer">
+    <p>Na und? · Dreimal wöchentlich · Analyse &amp; Zusammenfassung</p>
+    <p><a href="/morgenpost/feed.xml">RSS-Feed</a> · &copy; 2026 Na und?</p>
+  </footer>
+
+</div>
+
+<style>
+  .not-found-main {
+    text-align: center;
+    padding: var(--space-4xl) var(--page-padding) var(--space-2xl);
+  }
+  .not-found-code {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+  }
+  .not-found-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+    line-height: var(--line-height-tight);
+  }
+  .not-found-desc {
+    font-family: var(--font-serif);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    max-width: 40ch;
+    margin: 0 auto var(--space-xl);
+    line-height: var(--line-height-relaxed);
+  }
+  .not-found-links {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .not-found-links a {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 2px;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+  }
+  .not-found-links a:hover {
+    color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    text-decoration: none;
+  }
+</style>
+
+<script src="/morgenpost/app.js" defer></script>
+</body>
+</html>
