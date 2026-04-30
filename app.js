@@ -21,14 +21,10 @@
   function applyDark(on) {
     document.documentElement.setAttribute('data-theme', on ? 'dark' : 'light');
     document.documentElement.classList.remove('naund-dark');
-    const btn = document.getElementById('btn-dark');
-    if (btn) {
-      btn.setAttribute('aria-label', on ? 'Hellmodus aktivieren' : 'Dunkelmodus aktivieren');
-      btn.title = on ? 'Hellmodus' : 'Dunkelmodus';
-      const icon = btn.querySelector('.btn-icon');
-      if (icon) icon.innerHTML = on ? SVG_MOON : SVG_SUN;
-    }
+    // btn-dark existiert nicht mehr (alte Toolbar entfernt) — kein Update nötig
   }
+  // Global exportieren damit settings-panel.js es aufrufen kann
+  window._naundApplyDark = applyDark;
 
   // ── Schriftgröße ────────────────────────────────────────────────────────────
   let fontStep = parseInt(localStorage.getItem(FONT_KEY) || '0');
@@ -84,214 +80,6 @@
     }
   }
 
-  // ── TTS ─────────────────────────────────────────────────────────────────────
-
-  function updateTTSButton(status) {
-    const btn = document.getElementById('btn-tts');
-    if (!btn) return;
-    const icon = btn.querySelector('.btn-icon');
-    btn.classList.remove('active', 'tts-paused');
-    if (status === 'playing') {
-      if (icon) icon.innerHTML = SVG_PAUSE;
-      btn.classList.add('active');
-      btn.title = 'Pause';
-    } else if (status === 'paused') {
-      if (icon) icon.innerHTML = SVG_PLAY;
-      btn.classList.add('tts-paused');
-      btn.title = 'Weiter';
-    } else {
-      if (icon) icon.innerHTML = SVG_PLAY;
-      btn.title = 'Vorlesen';
-    }
-  }
-
-  // ── HTML5 Audio (vorberechnete MP3) ──────────────────────────────────────────
-  function buildAudioBar() {
-    if (document.getElementById('naund-audiobar')) return;
-    const bar = document.createElement('div');
-    bar.id = 'naund-audiobar';
-    bar.setAttribute('role', 'toolbar');
-    bar.setAttribute('aria-label', 'Audio-Steuerung');
-
-    const lbl = document.createElement('span');
-    lbl.id = 'naund-chapter-lbl';
-    bar.appendChild(lbl);
-
-    [
-      { id: 'btn-prev-ch',  icon: '⏮︎', title: 'Voriges Thema',   hidden: true },
-      { id: 'btn-back15',   icon: '⏪︎', title: '15 Sekunden zurück' },
-      { id: 'btn-fwd15',    icon: '⏩︎', title: '15 Sekunden vor'    },
-      { id: 'btn-next-ch',  icon: '⏭︎', title: 'Nächstes Thema',  hidden: true },
-    ].forEach(({ id, icon, title, hidden }) => {
-      const btn = document.createElement('button');
-      btn.id = id; btn.title = title;
-      btn.setAttribute('aria-label', title);
-      btn.innerHTML = `<span class="btn-icon">${icon}</span>`;
-      if (hidden) btn.style.display = 'none';
-      bar.appendChild(btn);
-    });
-    document.body.appendChild(bar);
-  }
-
-  function initAudioPlayer() {
-    const audio = document.getElementById('naund-audio');
-    if (!audio) return false;
-
-    buildAudioBar();
-    document.getElementById('naund-audiobar').style.display = 'flex';
-
-    audio.addEventListener('play',  () => updateTTSButton('playing'));
-    audio.addEventListener('pause', () => updateTTSButton(audio.ended ? 'idle' : 'paused'));
-    audio.addEventListener('ended', () => updateTTSButton('idle'));
-
-    document.getElementById('btn-tts').addEventListener('click', () => {
-      if (audio.paused) audio.play();
-      else              audio.pause();
-    });
-
-    // Skip ±15s
-    document.getElementById('btn-back15').addEventListener('click', () => {
-      audio.currentTime = Math.max(0, audio.currentTime - 15);
-      if (audio.paused) audio.play();
-    });
-    document.getElementById('btn-fwd15').addEventListener('click', () => {
-      audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 15);
-      if (audio.paused) audio.play();
-    });
-
-    // Chapter navigation
-    let chapters = null;
-
-    function getCurrentChIdx() {
-      if (!chapters) return 0;
-      let idx = 0;
-      chapters.forEach((ch, i) => { if (audio.currentTime >= ch.time) idx = i; });
-      return idx;
-    }
-
-    function updateChapterLabel() {
-      if (!chapters) return;
-      const lbl = document.getElementById('naund-chapter-lbl');
-      if (lbl) lbl.textContent = chapters[getCurrentChIdx()]?.title || '';
-    }
-
-    audio.addEventListener('timeupdate', updateChapterLabel);
-
-    document.getElementById('btn-prev-ch').addEventListener('click', () => {
-      if (!chapters) return;
-      const idx = getCurrentChIdx();
-      const chStart = chapters[idx]?.time || 0;
-      const target = (audio.currentTime - chStart > 3 || idx === 0)
-        ? chStart : (chapters[idx - 1]?.time || 0);
-      audio.currentTime = target;
-      if (audio.paused) audio.play();
-    });
-
-    document.getElementById('btn-next-ch').addEventListener('click', () => {
-      if (!chapters || getCurrentChIdx() + 1 >= chapters.length) return;
-      audio.currentTime = chapters[getCurrentChIdx() + 1].time;
-      if (audio.paused) audio.play();
-    });
-
-    const chapSrc = audio.dataset.chapters;
-    if (chapSrc) {
-      fetch(chapSrc).then(r => r.json()).then(data => {
-        function activate(duration) {
-          chapters = data.sections.map(s => ({
-            title: s.title,
-            time: (s.char_offset / (data.total_chars || 1)) * duration,
-          }));
-          ['btn-prev-ch', 'btn-next-ch'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.style.display = '';
-          });
-          updateChapterLabel();
-        }
-        if (audio.duration) activate(audio.duration);
-        else audio.addEventListener('loadedmetadata', () => activate(audio.duration), { once: true });
-      }).catch(() => {});
-    }
-
-    return true;
-  }
-
-  // ── Web Speech API Fallback (ältere Ausgaben ohne MP3) ───────────────────────
-  let wssState = { status: 'idle', idx: 0, chunks: [], voice: null, keepAlive: null };
-
-  function pickGermanVoice() {
-    const voices = speechSynthesis.getVoices();
-    const de = voices.filter(v => v.lang.startsWith('de'));
-    if (!de.length) return null;
-    for (const name of ['Yannick', 'Anna', 'Thomas', 'Google Deutsch', 'Microsoft Stefan']) {
-      const v = de.find(v => v.name.includes(name));
-      if (v) return v;
-    }
-    return de.find(v => v.localService) || de[0];
-  }
-
-  function buildTTSChunks() {
-    const chunks = [];
-    const intro = document.querySelector('.gzf-intro-text');
-    if (intro) chunks.push({ text: 'Kurzbriefing. ' + intro.textContent.trim() });
-    document.querySelectorAll('[id^="thema-"]').forEach((sec, i) => {
-      const titleEl = sec.querySelector('.gzf-thema-title');
-      const paras   = [...sec.querySelectorAll('.gzf-thema-body p')];
-      if (!paras.length) return;
-      const t = titleEl ? titleEl.textContent.replace(/[↗↑]/g, '').trim() : '';
-      chunks.push({ text: `Thema ${i + 1}: ${t}. ` + paras.map(p => p.textContent).join(' ') });
-    });
-    return chunks;
-  }
-
-  function wssStop() {
-    if (wssState.keepAlive) { clearInterval(wssState.keepAlive); wssState.keepAlive = null; }
-    speechSynthesis.cancel();
-    wssState.status = 'idle';
-    updateTTSButton('idle');
-  }
-
-  function wssSpeak(idx) {
-    if (idx >= wssState.chunks.length) { wssStop(); return; }
-    wssState.idx = idx;
-    const utt = new SpeechSynthesisUtterance(wssState.chunks[idx].text);
-    utt.lang = 'de-DE'; utt.rate = 0.90; utt.pitch = 1.0;
-    if (wssState.voice) utt.voice = wssState.voice;
-    utt.onend   = () => { if (wssState.status === 'playing') wssSpeak(idx + 1); };
-    utt.onerror = (e) => {
-      if (e.error === 'interrupted' || e.error === 'canceled') return;
-      if (wssState.status === 'playing') wssSpeak(idx + 1);
-    };
-    speechSynthesis.speak(utt);
-  }
-
-  function initWebSpeech() {
-    document.getElementById('btn-tts').addEventListener('click', () => {
-      if (wssState.status === 'idle') {
-        const chunks = buildTTSChunks();
-        if (!chunks.length) { toast('Kein Text zum Vorlesen'); return; }
-        wssState.chunks = chunks;
-        wssState.status = 'playing';
-        const go = () => { wssState.voice = pickGermanVoice(); wssSpeak(0); };
-        speechSynthesis.getVoices().length ? go()
-          : speechSynthesis.addEventListener('voiceschanged', go, { once: true });
-        wssState.keepAlive = setInterval(() => {
-          if (wssState.status === 'playing' && speechSynthesis.speaking && !speechSynthesis.paused) {
-            speechSynthesis.pause(); speechSynthesis.resume();
-          }
-        }, 12000);
-        updateTTSButton('playing');
-      } else if (wssState.status === 'playing') {
-        speechSynthesis.pause(); wssState.status = 'paused'; updateTTSButton('paused');
-      } else {
-        speechSynthesis.resume(); wssState.status = 'playing'; updateTTSButton('playing');
-      }
-    });
-  }
-
-  function initTTS() {
-    if (!initAudioPlayer()) initWebSpeech();
-  }
-
   // ── Thema-Share-Buttons ──────────────────────────────────────────────────────
   function addTopicShare() {
     document.querySelectorAll('[id^="thema-"]').forEach(el => {
@@ -307,72 +95,6 @@
               location.origin + location.pathname + '#' + el.id);
       });
       title.appendChild(btn);
-    });
-  }
-
-  // ── Toolbar ──────────────────────────────────────────────────────────────────
-  function buildToolbar() {
-    if (document.getElementById('naund-toolbar')) return;
-
-    const prog = document.createElement('div');
-    prog.id = 'naund-prog';
-    document.body.prepend(prog);
-
-    const tb = document.createElement('div');
-    tb.id = 'naund-toolbar';
-    tb.setAttribute('role', 'toolbar');
-    tb.setAttribute('aria-label', 'Lesewerkzeuge');
-
-    const lbl = document.createElement('span');
-    lbl.className = 'naund-tb-label';
-    lbl.textContent = 'Na und?';
-    tb.appendChild(lbl);
-
-    const sep0 = document.createElement('span');
-    sep0.className = 'naund-tb-sep';
-    tb.appendChild(sep0);
-
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const buttons = [
-      { id: 'btn-dark',      icon: isDark ? SVG_MOON : SVG_SUN, title: isDark ? 'Hellmodus' : 'Dunkelmodus' },
-      { id: 'btn-font-down', icon: 'A−', title: 'Schrift kleiner' },
-      { id: 'btn-font-up',   icon: 'A+', title: 'Schrift größer'  },
-      { id: 'btn-tts',       icon: SVG_PLAY, title: 'Vorlesen'    },
-      { id: 'btn-share',     icon: SVG_SHARE, title: 'Seite teilen' },
-    ];
-
-    buttons.forEach(({ id, icon, title }, i) => {
-      if (i > 0) {
-        const sep = document.createElement('span');
-        sep.className = 'naund-tb-sep';
-        tb.appendChild(sep);
-      }
-      const btn = document.createElement('button');
-      btn.id = id;
-      btn.title = title;
-      btn.setAttribute('aria-label', title);
-      btn.innerHTML = `<span class="btn-icon">${icon}</span>`;
-      tb.appendChild(btn);
-    });
-
-    document.body.appendChild(tb);
-
-    document.getElementById('btn-dark').addEventListener('click', () => {
-      const on = document.documentElement.getAttribute('data-theme') !== 'dark';
-      localStorage.setItem(DARK_KEY, on ? '1' : '0');
-      applyDark(on);
-    });
-
-    document.getElementById('btn-font-down').addEventListener('click', () => {
-      if (fontStep > -3) { fontStep--; localStorage.setItem(FONT_KEY, fontStep); applyFont(); }
-    });
-
-    document.getElementById('btn-font-up').addEventListener('click', () => {
-      if (fontStep < 5) { fontStep++; localStorage.setItem(FONT_KEY, fontStep); applyFont(); }
-    });
-
-    document.getElementById('btn-share').addEventListener('click', () => {
-      share(document.title, location.href);
     });
   }
 
@@ -476,7 +198,12 @@
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     applyDark(stored !== null ? stored === '1' : prefersDark);
     applyFont();
-    buildToolbar();
+
+    // Neue Utility-Bar (settings-panel.js muss geladen sein)
+    if (typeof window.naundBuildUtilityBar === 'function') {
+      window.naundBuildUtilityBar();
+    }
+
     registerSW();
 
     const isIssuePage = !!document.querySelector('.gzf-intro, .gzf-thema');
@@ -487,7 +214,6 @@
       restoreScroll();
       addTopicShare();
       markSeen();
-      initTTS();
     }
 
     if (isIndexPage) {

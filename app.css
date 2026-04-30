@@ -103,70 +103,6 @@
   pointer-events: none;
 }
 
-/* ── Toolbar ─────────────────────────────────────────── */
-#naund-toolbar {
-  position: fixed;
-  bottom: 28px;
-  right: 22px;
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  background: var(--color-surface);
-  border: var(--border-width) solid var(--color-border);
-  border-top: 2px solid var(--color-accent);
-  border-radius: var(--radius-md);
-  padding: 5px 8px;
-  box-shadow: var(--shadow-card);
-  z-index: 9999;
-}
-.naund-tb-label {
-  font-family: var(--font-sans);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  padding: 0 6px 0 2px;
-  user-select: none;
-  white-space: nowrap;
-}
-.naund-tb-sep {
-  display: block;
-  width: 1px;
-  height: 14px;
-  background: var(--color-border);
-  margin: 0 3px;
-  flex-shrink: 0;
-}
-#naund-toolbar button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  color: var(--color-text-muted);
-  min-width: 30px;
-  height: 30px;
-  padding: 0 7px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  transition: background var(--transition-fast), color var(--transition-fast);
-  white-space: nowrap;
-}
-#naund-toolbar button:hover,
-#naund-toolbar button.active {
-  background: var(--color-accent);
-  color: #fff;
-}
-#naund-toolbar button.tts-paused {
-  background: var(--color-accent-soft);
-  color: var(--color-accent);
-}
-
 /* ── TTS: aktiver Abschnitt ──────────────────────────── */
 .naund-tts-reading {
   outline: 2px solid var(--color-accent);
@@ -305,9 +241,6 @@
 
 /* ── Mobile ──────────────────────────────────────────── */
 @media (max-width: 640px) {
-  #naund-toolbar { bottom: 16px; right: 12px; padding: 4px 6px; }
-  #naund-toolbar button { font-size: 10px; padding: 4px 7px; }
-  .naund-tb-label { display: none; }
   #naund-notif-prompt { bottom: 70px; }
 }
 
