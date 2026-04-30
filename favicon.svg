@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <style>
+    .bg { fill: #ffffff; }
+    .n  { fill: #121212; }
+    .q  { fill: #326891; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #121212; }
+      .n  { fill: #e8e8e8; }
+      .q  { fill: #5b9bd5; }
+    }
+  </style>
+  <rect class="bg" width="128" height="128" rx="22"/>
+  <text class="n"
+    x="56" y="96"
+    font-family="Georgia,'Times New Roman',serif"
+    font-size="90" font-weight="700"
+    text-anchor="middle">N</text>
+  <text class="q"
+    x="106" y="46"
+    font-family="Georgia,'Times New Roman',serif"
+    font-size="36" font-weight="700"
+    text-anchor="middle">?</text>
+</svg>
