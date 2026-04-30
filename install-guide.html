@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App installieren – Na und?</title>
+  <meta name="description" content="Anleitung zum Installieren von Na und? als App auf dem Homescreen.">
+  <meta name="author" content="Na und?">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+  <script>
+    (function () {
+      var stored = localStorage.getItem('naund-dark');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var dark = stored === '1' || (stored === null && prefersDark);
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    })();
+  </script>
+  <link rel="manifest" href="/morgenpost/manifest.json">
+  <link rel="icon" href="/morgenpost/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/morgenpost/icons/icon-512.png">
+  <link rel="stylesheet" href="/morgenpost/app.css">
+  <link rel="stylesheet" href="/morgenpost/archive-layout.css">
+  <link rel="stylesheet" href="/morgenpost/print.css" media="print">
+  <style>
+    .guide-page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--page-padding) var(--space-4xl);
+    }
+    .guide-detected {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-xl);
+      letter-spacing: 0.03em;
+    }
+    .guide-detected strong {
+      color: var(--color-accent);
+    }
+    .guide-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 900;
+      color: var(--color-text);
+      line-height: var(--line-height-tight);
+      margin-bottom: var(--space-md);
+    }
+    .guide-intro {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-lg);
+      color: var(--color-text-muted);
+      line-height: var(--line-height-relaxed);
+      margin-bottom: var(--space-2xl);
+    }
+    .guide-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 var(--space-2xl);
+      counter-reset: steps;
+    }
+    .guide-steps li {
+      counter-increment: steps;
+      display: flex;
+      gap: var(--space-lg);
+      align-items: flex-start;
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .guide-steps li:last-child { border-bottom: none; }
+    .guide-step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: var(--font-size-sm);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: counter(steps);
+    }
+    .guide-step-body strong {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: var(--font-size-base);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 4px;
+    }
+    .guide-step-body p {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-base);
+      color: var(--color-text-muted);
+      line-height: var(--line-height-relaxed);
+      margin: 0;
+    }
+    .guide-hint {
+      background: var(--color-surface);
+      border-left: 3px solid var(--color-accent);
+      padding: var(--space-md) var(--space-lg);
+      font-family: var(--font-sans);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      margin-bottom: var(--space-2xl);
+    }
+    .guide-install-btn {
+      display: inline-block;
+      background: var(--color-accent);
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: var(--font-size-sm);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      padding: 12px 28px;
+      cursor: pointer;
+      border: none;
+      margin-bottom: var(--space-2xl);
+    }
+    .guide-install-btn:hover { background: var(--color-accent-hover); }
+    .guide-other summary {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      padding: var(--space-md) 0;
+      border-top: 1px solid var(--color-border);
+      list-style: none;
+    }
+    .guide-other summary::-webkit-details-marker { display: none; }
+    .guide-other summary::before { content: '+ '; }
+    .guide-other[open] summary::before { content: '− '; }
+    .guide-other-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding: var(--space-md) 0 var(--space-lg);
+    }
+    .guide-other-links a {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-sm);
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+    .guide-other-links a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+<div id="naund-prog" role="progressbar" aria-hidden="true"></div>
+
+<div class="arch-page">
+
+  <header class="arch-masthead" role="banner">
+    <div class="arch-masthead-inner">
+      <a href="/morgenpost/" class="arch-masthead-title" aria-label="Na und? – Zur Startseite">
+        Na und?
+      </a>
+      <p class="arch-masthead-sub" aria-hidden="true">
+        Dreimal wöchentlicher Nachrichten-Digest<br>
+        Von Links bis Rechts · Internationales Spektrum
+      </p>
+    </div>
+    <nav class="arch-masthead-nav" aria-label="Hauptnavigation">
+      <a href="/morgenpost/">Startseite</a>
+      <a href="/morgenpost/archiv.html">Archiv</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="guide-page">
+    <p class="guide-detected" id="guide-detected">Erkenne Gerät und Browser…</p>
+    <h1 class="guide-headline">Na und? installieren</h1>
+    <p class="guide-intro">
+      Als App auf dem Homescreen installiert öffnet sich Na und? ohne Browser-Leiste,
+      lädt schneller und funktioniert auch offline.
+    </p>
+
+    <div id="guide-content">
+      <!-- Wird per JS befüllt -->
+    </div>
+
+    <details class="guide-other">
+      <summary>Anderes Gerät oder Browser?</summary>
+      <nav class="guide-other-links" aria-label="Anleitungen für andere Geräte">
+        <a href="#ios-safari">iPhone / iPad · Safari</a>
+        <a href="#ios-chrome">iPhone / iPad · Chrome oder Firefox</a>
+        <a href="#android-chrome">Android · Chrome</a>
+        <a href="#android-firefox">Android · Firefox</a>
+        <a href="#android-samsung">Android · Samsung Internet</a>
+        <a href="#desktop-chrome">Desktop · Chrome oder Edge</a>
+        <a href="#desktop-firefox">Desktop · Firefox</a>
+        <a href="#desktop-safari">Desktop · Safari (macOS)</a>
+      </nav>
+    </details>
+
+    <!-- Alle Anleitungen als versteckte Anker (für die anderen-Links) -->
+    <div id="all-guides" style="display:none" aria-hidden="true">
+      <div id="ios-safari"></div>
+      <div id="ios-chrome"></div>
+      <div id="android-chrome"></div>
+      <div id="android-firefox"></div>
+      <div id="android-samsung"></div>
+      <div id="desktop-chrome"></div>
+      <div id="desktop-firefox"></div>
+      <div id="desktop-safari"></div>
+    </div>
+  </main>
+
+  <footer class="arch-footer">
+    <p>Na und? · Dreimal wöchentlich · Analyse &amp; Zusammenfassung</p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  const ua = navigator.userAgent;
+  const content = document.getElementById('guide-content');
+  const detected = document.getElementById('guide-detected');
+
+  // beforeinstallprompt (Chrome/Edge Desktop & Android)
+  let deferredPrompt = null;
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    renderNativeButton();
+  });
+
+  function renderNativeButton() {
+    const existing = document.getElementById('guide-native-btn');
+    if (existing) return;
+    const btn = document.createElement('button');
+    btn.id = 'guide-native-btn';
+    btn.className = 'guide-install-btn';
+    btn.textContent = 'Jetzt installieren';
+    btn.setAttribute('aria-label', 'Na und? direkt als App installieren');
+    btn.addEventListener('click', () => {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
+    });
+    content.prepend(btn);
+  }
+
+  function steps(items) {
+    return '<ol class="guide-steps">' + items.map((s, i) =>
+      `<li><span class="guide-step-num" aria-hidden="true">${i + 1}</span>
+           <div class="guide-step-body"><strong>${s.title}</strong><p>${s.desc}</p></div></li>`
+    ).join('') + '</ol>';
+  }
+
+  function hint(text) {
+    return `<div class="guide-hint" role="note">${text}</div>`;
+  }
+
+  // Erkennung
+  const isIOS     = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isAndroid = /Android/.test(ua);
+  const isSafari  = /Safari/.test(ua) && !/Chrome/.test(ua) && !/CriOS/.test(ua);
+  const isChrome  = /Chrome/.test(ua) || /CriOS/.test(ua);
+  const isFirefox = /Firefox/.test(ua) || /FxiOS/.test(ua);
+  const isSamsung = /SamsungBrowser/.test(ua);
+  const isEdge    = /Edg\//.test(ua);
+  const isMac     = /Macintosh/.test(ua) && !isIOS;
+  const isDesktop = !isIOS && !isAndroid;
+
+  if (isIOS && isSafari) {
+    detected.innerHTML = 'Erkannt: <strong>iPhone / iPad · Safari</strong>';
+    content.innerHTML = steps([
+      { title: '⬆️ Teilen-Symbol antippen',    desc: 'Tippe auf das Quadrat mit dem Pfeil nach oben in der unteren Safari-Leiste.' },
+      { title: '„Zum Home-Bildschirm" wählen', desc: 'Scrolle in der Teilen-Übersicht nach unten und tippe auf „Zum Home-Bildschirm".' },
+      { title: '„Hinzufügen" bestätigen',       desc: 'Passe den Namen an (optional) und tippe auf „Hinzufügen" oben rechts.' },
+    ]);
+
+  } else if (isIOS && (isChrome || isFirefox)) {
+    detected.innerHTML = 'Erkannt: <strong>iPhone / iPad · ' + (isChrome ? 'Chrome' : 'Firefox') + '</strong>';
+    content.innerHTML =
+      hint('Die Installation als App ist unter iOS nur über Safari möglich — Chrome und Firefox für iOS unterstützen diese Funktion nicht.') +
+      '<button class="guide-install-btn" onclick="copyAndShowSafari()" aria-label="URL kopieren und in Safari öffnen">In Safari öffnen</button>' +
+      steps([
+        { title: 'URL kopieren',                   desc: 'Klicke auf „In Safari öffnen" — die Adresse wird in die Zwischenablage kopiert.' },
+        { title: 'Safari öffnen',                  desc: 'Öffne Safari und füge die Adresse in die Adressleiste ein.' },
+        { title: 'Über Safari installieren',       desc: 'Folge dann der Anleitung für iPhone · Safari (Teilen → Zum Home-Bildschirm).' },
+      ]);
+
+  } else if (isAndroid && isSamsung) {
+    detected.innerHTML = 'Erkannt: <strong>Android · Samsung Internet</strong>';
+    content.innerHTML = steps([
+      { title: '≡ Menü-Button antippen',                        desc: 'Tippe auf das Menü-Symbol unten rechts im Browser.' },
+      { title: '„Seite zum Startbildschirm hinzufügen" wählen', desc: 'Tippe auf den entsprechenden Eintrag im Menü.' },
+      { title: 'Bestätigen',                                    desc: 'Tippe auf „Hinzufügen" im erscheinenden Dialog.' },
+    ]);
+
+  } else if (isAndroid && isFirefox) {
+    detected.innerHTML = 'Erkannt: <strong>Android · Firefox</strong>';
+    content.innerHTML = steps([
+      { title: '⋮ Drei-Punkte-Menü antippen', desc: 'Tippe auf das Menü-Symbol oben rechts.' },
+      { title: '„Installieren" wählen',        desc: 'Tippe auf „Installieren" im Menü.' },
+      { title: 'Bestätigen',                   desc: 'Bestätige den Installationsdialog.' },
+    ]);
+
+  } else if (isAndroid && isChrome) {
+    detected.innerHTML = 'Erkannt: <strong>Android · Chrome</strong>';
+    content.innerHTML = steps([
+      { title: '⋮ Drei-Punkte-Menü antippen',                       desc: 'Tippe auf das Menü-Symbol oben rechts in Chrome.' },
+      { title: '„App installieren" oder „Zum Startbildschirm" wählen', desc: 'Je nach Chrome-Version steht der Eintrag unterschiedlich — suche nach „Installieren" oder „Zum Startbildschirm hinzufügen".' },
+      { title: 'Bestätigen',                                          desc: 'Bestätige den Dialog.' },
+    ]);
+
+  } else if (isDesktop && isFirefox) {
+    detected.innerHTML = 'Erkannt: <strong>Desktop · Firefox</strong>';
+    content.innerHTML =
+      hint('Firefox unterstützt die Installation von Web-Apps leider nicht direkt. Du kannst die Seite als Lesezeichen speichern (Strg+D / Cmd+D) oder Chrome bzw. Edge verwenden.');
+
+  } else if (isDesktop && isMac && isSafari) {
+    detected.innerHTML = 'Erkannt: <strong>macOS · Safari</strong>';
+    content.innerHTML =
+      hint('Verfügbar ab macOS Sonoma (14.0) oder neuer.') +
+      steps([
+        { title: 'Menü „Ablage" öffnen',       desc: 'Klicke in der Menüleiste auf „Ablage".' },
+        { title: '„Zum Dock hinzufügen" wählen', desc: 'Wähle den Eintrag „Zum Dock hinzufügen…".' },
+        { title: 'Bestätigen',                  desc: 'Klicke auf „Hinzufügen" im Dialog.' },
+      ]);
+
+  } else if (isDesktop && (isChrome || isEdge)) {
+    detected.innerHTML = 'Erkannt: <strong>Desktop · ' + (isEdge ? 'Edge' : 'Chrome') + '</strong>';
+    content.innerHTML = steps([
+      { title: '⬇ Installations-Icon klicken',         desc: 'Klicke auf das Installations-Symbol (Download-Pfeil) rechts in der Adressleiste.' },
+      { title: '„Installieren" bestätigen',             desc: 'Bestätige den Installations-Dialog.' },
+    ]);
+    content.innerHTML +=
+      hint('Alternativ: Drei-Punkte-Menü (⋮ oben rechts) → „Na und? installieren".');
+
+  } else {
+    // Fallback: alle Anleitungen anzeigen
+    detected.innerHTML = '<strong>Gerät nicht erkannt</strong> — wähle dein System:';
+    content.innerHTML =
+      makeAccordion('iPhone / iPad · Safari', steps([
+        { title: '⬆️ Teilen-Symbol antippen',    desc: 'Tippe auf das Quadrat mit dem Pfeil nach oben in der unteren Safari-Leiste.' },
+        { title: '„Zum Home-Bildschirm" wählen', desc: 'Scrolle in der Teilen-Übersicht nach unten.' },
+        { title: '„Hinzufügen" bestätigen',       desc: 'Tippe auf „Hinzufügen" oben rechts.' },
+      ])) +
+      makeAccordion('Android · Chrome', steps([
+        { title: '⋮ Drei-Punkte-Menü antippen',     desc: 'Oben rechts in Chrome.' },
+        { title: '„App installieren" wählen',        desc: 'Oder „Zum Startbildschirm hinzufügen".' },
+        { title: 'Bestätigen',                       desc: 'Bestätige den Dialog.' },
+      ])) +
+      makeAccordion('Desktop · Chrome / Edge', steps([
+        { title: '⬇ Installations-Icon klicken', desc: 'Rechts in der Adressleiste.' },
+        { title: '„Installieren" bestätigen',     desc: 'Bestätige den Dialog.' },
+      ]));
+  }
+
+  function makeAccordion(label, innerHtml) {
+    return `<details style="margin-bottom:var(--space-md);border-top:1px solid var(--color-border)">
+      <summary style="font-family:var(--font-sans);font-size:var(--font-size-sm);
+        color:var(--color-text-muted);cursor:pointer;padding:var(--space-md) 0;list-style:none">
+        ${label}
+      </summary>${innerHtml}</details>`;
+  }
+
+  window.copyAndShowSafari = function () {
+    navigator.clipboard.writeText(window.location.href).catch(() => {});
+    alert('Adresse kopiert! Öffne jetzt Safari und füge die Adresse in die Adressleiste ein.');
+  };
+})();
+</script>
+
+<script src="/morgenpost/app.js" defer></script>
+</body>
+</html>

@@ -6,14 +6,28 @@
   "scope": "/morgenpost/",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone"],
-  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "background_color": "#121212",
   "theme_color": "#121212",
   "lang": "de",
+  "categories": ["news", "magazines"],
   "icons": [
     { "src": "/morgenpost/favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
     { "src": "/morgenpost/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/morgenpost/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
     { "src": "/morgenpost/icons/icon-1024.png", "sizes": "1024x1024", "type": "image/png" },
     { "src": "/morgenpost/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Aktuelle Ausgabe",
+      "url": "/morgenpost/",
+      "description": "Die neueste Ausgabe lesen"
+    },
+    {
+      "name": "Archiv",
+      "url": "/morgenpost/archiv.html",
+      "description": "Alle vergangenen Ausgaben"
+    }
   ]
 }
