@@ -118,10 +118,10 @@
     bar.appendChild(lbl);
 
     [
-      { id: 'btn-prev-ch',  icon: '⏮', title: 'Voriges Thema',   hidden: true },
-      { id: 'btn-back15',   icon: '⏪', title: '15 Sekunden zurück' },
-      { id: 'btn-fwd15',    icon: '⏩', title: '15 Sekunden vor'    },
-      { id: 'btn-next-ch',  icon: '⏭', title: 'Nächstes Thema',  hidden: true },
+      { id: 'btn-prev-ch',  icon: '⏮︎', title: 'Voriges Thema',   hidden: true },
+      { id: 'btn-back15',   icon: '⏪︎', title: '15 Sekunden zurück' },
+      { id: 'btn-fwd15',    icon: '⏩︎', title: '15 Sekunden vor'    },
+      { id: 'btn-next-ch',  icon: '⏭︎', title: 'Nächstes Thema',  hidden: true },
     ].forEach(({ id, icon, title, hidden }) => {
       const btn = document.createElement('button');
       btn.id = id; btn.title = title;
