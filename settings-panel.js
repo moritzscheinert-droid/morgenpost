@@ -406,7 +406,14 @@
     updateScrollBtn();
   }
 
-  // ── Öffentliche API ─────────────────────────────────────────────────────────
+  // ── Öffentliche API & Auto-Init ─────────────────────────────────────────────
   window.naundBuildUtilityBar = buildUtilityBar;
+
+  // Direkt ausführen — läuft nach app.js (defer, gleiche Reihenfolge im HTML)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildUtilityBar);
+  } else {
+    buildUtilityBar();
+  }
 
 })();

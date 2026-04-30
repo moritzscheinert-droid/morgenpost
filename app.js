@@ -199,11 +199,6 @@
     applyDark(stored !== null ? stored === '1' : prefersDark);
     applyFont();
 
-    // Neue Utility-Bar (settings-panel.js muss geladen sein)
-    if (typeof window.naundBuildUtilityBar === 'function') {
-      window.naundBuildUtilityBar();
-    }
-
     registerSW();
 
     const isIssuePage = !!document.querySelector('.gzf-intro, .gzf-thema');
