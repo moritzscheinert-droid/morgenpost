@@ -1,0 +1,139 @@
+/* ════════════════════════════════════════════════════════
+   Na und? — Print-Stylesheet
+   Eingebunden via <link rel="stylesheet" href="print.css" media="print">
+   Gilt ausschließlich beim Drucken.
+════════════════════════════════════════════════════════ */
+
+/* ── Seitenränder ────────────────────────────────────── */
+@page {
+  margin: 2cm;
+  size: A4 portrait;
+}
+
+/* ── Farben erzwingen (unabhängig vom Theme) ─────────── */
+*,
+*::before,
+*::after {
+  background: #fff !important;
+  color: #000 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ── Schriftgröße & Zeilenhöhe ───────────────────────── */
+body {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+}
+
+/* ── Versteckte UI-Elemente ──────────────────────────── */
+#naund-toolbar,
+#naund-audiobar,
+#naund-prog,
+#naund-new-banner,
+#naund-notif-prompt,
+.naund-toast,
+.naund-back,
+.naund-topic-share,
+.skip-link,
+nav,
+.arch-masthead-nav,
+.arch-filter,
+.arch-empty,
+.arch-issue-cta {
+  display: none !important;
+}
+
+/* ── Links ───────────────────────────────────────────── */
+a {
+  color: #000 !important;
+  text-decoration: underline;
+}
+
+/* URL nach externen Links anzeigen */
+a[href^="http"]::after {
+  content: " (" attr(href) ")";
+  font-size: 0.8em;
+  font-style: italic;
+  word-break: break-all;
+}
+
+/* Keine URL bei internen Ankern */
+a[href^="#"]::after,
+a[href^="/"]::after {
+  content: "" !important;
+}
+
+/* ── Bilder ──────────────────────────────────────────── */
+img {
+  max-width: 100% !important;
+  filter: none !important;
+}
+
+/* ── Kurzbriefing & Perspektiven: Rahmen statt Farbfläche */
+.gzf-intro,
+.gzf-perspektiven {
+  background: #fff !important;
+  border: 1px solid #888 !important;
+  border-left-width: 3px !important;
+}
+
+/* ── Seitenumbrüche (Artikel) ────────────────────────── */
+.gzf-intro,
+.gzf-perspektiven,
+.toc-box,
+.arch-issue {
+  break-inside: avoid;
+}
+
+/* Jeden Themenblock auf einer neuen Seite beginnen.
+   Auskommentieren für kontinuierlichen Druck. */
+/* .gzf-thema { break-before: page; } */
+
+/* ── Archivseite: Karten einspaltig, ohne Bilder ─────── */
+.arch-issue-img,
+.arch-issue-img-ph {
+  display: none !important;
+}
+
+.arch-list {
+  columns: 1 !important;
+  gap: 0 !important;
+}
+
+.arch-issue-link {
+  display: block !important;
+  flex-direction: column !important;
+  padding: 10px 0 !important;
+  border-top: 1px solid #ccc !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.arch-issue-body {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+/* ── Masthead vereinfachen ───────────────────────────── */
+.arch-masthead {
+  padding: 12px 0 !important;
+  border-bottom: 2px solid #000 !important;
+  margin-bottom: 24px !important;
+}
+
+.arch-masthead-title {
+  font-size: 24px !important;
+}
+
+/* ── Footer ──────────────────────────────────────────── */
+.arch-footer {
+  border-top: 1px solid #ccc !important;
+  margin-top: 24px !important;
+  padding-top: 12px !important;
+  font-size: 0.85em !important;
+}
