@@ -2,7 +2,7 @@
  * Na und? — Service Worker
  * Cache-First für statische Assets · Network-First für HTML · Offline-Fallback
  */
-const CACHE   = 'naund-v11';
+const CACHE   = 'naund-v12';
 const OFFLINE = '/morgenpost/offline.html';
 const MAX_ISSUES = 10;
 
