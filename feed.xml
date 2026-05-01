@@ -1,48 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>Na und? — Nachrichten-Digest</title>
-  <description>Dreimal wöchentlicher Nachrichten-Digest. Analyse &amp; Zusammenfassung von Links bis Rechts.</description>
+  <title>Na und? – Dreimal wöchentlicher Nachrichten-Digest</title>
+  <description>Automatisch erstellter Nachrichten-Digest von Links bis Rechts</description>
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
-  <language>de-de</language>
-  <copyright>Copyright 2026, Na und?</copyright>
-  <managingEditor>moritz.scheinert@gmail.com (Na und?)</managingEditor>
-  <lastBuildDate>Tue, 28 Apr 2026 07:00:00 +0200</lastBuildDate>
-  <image>
-    <url>https://moritzscheinert-droid.github.io/morgenpost/icons/icon-192.png</url>
-    <title>Na und? — Nachrichten-Digest</title>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
-    <width>192</width>
-    <height>192</height>
-  </image>
-
+  <language>de</language>
+  <lastBuildDate>Fri, 01 May 2026 11:45:01 +0000</lastBuildDate>
   <item>
-    <title>Na und? – Dienstag, 28. April 2026</title>
+    <title>Na und? – 2026-05-01</title>
+    <description>Iran-Krieg – Kriegsende erklärt, Drohungen gegen Europa, Energiekrise in Deutschland</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-01_na-und.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-01_na-und.html</guid>
+    <pubDate>Fri, 01 May 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-05-01_na-und_1.jpg" type="image/jpeg"/>
+  </item>  <item>
+    <title>Na und? – 2026-04-28</title>
     <description>Iran-Konflikt – Verhärtete Fronten, Moskauer Schachzug und Piraterie-Vorwürfe</description>
     <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-28_na-und.html</link>
-    <pubDate>Tue, 28 Apr 2026 07:00:00 +0200</pubDate>
-    <guid isPermaLink="true">https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-28_na-und.html</guid>
-    <media:thumbnail url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-28_na-und_1.jpg"/>
-  </item>
-
-  <item>
-    <title>Na und? – Sonntag, 26. April 2026</title>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-28_na-und.html</guid>
+    <pubDate>Tue, 28 Apr 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-28_na-und_1.jpg" type="image/jpeg"/>
+  </item>  <item>
+    <title>Na und? – 2026-04-26</title>
     <description>Sicherheitsvorfall beim Trump-Dinner – Neue Details, offene Fragen</description>
     <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-26_na-und.html</link>
-    <pubDate>Sun, 26 Apr 2026 07:00:00 +0200</pubDate>
-    <guid isPermaLink="true">https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-26_na-und.html</guid>
-    <media:thumbnail url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-26_na-und_1.jpg"/>
-  </item>
-
-  <item>
-    <title>Na und? – Freitag, 24. April 2026</title>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-26_na-und.html</guid>
+    <pubDate>Sun, 26 Apr 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-26_na-und_1.jpg" type="image/jpeg"/>
+  </item>  <item>
+    <title>Na und? – 2026-04-24</title>
     <description>EU-Gipfel in Zypern – Merz' Iran-Diplomatie und das FCAS-Projekt</description>
     <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-24_na-und.html</link>
-    <pubDate>Fri, 24 Apr 2026 07:00:00 +0200</pubDate>
-    <guid isPermaLink="true">https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-24_na-und.html</guid>
-    <media:thumbnail url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-24_na-und_2.jpg"/>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-24_na-und.html</guid>
+    <pubDate>Fri, 24 Apr 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-24_na-und_2.jpg" type="image/jpeg"/>
   </item>
-
 </channel>
 </rss>
