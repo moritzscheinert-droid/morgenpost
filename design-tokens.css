@@ -363,16 +363,18 @@ hr,
 
 /* ── Inhaltsverzeichnis ──────────────────────────────────────── */
 .toc-box {
-  background: var(--color-surface) !important;
+  background: transparent !important;
   border-color: var(--color-border) !important;
 }
 .toc-label {
   color: var(--color-text-muted) !important;
 }
+.toc-item {
+  border-color: var(--color-border) !important;
+}
 .toc-item a {
   color: var(--color-text) !important;
 }
-/* NYT-Stil: neutrale Aufzählung, kein Farbpunkt */
 .toc-item::before {
   color: var(--color-text-muted) !important;
 }

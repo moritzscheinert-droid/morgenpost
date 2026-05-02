@@ -19,7 +19,6 @@
   font-size: clamp(1rem, 1.5vw, 1.125rem);
   line-height: 1.78;
   color: var(--color-text);
-  max-width: 65ch;
   text-align: justify;
   hyphens: auto;
   -webkit-hyphens: auto;
@@ -66,7 +65,6 @@
   letter-spacing: var(--letter-spacing-tight);
   color: var(--color-text);
   text-align: left;
-  max-width: 65ch;
   margin-top: 3rem;
   margin-bottom: 0.75rem;
   padding-top: 1.5rem;
@@ -136,8 +134,7 @@
   border-left: none;
   border-radius: 0;
   padding: 1.25rem 1.5rem;
-  max-width: 65ch;
-  margin: 1.5rem 0 2rem;
+  margin: 1.5rem 0 0;
 }
 
 .gzf-intro-label {
@@ -176,10 +173,9 @@
 .toc-box {
   background: transparent;
   border: none;
-  border-top: var(--border-thick);
+  border-bottom: var(--border-thin);
   border-radius: 0;
-  padding: 1rem 0;
-  max-width: 65ch;
+  padding: 0.75rem 0 1rem;
   margin: 0 0 2rem;
 }
 
@@ -198,6 +194,9 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0;
 }
 
 .toc-item {
@@ -229,41 +228,6 @@
   padding-left: 0.75rem;
 }
 
-/* ────────────────────────────────────────────────────────────────
-   Variante A — Sticky Sidebar (Desktop ≥1200px)
-   Aktivierung: automatisch via Media Query.
-   Zum Deaktivieren: .toc-collapsible-class auf .toc-box setzen.
-──────────────────────────────────────────────────────────────── */
-@media (min-width: 1200px) {
-  .gzf-section:not(:has(.toc-collapsible)) {
-    display: grid;
-    grid-template-columns: 220px minmax(0, 65ch);
-    column-gap: 48px;
-    justify-content: center;
-    align-items: start;
-  }
-
-  .gzf-section:not(:has(.toc-collapsible)) .toc-box {
-    grid-column: 1;
-    grid-row: 1 / 1000;
-    position: sticky;
-    top: 2rem;
-    align-self: start;
-    max-width: 220px;
-    margin-bottom: 0;
-  }
-
-  .gzf-section:not(:has(.toc-collapsible)) .gzf-intro,
-  .gzf-section:not(:has(.toc-collapsible)) .gzf-thema {
-    grid-column: 2;
-    max-width: 65ch;
-  }
-
-  .gzf-section:not(:has(.toc-collapsible)) .toc-item a {
-    font-size: var(--font-size-xs);
-    line-height: 1.45;
-  }
-}
 
 /* ────────────────────────────────────────────────────────────────
    Variante B — Collapsible (alle Viewports)
@@ -328,7 +292,6 @@
   border-radius: 0;
   padding: 1rem 1.25rem;
   margin-top: 1.5rem;
-  max-width: 65ch;
   clear: both;
 }
 

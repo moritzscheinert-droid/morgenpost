@@ -385,6 +385,23 @@
   outline-offset: 1px;
 }
 
+/* Link-kopieren Button (inline, dezent) */
+.settings-link-copy {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.settings-link-copy:hover {
+  text-decoration: underline;
+  color: var(--color-accent-hover);
+}
+
 /* Über-Sektion */
 .settings-about-text {
   font-family: var(--font-sans);

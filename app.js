@@ -116,12 +116,14 @@
     if (document.getElementById('naund-new-banner')) return;
     const b = document.createElement('div');
     b.id = 'naund-new-banner';
+    b.setAttribute('role', 'status');
     b.innerHTML = `
-      <span>&#9733; Neue Ausgabe: <strong>${issue.first_topic || 'Na und?'}</strong></span>
-      <a href="issues/${issue.filename}">Jetzt lesen &rarr;</a>
+      <span>Neue Ausgabe</span>
+      <a href="issues/${issue.filename}">Lesen &rarr;</a>
       <button id="naund-banner-close" aria-label="Schließen">&times;</button>`;
-    document.body.prepend(b);
+    document.body.appendChild(b);
     document.getElementById('naund-banner-close').addEventListener('click', () => b.remove());
+    setTimeout(() => { if (b.parentNode) b.remove(); }, 8000);
   }
 
   // ── Suche (Index-Seite) ──────────────────────────────────────────────────────

@@ -14,9 +14,4 @@
   if (fontSize) {
     document.documentElement.style.fontSize = parseInt(fontSize, 10) + 'px';
   }
-
-  var contentWidth = localStorage.getItem('naund-content-width');
-  if (contentWidth) {
-    document.documentElement.style.setProperty('--content-width', contentWidth);
-  }
 })();

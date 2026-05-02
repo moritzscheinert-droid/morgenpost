@@ -9,7 +9,6 @@
 
   var DARK_KEY         = 'naund-dark';
   var FONT_SIZE_KEY    = 'naund-font-size';
-  var WIDTH_KEY        = 'naund-content-width';
 
   var DEFAULT_FONT     = 17;
   var MIN_FONT         = 14;
@@ -150,19 +149,6 @@
     }
   }
 
-  // ── Textbreite ──────────────────────────────────────────────────────────────
-  function applyContentWidth(ch) {
-    localStorage.setItem(WIDTH_KEY, ch);
-    document.documentElement.style.setProperty('--content-width', ch);
-    if (panelEl) {
-      var btns = panelEl.querySelectorAll('[data-width-val]');
-      btns.forEach(function (btn) {
-        btn.classList.toggle('active', btn.dataset.widthVal === ch);
-        btn.setAttribute('aria-checked', btn.dataset.widthVal === ch ? 'true' : 'false');
-      });
-    }
-  }
-
   // ── applySettings: liest localStorage und wendet alles an ──────────────────
   function applySettings() {
     // Theme
@@ -174,10 +160,6 @@
     // Font size
     var fs = parseInt(localStorage.getItem(FONT_SIZE_KEY) || DEFAULT_FONT, 10);
     document.documentElement.style.fontSize = fs + 'px';
-
-    // Content width
-    var cw = localStorage.getItem(WIDTH_KEY);
-    if (cw) document.documentElement.style.setProperty('--content-width', cw);
   }
 
   // Global exportieren damit andere Skripte es nutzen können
@@ -189,7 +171,6 @@
 
     var currentMode  = getThemeMode();
     var currentFs    = getCurrentFontSize();
-    var currentWidth = localStorage.getItem(WIDTH_KEY) || '65ch';
 
     panelEl = document.createElement('div');
     panelEl.id = 'naund-settings-panel';
@@ -228,24 +209,6 @@
             '<span class="font-size-value" id="settings-font-val" aria-live="polite">' + currentFs + 'px</span>',
           '</div>',
         '</div>',
-
-        /* Textbreite */
-        '<div class="settings-row">',
-          '<span class="settings-row-label">Textbreite</span>',
-          '<div class="seg-control" role="radiogroup" aria-label="Textbreite">',
-            '<button role="radio" data-width-val="55ch" aria-checked="' + (currentWidth === '55ch' ? 'true' : 'false') + '" class="' + (currentWidth === '55ch' ? 'active' : '') + '" aria-label="Schmale Textbreite">Schmal</button>',
-            '<button role="radio" data-width-val="65ch" aria-checked="' + (currentWidth === '65ch' ? 'true' : 'false') + '" class="' + (currentWidth === '65ch' ? 'active' : '') + '" aria-label="Standardbreite">Standard</button>',
-            '<button role="radio" data-width-val="80ch" aria-checked="' + (currentWidth === '80ch' ? 'true' : 'false') + '" class="' + (currentWidth === '80ch' ? 'active' : '') + '" aria-label="Breite Textbreite">Breit</button>',
-          '</div>',
-        '</div>',
-      '</div>',
-
-      /* ── Sektion: Teilen & Links ── */
-      '<div class="settings-section">',
-        '<div class="settings-section-label">Teilen &amp; Links</div>',
-        '<button class="settings-action-btn" id="settings-copy-link">&#128279; Link kopieren</button>',
-        '<button class="settings-action-btn" id="settings-share">&#128228; Teilen</button>',
-        '<a class="settings-action-btn" id="settings-mail" href="">&#128140; Per Mail</a>',
       '</div>',
 
       /* ── Sektion: Über ── */
@@ -255,6 +218,7 @@
         '<div class="settings-about-links">',
           '<a href="/morgenpost/feed.xml" target="_blank" rel="noopener">RSS-Feed</a>',
           '<a href="/morgenpost/install-guide.html">App installieren</a>',
+          '<button class="settings-link-copy" id="settings-copy-link" title="Link dieser Seite kopieren">Link kopieren</button>',
         '</div>',
       '</div>',
     ].join('');
@@ -287,44 +251,14 @@
       applyFontSize(getCurrentFontSize() + 1);
     });
 
-    // Textbreite-Buttons
-    panelEl.querySelectorAll('[data-width-val]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        applyContentWidth(btn.dataset.widthVal);
-      });
-    });
-
     // Link kopieren
     panelEl.querySelector('#settings-copy-link').addEventListener('click', function () {
       navigator.clipboard.writeText(location.href).then(function () {
         var btn = panelEl.querySelector('#settings-copy-link');
-        var orig = btn.textContent;
-        btn.textContent = '&#10003; Kopiert!';
-        btn.innerHTML   = '&#10003; Kopiert!';
-        setTimeout(function () { btn.innerHTML = '&#128279; Link kopieren'; }, 2000);
+        btn.textContent = '✓ Kopiert';
+        setTimeout(function () { btn.textContent = 'Link kopieren'; }, 2000);
       }).catch(function () {});
     });
-
-    // Teilen
-    panelEl.querySelector('#settings-share').addEventListener('click', function () {
-      if (navigator.share) {
-        navigator.share({ title: document.title, url: location.href }).catch(function () {});
-      } else {
-        navigator.clipboard.writeText(location.href).then(function () {
-          var btn = panelEl.querySelector('#settings-share');
-          btn.innerHTML = '&#10003; Link kopiert!';
-          setTimeout(function () { btn.innerHTML = '&#128228; Teilen'; }, 2000);
-        }).catch(function () {});
-      }
-    });
-
-    // Mail-Link aktualisieren
-    var mailLink = panelEl.querySelector('#settings-mail');
-    if (mailLink) {
-      var subject = encodeURIComponent('Na und? — ' + document.title);
-      var body    = encodeURIComponent(location.href);
-      mailLink.href = 'mailto:?subject=' + subject + '&body=' + body;
-    }
 
     // Klick außerhalb schließt Panel
     document.addEventListener('click', onDocClick);
