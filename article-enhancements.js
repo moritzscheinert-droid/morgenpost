@@ -154,29 +154,44 @@
     const img = wrap.querySelector('.gzf-thema-img');
     if (!img) return;
 
-    // Wrapper: overflow hidden, damit das etwas größere Bild nicht rausragt
+    // Wrapper: feste Höhe + overflow:hidden verhindert Layout-Reflow
+    var naturalH = wrap.offsetHeight || 260;
     wrap.style.overflow = 'hidden';
-    img.style.willChange = 'transform';
-    img.style.transformOrigin = 'center center';
-    img.style.transition = 'transform 0.05s linear';
+    wrap.style.height   = naturalH + 'px';
 
-    let ticking = false;
+    // Kein CSS-transition – Parallax läuft ausschließlich via rAF
+    img.style.willChange     = 'transform';
+    img.style.transformOrigin = 'center center';
+    img.style.transition     = 'none';
+
+    var ticking = false;
+    var wrapTop = 0; // gecachte Wrapper-Position (nur bei Resize neu berechnen)
+
+    function cachePos() {
+      var r = wrap.getBoundingClientRect();
+      wrapTop = r.top + window.scrollY;
+    }
 
     function update() {
-      const rect = wrap.getBoundingClientRect();
-      const vh   = window.innerHeight;
-      // Wie weit das Element vom Viewport-Mittelpunkt entfernt ist (-1 bis 1)
-      const rel  = ((rect.top + rect.height / 2) - vh / 2) / vh;
-      const shift = rel * 28; // max 28px Verschiebung
-      img.style.transform = 'scale(1.12) translateY(' + shift + 'px)';
+      var vh      = window.innerHeight;
+      var rectTop = wrapTop - window.scrollY;
+      var center  = rectTop + naturalH / 2;
+      var rel     = (center - vh / 2) / vh;
+      var shift   = Math.max(-24, Math.min(24, rel * 28));
+      img.style.transform = 'scale(1.12) translateY(' + shift.toFixed(2) + 'px)';
       ticking = false;
     }
 
+    cachePos();
     window.addEventListener('scroll', function () {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+
+    window.addEventListener('resize', function () {
+      naturalH = wrap.offsetHeight || naturalH;
+      wrap.style.height = naturalH + 'px';
+      cachePos();
+      update();
     }, { passive: true });
 
     update();
