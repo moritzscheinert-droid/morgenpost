@@ -99,13 +99,18 @@
     // ── Chapters ──────────────────────────────────────────────────────────
     var chapters = null;
 
-    function getCurrentChapterTitle() {
-      if (!chapters || !chapters.length) return '';
-      var title = '';
-      chapters.forEach(function (ch) {
-        if (audio.currentTime >= ch.time) title = ch.title;
+    function getCurrentChapterIdx() {
+      if (!chapters || !chapters.length) return -1;
+      var idx = 0;
+      chapters.forEach(function (ch, i) {
+        if (audio.currentTime >= ch.time) idx = i;
       });
-      return title;
+      return idx;
+    }
+
+    function getCurrentChapterTitle() {
+      var idx = getCurrentChapterIdx();
+      return idx >= 0 ? chapters[idx].title : '';
     }
 
     var chapSrc = anchor.dataset.chaptersSrc;
@@ -130,6 +135,70 @@
       }).catch(function () {});
     }
 
+    // ── MediaSession (Lock-Screen / OS-Mediaplayer) ───────────────────────
+    var _issueTitle = (function () {
+      var el = document.querySelector('.gzf-thema-title');
+      return el ? el.textContent.replace(/\s+/g, ' ').trim() : 'Na und?';
+    }());
+
+    var _coverArtwork = (function () {
+      var img = document.querySelector('#thema-1 .gzf-thema-img');
+      var src = img && img.src ? img.src : '/morgenpost/icons/icon-512.png';
+      return [{ src: src, sizes: '512x512', type: 'image/png' }];
+    }());
+
+    function _setMediaSessionMetadata() {
+      if (!('mediaSession' in navigator)) return;
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title:   getCurrentChapterTitle() || _issueTitle,
+        artist:  'Na und?',
+        album:   _issueTitle,
+        artwork: _coverArtwork,
+      });
+    }
+
+    function _updateMediaSessionPosition() {
+      if (!('mediaSession' in navigator)) return;
+      var dur = audio.duration;
+      if (!isFinite(dur) || dur <= 0) return;
+      try {
+        navigator.mediaSession.setPositionState({
+          duration:     dur,
+          playbackRate: audio.playbackRate,
+          position:     Math.min(audio.currentTime, dur),
+        });
+      } catch (e) {}
+    }
+
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.setActionHandler('play', function () {
+        audio.play().catch(function () {});
+      });
+      navigator.mediaSession.setActionHandler('pause', function () {
+        audio.pause();
+      });
+      navigator.mediaSession.setActionHandler('seekbackward', function (d) {
+        audio.currentTime = Math.max(0, audio.currentTime - (d.seekOffset || 10));
+      });
+      navigator.mediaSession.setActionHandler('seekforward', function (d) {
+        audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + (d.seekOffset || 10));
+      });
+      navigator.mediaSession.setActionHandler('previoustrack', function () {
+        var idx = getCurrentChapterIdx();
+        if (chapters && idx > 0) {
+          audio.currentTime = chapters[idx - 1].time;
+        } else {
+          audio.currentTime = 0;
+        }
+      });
+      navigator.mediaSession.setActionHandler('nexttrack', function () {
+        var idx = getCurrentChapterIdx();
+        if (chapters && idx < chapters.length - 1) {
+          audio.currentTime = chapters[idx + 1].time;
+        }
+      });
+    }
+
     // ── UI-Update-Funktionen ──────────────────────────────────────────────
     function updatePlayState(playing) {
       playIcon.innerHTML    = playing ? SVG_PAUSE : SVG_PLAY;
@@ -152,19 +221,34 @@
     function updateChapter() {
       var title = getCurrentChapterTitle();
       chapterLbl.textContent = title;
-      miniChapter.textContent = title || document.title;
+      miniChapter.textContent = title || _issueTitle;
+      if (title && audio && !audio.paused) {
+        _setMediaSessionMetadata();
+      }
     }
 
     // ── Audio Events ──────────────────────────────────────────────────────
-    audio.addEventListener('play',  function () { updatePlayState(true); });
-    audio.addEventListener('pause', function () { updatePlayState(false); });
-    audio.addEventListener('ended', function () { updatePlayState(false); });
+    audio.addEventListener('play',  function () {
+      updatePlayState(true);
+      _setMediaSessionMetadata();
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+    });
+    audio.addEventListener('pause', function () {
+      updatePlayState(false);
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+    });
+    audio.addEventListener('ended', function () {
+      updatePlayState(false);
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'none';
+    });
     audio.addEventListener('timeupdate', function () {
       updateProgress();
       updateChapter();
+      _updateMediaSessionPosition();
     });
     audio.addEventListener('loadedmetadata', function () {
       updateProgress();
+      _updateMediaSessionPosition();
     });
 
     // ── Play/Pause ────────────────────────────────────────────────────────
@@ -207,7 +291,7 @@
     });
 
     // Mini-Player initialisieren
-    miniChapter.textContent = document.title;
+    miniChapter.textContent = _issueTitle;
     updateProgress();
   }
 
