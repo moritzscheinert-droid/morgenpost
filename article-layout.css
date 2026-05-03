@@ -386,7 +386,7 @@
 /* ════════════════════════════════════════════════════════════════
    RESPONSIVE
 ════════════════════════════════════════════════════════════════ */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .gzf-thema-body {
     font-size: 1rem;
     text-align: left;
@@ -399,18 +399,18 @@
   }
 
   .gzf-thema-title {
-    font-size: clamp(1.4rem, 5vw, 1.8rem);
-    margin-top: 2rem;
-    padding-top: 1.25rem;
+    font-size: clamp(1.3rem, 5vw, 1.7rem);
+    margin-top: 1.75rem;
+    padding-top: 1rem;
   }
 
   .gzf-intro {
-    padding: 1rem;
-    margin: 1rem 0 1.5rem;
+    padding: 0.875rem 1rem;
+    margin: 0.875rem 0 1.25rem;
   }
 
   .gzf-perspektiven {
-    padding: 0.875rem 1rem;
+    padding: 0.75rem 0.875rem;
   }
 
   .gzf-img-wrap.float-left {
@@ -424,5 +424,19 @@
     float: none;
     width: 50%;
     margin: 0 auto 1rem;
+  }
+
+  /* TOC: etwas kompakter auf Mobilgeräten */
+  .toc-box {
+    padding: 0.5rem 0 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .toc-item {
+    padding: 0.4rem 0;
+  }
+
+  .toc-item a {
+    font-size: 0.875rem;
   }
 }

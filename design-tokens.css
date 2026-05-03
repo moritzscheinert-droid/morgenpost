@@ -209,6 +209,10 @@ body {
   line-height: var(--line-height-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* iOS/Android PWA: Sicherheitsabstand für Notch und Home-Indicator */
+  padding-left:   env(safe-area-inset-left,   0px);
+  padding-right:  env(safe-area-inset-right,  0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* ── Überschriften ───────────────────────────────────────────── */
