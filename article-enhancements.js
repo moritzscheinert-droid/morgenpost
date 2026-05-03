@@ -141,60 +141,54 @@
 
   /* ════════════════════════════════════════════════════════════════
      PARALLAX — Cover-Bild (Thema 1)
+     Ansatz: object-position statt transform/scale.
+     Kein Reflow, kein Layout-Impact, kompatibel mit float:left.
      Nur auf Desktop (>= 768px), respektiert prefers-reduced-motion.
   ════════════════════════════════════════════════════════════════ */
   function initParallax() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.innerWidth < 768) return;
 
-    const firstThema = document.querySelector('#thema-1');
+    var firstThema = document.querySelector('#thema-1');
     if (!firstThema) return;
-    const wrap = firstThema.querySelector('.gzf-img-wrap');
+    var wrap = firstThema.querySelector('.gzf-img-wrap');
     if (!wrap) return;
-    const img = wrap.querySelector('.gzf-thema-img');
+    var img = wrap.querySelector('.gzf-thema-img');
     if (!img) return;
 
-    // Wrapper: feste Höhe + overflow:hidden verhindert Layout-Reflow
-    var naturalH = wrap.offsetHeight || 260;
-    wrap.style.overflow = 'hidden';
-    wrap.style.height   = naturalH + 'px';
+    function setup() {
+      var h = img.offsetHeight;
+      if (!h) return;
+      // Höhe fixieren + object-fit:cover für object-position-Parallax
+      img.style.height         = h + 'px';
+      img.style.objectFit      = 'cover';
+      img.style.objectPosition = 'center 50%';
+      img.style.willChange     = 'object-position';
 
-    // Kein CSS-transition – Parallax läuft ausschließlich via rAF
-    img.style.willChange     = 'transform';
-    img.style.transformOrigin = 'center center';
-    img.style.transition     = 'none';
+      var ticking = false;
 
-    var ticking = false;
-    var wrapTop = 0; // gecachte Wrapper-Position (nur bei Resize neu berechnen)
+      function update() {
+        var rect = wrap.getBoundingClientRect();
+        var vh   = window.innerHeight;
+        var rel  = ((rect.top + rect.height / 2) - vh / 2) / vh;
+        var pos  = Math.max(30, Math.min(70, 50 + rel * 20));
+        img.style.objectPosition = 'center ' + pos.toFixed(1) + '%';
+        ticking = false;
+      }
 
-    function cachePos() {
-      var r = wrap.getBoundingClientRect();
-      wrapTop = r.top + window.scrollY;
-    }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
 
-    function update() {
-      var vh      = window.innerHeight;
-      var rectTop = wrapTop - window.scrollY;
-      var center  = rectTop + naturalH / 2;
-      var rel     = (center - vh / 2) / vh;
-      var shift   = Math.max(-24, Math.min(24, rel * 28));
-      img.style.transform = 'scale(1.12) translateY(' + shift.toFixed(2) + 'px)';
-      ticking = false;
-    }
-
-    cachePos();
-    window.addEventListener('scroll', function () {
-      if (!ticking) { requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
-
-    window.addEventListener('resize', function () {
-      naturalH = wrap.offsetHeight || naturalH;
-      wrap.style.height = naturalH + 'px';
-      cachePos();
       update();
-    }, { passive: true });
+    }
 
-    update();
+    // Erst starten wenn Bild geladen (sonst offsetHeight = 0)
+    if (img.complete && img.naturalHeight) {
+      setup();
+    } else {
+      img.addEventListener('load', setup, { once: true });
+    }
   }
 
   /* ════════════════════════════════════════════════════════════════
