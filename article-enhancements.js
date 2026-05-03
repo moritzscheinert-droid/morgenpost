@@ -140,12 +140,56 @@
   }
 
   /* ════════════════════════════════════════════════════════════════
+     PARALLAX — Cover-Bild (Thema 1)
+     Nur auf Desktop (>= 768px), respektiert prefers-reduced-motion.
+  ════════════════════════════════════════════════════════════════ */
+  function initParallax() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.innerWidth < 768) return;
+
+    const firstThema = document.querySelector('#thema-1');
+    if (!firstThema) return;
+    const wrap = firstThema.querySelector('.gzf-img-wrap');
+    if (!wrap) return;
+    const img = wrap.querySelector('.gzf-thema-img');
+    if (!img) return;
+
+    // Wrapper: overflow hidden, damit das etwas größere Bild nicht rausragt
+    wrap.style.overflow = 'hidden';
+    img.style.willChange = 'transform';
+    img.style.transformOrigin = 'center center';
+    img.style.transition = 'transform 0.05s linear';
+
+    let ticking = false;
+
+    function update() {
+      const rect = wrap.getBoundingClientRect();
+      const vh   = window.innerHeight;
+      // Wie weit das Element vom Viewport-Mittelpunkt entfernt ist (-1 bis 1)
+      const rel  = ((rect.top + rect.height / 2) - vh / 2) / vh;
+      const shift = rel * 28; // max 28px Verschiebung
+      img.style.transform = 'scale(1.12) translateY(' + shift + 'px)';
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    update();
+  }
+
+  /* ════════════════════════════════════════════════════════════════
      INIT
   ════════════════════════════════════════════════════════════════ */
   function init() {
     initCollapsibleToc(); // vor TOC-Highlight, weil der Button erst hier entsteht
     initTocHighlight();
     initScrollFade();
+    initParallax();
   }
 
   if (document.readyState === 'loading') {

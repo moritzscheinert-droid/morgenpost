@@ -56,6 +56,11 @@
   --color-border-rule:  #000000;   /* Prominente Trennlinie: schwarz wie NYT-Masthead-Linie */
   --color-border-strong: #999999;  /* Mittlere Stärke */
   --color-live:         #d0021b;   /* NYT-Rot: NUR für Breaking/Live — 6.0:1 auf #fff ✓ */
+  /* Glassmorphism */
+  --glass-bg:           rgba(255, 255, 255, 0.72);
+  --glass-border:       rgba(255, 255, 255, 0.55);
+  --glass-blur:         saturate(180%) blur(20px);
+  --glass-shadow:       0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
   --color-opinion:      #a8a8a8;   /* Grau für Meinungs-Kennzeichnungen */
 
   /* Schatten — im Hellmodus sichtbar */
@@ -82,6 +87,11 @@
   --color-border-rule:  #e8e8e8;   /* Invertierte prominente Trennlinie: hell auf dunkel */
   --color-border-strong: #444444;  /* Mittlere Stärke */
   --color-live:         #e8453a;   /* Aufgehelltes Rot für Lesbarkeit — 5.1:1 auf #121212 ✓ */
+  /* Glassmorphism */
+  --glass-bg:           rgba(18, 18, 18, 0.72);
+  --glass-border:       rgba(255, 255, 255, 0.08);
+  --glass-blur:         saturate(180%) blur(20px);
+  --glass-shadow:       0 4px 24px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
   --color-opinion:      #6a6a6a;   /* Gedämpftes Grau */
 
   --shadow-subtle: 0 1px 4px rgba(0,0,0,0.4);
