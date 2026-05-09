@@ -144,14 +144,20 @@
     }
 
     function _getCoverArtwork() {
+      var origin = window.location.origin;
+      // Quadratische Icons in allen Standardgrößen – bevorzugt von iOS, Android,
+      // Windows SMTC und macOS für Notifications / Lock Screen.
+      var artwork = [
+        { src: origin + '/morgenpost/icons/icon-192.png',  sizes: '192x192',   type: 'image/png' },
+        { src: origin + '/morgenpost/icons/icon-512.png',  sizes: '512x512',   type: 'image/png' },
+        { src: origin + '/morgenpost/icons/icon-1024.png', sizes: '1024x1024', type: 'image/png' },
+      ];
+      // Cover-Foto zusätzlich anhängen (Querformat, wird z.B. von macOS gezeigt)
       var img = document.querySelector('#thema-1 .gzf-thema-img');
-      var src = (img && img.src) ? img.src : '';
-      // Absolute Fallback-URL – MediaSession akzeptiert keine relativen Pfade
-      if (!src || src === window.location.href) {
-        src = window.location.origin + '/morgenpost/icons/icon-512.png';
+      if (img && img.src && img.src !== window.location.href) {
+        artwork.push({ src: img.src, sizes: '800x600', type: 'image/jpeg' });
       }
-      var type = /\.jpe?g(\?|$)/i.test(src) ? 'image/jpeg' : 'image/png';
-      return [{ src: src, sizes: '800x600', type: type }];
+      return artwork;
     }
 
     function _setMediaSessionMetadata() {
@@ -205,6 +211,24 @@
           audio.currentTime = chapters[idx + 1].time;
         }
       });
+      // seekto: direktes Anklicken der Fortschrittsleiste im Systemplayer
+      // (Windows SMTC, Android Notification, Chrome Media Hub)
+      try {
+        navigator.mediaSession.setActionHandler('seekto', function (d) {
+          if (d.seekTime !== undefined) {
+            audio.currentTime = Math.min(d.seekTime, audio.duration || 0);
+            _updateMediaSessionPosition();
+          }
+        });
+      } catch (e) {}
+      // stop: optionaler Button auf manchen Plattformen (z.B. Android)
+      try {
+        navigator.mediaSession.setActionHandler('stop', function () {
+          audio.pause();
+          audio.currentTime = 0;
+          navigator.mediaSession.playbackState = 'none';
+        });
+      } catch (e) {}
     }
 
     // ── UI-Update-Funktionen ──────────────────────────────────────────────
@@ -230,9 +254,9 @@
       var title = getCurrentChapterTitle();
       chapterLbl.textContent = title;
       miniChapter.textContent = title || _getIssueTitle();
-      if (title && audio && !audio.paused) {
-        _setMediaSessionMetadata();
-      }
+      // Metadata immer aktualisieren (auch bei Pause) damit der Systemplayer
+      // den aktuellen Kapiteltitel zeigt, sobald er wechselt.
+      _setMediaSessionMetadata();
     }
 
     // ── Audio Events ──────────────────────────────────────────────────────
