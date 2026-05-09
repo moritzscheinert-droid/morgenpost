@@ -142,44 +142,33 @@
   'use strict';
 
   /* ─────────────────────────────────────────────────────────
-     AUSGABEN-DATEN (Variante A – inline)
-
-     Für Variante B (externe JSON-Datei) diese Funktion ersetzen:
-       function ladeAusgaben() {
-         return fetch('/morgenpost/ausgaben.json').then(r => r.json());
-       }
-     Das Datenformat bleibt identisch.
+     Ausgaben automatisch aus meta.json laden.
+     meta.json wird bei jeder neuen Ausgabe vom Newsletter-Skript
+     aktualisiert – kein manuelles Pflegen nötig.
   ───────────────────────────────────────────────────────── */
-  var AUSGABEN = [
-    {
-      datum:    '2026-04-28',
-      titel:    'Na und? – Dienstag, 28. April 2026',
-      teaser:   'Iran-Konflikt – Verhärtete Fronten, Moskauer Schachzug und Piraterie-Vorwürfe',
-      lesezeit: 22,
-      bild:     '/morgenpost/issues/images/2026-04-28_na-und_1.jpg',
-      url:      '/morgenpost/issues/2026-04-28_na-und.html'
-    },
-    {
-      datum:    '2026-04-26',
-      titel:    'Na und? – Sonntag, 26. April 2026',
-      teaser:   'Sicherheitsvorfall beim Trump-Dinner – Neue Details, offene Fragen',
-      lesezeit: 21,
-      bild:     '/morgenpost/issues/images/2026-04-26_na-und_1.jpg',
-      url:      '/morgenpost/issues/2026-04-26_na-und.html'
-    },
-    {
-      datum:    '2026-04-24',
-      titel:    'Na und? – Freitag, 24. April 2026',
-      teaser:   ‘EU-Gipfel in Zypern – Merz’ Iran-Diplomatie und das FCAS-Projekt’,
-      lesezeit: 21,
-      bild:     '/morgenpost/issues/images/2026-04-24_na-und_2.jpg',
-      url:      '/morgenpost/issues/2026-04-24_na-und.html'
-    }
-  ];
+  var AUSGABEN = [];
 
   function ladeAusgaben() {
-    return Promise.resolve(AUSGABEN);
+    return fetch('/morgenpost/issues/meta.json')
+      .then(function (r) {
+        if (!r.ok) throw new Error('meta.json nicht erreichbar');
+        return r.json();
+      })
+      .then(function (eintraege) {
+        return eintraege.map(function (e) {
+          return {
+            datum:    e.date,
+            titel:    'Na und? \u2013 ' + formatDatum(e.date),
+            teaser:   e.first_topic || '',
+            lesezeit: 20,
+            bild:     e.image_url ? '/morgenpost/' + e.image_url : '',
+            url:      '/morgenpost/issues/' + e.filename,
+          };
+        });
+      })
+      .catch(function () { return []; });
   }
+
 
   /* ── Hilfsfunktionen ──────────────────────────────────── */
   var DE_MONTHS = ['Januar','Februar','März','April','Mai','Juni',
