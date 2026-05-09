@@ -136,24 +136,32 @@
     }
 
     // ── MediaSession (Lock-Screen / OS-Mediaplayer) ───────────────────────
-    var _issueTitle = (function () {
+    // Lazy-Funktionen statt IIFEs: werden erst beim Play ausgewertet,
+    // damit staticrypt den Content schon entschlüsselt hat.
+    function _getIssueTitle() {
       var el = document.querySelector('.gzf-thema-title');
       return el ? el.textContent.replace(/\s+/g, ' ').trim() : 'Na und?';
-    }());
+    }
 
-    var _coverArtwork = (function () {
+    function _getCoverArtwork() {
       var img = document.querySelector('#thema-1 .gzf-thema-img');
-      var src = img && img.src ? img.src : '/morgenpost/icons/icon-512.png';
-      return [{ src: src, sizes: '512x512', type: 'image/png' }];
-    }());
+      var src = (img && img.src) ? img.src : '';
+      // Absolute Fallback-URL – MediaSession akzeptiert keine relativen Pfade
+      if (!src || src === window.location.href) {
+        src = window.location.origin + '/morgenpost/icons/icon-512.png';
+      }
+      var type = /\.jpe?g(\?|$)/i.test(src) ? 'image/jpeg' : 'image/png';
+      return [{ src: src, sizes: '800x600', type: type }];
+    }
 
     function _setMediaSessionMetadata() {
       if (!('mediaSession' in navigator)) return;
+      var issueTitle = _getIssueTitle();
       navigator.mediaSession.metadata = new MediaMetadata({
-        title:   getCurrentChapterTitle() || _issueTitle,
+        title:   getCurrentChapterTitle() || issueTitle,
         artist:  'Na und?',
-        album:   _issueTitle,
-        artwork: _coverArtwork,
+        album:   issueTitle,
+        artwork: _getCoverArtwork(),
       });
     }
 
@@ -221,7 +229,7 @@
     function updateChapter() {
       var title = getCurrentChapterTitle();
       chapterLbl.textContent = title;
-      miniChapter.textContent = title || _issueTitle;
+      miniChapter.textContent = title || _getIssueTitle();
       if (title && audio && !audio.paused) {
         _setMediaSessionMetadata();
       }
@@ -291,7 +299,7 @@
     });
 
     // Mini-Player initialisieren
-    miniChapter.textContent = _issueTitle;
+    miniChapter.textContent = _getIssueTitle();
     updateProgress();
   }
 
