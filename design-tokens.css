@@ -360,7 +360,28 @@ hr,
   border-color: var(--color-border) !important;
 }
 
-/* ── Perspektiven-Box ────────────────────────────────────────── */
+/* ── Streitfrage-Box ─────────────────────────────────────────── */
+.gzf-streitfrage {
+  border-left: 3px solid var(--color-text) !important;
+  background: transparent !important;
+  padding: 6px 10px;
+  font-style: italic;
+  margin-top: 10px;
+  margin-bottom: 2px;
+  clear: both;
+}
+.gzf-streitfrage-label {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text) !important;
+  margin-bottom: 4px;
+}
+
+/* ── Einordnung-Box (ehem. Perspektiven) ─────────────────────── */
 .gzf-perspektiven {
   background: var(--color-surface) !important;
   border-left-color: var(--color-border-heavy) !important;
