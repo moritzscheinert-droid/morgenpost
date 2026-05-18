@@ -216,7 +216,10 @@
         '<div class="settings-section-label" id="settings-lbl-notif">Benachrichtigungen</div>',
         '<div class="settings-row">',
           '<span class="settings-row-label">Neue Ausgaben</span>',
-          '<button id="settings-notif-btn" class="notif-toggle-btn" aria-label="Benachrichtigungen umschalten">Laden…</button>',
+          '<div class="seg-control" id="settings-notif-seg" role="group" aria-label="Benachrichtigungen">',
+            '<button data-notif-val="off" aria-label="Benachrichtigungen deaktivieren">Aus</button>',
+            '<button data-notif-val="on"  aria-label="Benachrichtigungen aktivieren">An</button>',
+          '</div>',
         '</div>',
         '<p class="settings-notif-hint" id="settings-notif-hint"></p>',
       '</div>',
@@ -262,25 +265,44 @@
     });
 
     // Benachrichtigungen
-    var notifBtn  = panelEl.querySelector('#settings-notif-btn');
+    var notifSeg  = panelEl.querySelector('#settings-notif-seg');
     var notifHint = panelEl.querySelector('#settings-notif-hint');
-    if (notifBtn && typeof window._naundPush !== 'undefined') {
-      window._naundPush.updateButton(notifBtn, notifHint);
-      notifBtn.addEventListener('click', async function () {
-        notifBtn.disabled = true;
-        notifBtn.textContent = '…';
-        var state = await window._naundPush.getState();
-        if (state === 'subscribed') {
-          await window._naundPush.unsubscribe();
-        } else {
-          await window._naundPush.subscribe();
-        }
-        await window._naundPush.updateButton(notifBtn, notifHint);
-        notifBtn.disabled = false;
+
+    async function updateNotifSeg() {
+      if (!notifSeg) return;
+      var state = typeof window._naundPush !== 'undefined'
+        ? await window._naundPush.getState() : 'unsupported';
+      var btns = notifSeg.querySelectorAll('button');
+      btns.forEach(function (b) { b.classList.remove('active'); b.disabled = false; });
+
+      if (state === 'subscribed') {
+        notifSeg.querySelector('[data-notif-val="on"]').classList.add('active');
+        if (notifHint) notifHint.textContent = 'Du erhältst Benachrichtigungen bei neuen Ausgaben.';
+      } else if (state === 'blocked') {
+        btns.forEach(function (b) { b.disabled = true; });
+        if (notifHint) notifHint.textContent = 'Blockiert – in den Browser-Einstellungen entsperren.';
+      } else if (state === 'unsupported') {
+        btns.forEach(function (b) { b.disabled = true; });
+        if (notifHint) notifHint.textContent = 'Dein Browser unterstützt keine Push-Benachrichtigungen.';
+      } else {
+        notifSeg.querySelector('[data-notif-val="off"]').classList.add('active');
+        if (notifHint) notifHint.textContent = '';
+      }
+    }
+
+    if (notifSeg) {
+      updateNotifSeg();
+      notifSeg.querySelectorAll('button').forEach(function (btn) {
+        btn.addEventListener('click', async function () {
+          notifSeg.querySelectorAll('button').forEach(function (b) { b.disabled = true; });
+          if (btn.dataset.notifVal === 'on') {
+            await window._naundPush.subscribe();
+          } else {
+            await window._naundPush.unsubscribe();
+          }
+          await updateNotifSeg();
+        });
       });
-    } else if (notifBtn) {
-      notifBtn.textContent = 'Nicht verfügbar';
-      notifBtn.disabled = true;
     }
 
     // Link kopieren

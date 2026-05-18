@@ -593,3 +593,13 @@
   color: var(--color-text-muted);
   flex-shrink: 0;
 }
+
+/* Benachrichtigungs-Hinweistext */
+.settings-notif-hint {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 8px;
+  line-height: 1.4;
+  min-height: 0;
+}
