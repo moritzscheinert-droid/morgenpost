@@ -211,6 +211,16 @@
         '</div>',
       '</div>',
 
+      /* ── Sektion: Benachrichtigungen ── */
+      '<div class="settings-section" role="group" aria-labelledby="settings-lbl-notif">',
+        '<div class="settings-section-label" id="settings-lbl-notif">Benachrichtigungen</div>',
+        '<div class="settings-row">',
+          '<span class="settings-row-label">Neue Ausgaben</span>',
+          '<button id="settings-notif-btn" class="notif-toggle-btn" aria-label="Benachrichtigungen umschalten">Laden…</button>',
+        '</div>',
+        '<p class="settings-notif-hint" id="settings-notif-hint"></p>',
+      '</div>',
+
       /* ── Sektion: Über ── */
       '<div class="settings-section">',
         '<div class="settings-section-label">&Uuml;ber</div>',
@@ -250,6 +260,28 @@
     panelEl.querySelector('#settings-font-up').addEventListener('click', function () {
       applyFontSize(getCurrentFontSize() + 1);
     });
+
+    // Benachrichtigungen
+    var notifBtn  = panelEl.querySelector('#settings-notif-btn');
+    var notifHint = panelEl.querySelector('#settings-notif-hint');
+    if (notifBtn && typeof window._naundPush !== 'undefined') {
+      window._naundPush.updateButton(notifBtn, notifHint);
+      notifBtn.addEventListener('click', async function () {
+        notifBtn.disabled = true;
+        notifBtn.textContent = '…';
+        var state = await window._naundPush.getState();
+        if (state === 'subscribed') {
+          await window._naundPush.unsubscribe();
+        } else {
+          await window._naundPush.subscribe();
+        }
+        await window._naundPush.updateButton(notifBtn, notifHint);
+        notifBtn.disabled = false;
+      });
+    } else if (notifBtn) {
+      notifBtn.textContent = 'Nicht verfügbar';
+      notifBtn.disabled = true;
+    }
 
     // Link kopieren
     panelEl.querySelector('#settings-copy-link').addEventListener('click', function () {
