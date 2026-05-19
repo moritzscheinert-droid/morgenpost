@@ -5,7 +5,7 @@
     "title_slug": "morgenpost",
     "first_topic": "Trumps Iran-Poker – gestoppter Angriff oder Kommunikationschaos?",
     "image_url": "issues/images/2026-05-19_morgenpost_1.jpg",
-    "word_count": 6
+    "word_count": 20
   },
   {
     "filename": "2026-05-17_morgenpost.html",
@@ -13,7 +13,7 @@
     "title_slug": "morgenpost",
     "first_topic": "Ukraine – Gegenangriffe und die Eskalationsfrage",
     "image_url": "issues/images/2026-05-17_morgenpost_1.jpg",
-    "word_count": 28
+    "word_count": 20
   },
   {
     "filename": "2026-05-15_morgenpost.html",
@@ -21,7 +21,7 @@
     "title_slug": "morgenpost",
     "first_topic": "Russischer Angriff auf Kiew – mindestens 21 Tote",
     "image_url": "issues/images/2026-05-15_morgenpost_1.jpg",
-    "word_count": 27
+    "word_count": 20
   },
   {
     "filename": "2026-05-12_morgenpost.html",
@@ -29,7 +29,7 @@
     "title_slug": "morgenpost",
     "first_topic": "Iran-Krise – Waffenruhe auf der Intensivstation",
     "image_url": "issues/images/2026-05-12_morgenpost_1.jpg",
-    "word_count": 27
+    "word_count": 20
   },
   {
     "filename": "2026-05-10_morgenpost.html",
@@ -37,7 +37,7 @@
     "title_slug": "morgenpost",
     "first_topic": "Putin und Schröder – Moskaus Vermittlungsspiel",
     "image_url": "issues/images/2026-05-10_morgenpost_1.jpg",
-    "word_count": 27
+    "word_count": 20
   },
   {
     "filename": "2026-05-08_morgenpost.html",
@@ -45,7 +45,7 @@
     "title_slug": "morgenpost",
     "first_topic": "8. Mai und Gedenkkultur – Ein Datum, zwei Deutungen",
     "image_url": "issues/images/2026-05-08_morgenpost_2.jpg",
-    "word_count": 25
+    "word_count": 20
   },
   {
     "filename": "2026-05-05_morgenpost.html",
@@ -53,7 +53,7 @@
     "title_slug": "morgenpost",
     "first_topic": "Amokfahrt in Leipzig – Entsetzen und offene Fragen",
     "image_url": "issues/images/2026-05-05_morgenpost_1.jpg",
-    "word_count": 25
+    "word_count": 20
   },
   {
     "filename": "2026-05-03_na-und.html",
@@ -61,7 +61,7 @@
     "title_slug": "na-und",
     "first_topic": "US-Truppenabzug aus Deutschland – Trump übertrifft sich selbst",
     "image_url": "issues/images/2026-05-03_na-und_1.jpg",
-    "word_count": 21
+    "word_count": 18
   },
   {
     "filename": "2026-05-01_na-und.html",
@@ -69,7 +69,7 @@
     "title_slug": "na-und",
     "first_topic": "Iran-Krieg – Kriegsende erklärt, Drohungen gegen Europa, Energiekrise in Deutschland",
     "image_url": "issues/images/2026-05-01_na-und_1.jpg",
-    "word_count": 22
+    "word_count": 18
   },
   {
     "filename": "2026-04-28_na-und.html",
@@ -77,7 +77,7 @@
     "title_slug": "na-und",
     "first_topic": "Iran-Konflikt – Verhärtete Fronten, Moskauer Schachzug und Piraterie-Vorwürfe",
     "image_url": "issues/images/2026-04-28_na-und_1.jpg",
-    "word_count": 22
+    "word_count": 18
   },
   {
     "filename": "2026-04-26_na-und.html",
@@ -85,7 +85,7 @@
     "title_slug": "na-und",
     "first_topic": "Sicherheitsvorfall beim Trump-Dinner – Neue Details, offene Fragen",
     "image_url": "issues/images/2026-04-26_na-und_1.jpg",
-    "word_count": 21
+    "word_count": 18
   },
   {
     "filename": "2026-04-24_na-und.html",
@@ -93,7 +93,7 @@
     "title_slug": "na-und",
     "first_topic": "EU-Gipfel in Zypern – Merz' Iran-Diplomatie und das FCAS-Projekt",
     "image_url": "issues/images/2026-04-24_na-und_2.jpg",
-    "word_count": 21
+    "word_count": 18
   },
   {
     "filename": "2026-04-21_na-und.html",
@@ -101,7 +101,7 @@
     "title_slug": "na-und",
     "first_topic": "Rentenreform und Pflegeeinschnitte – Die Koalition kündigt harte Sozialschnitte an",
     "image_url": "issues/images/2026-04-21_na-und_1.jpg",
-    "word_count": 19
+    "word_count": 15
   },
   {
     "filename": "2026-04-19_na-und.html",
@@ -109,7 +109,7 @@
     "title_slug": "na-und",
     "first_topic": "Iran-Krise: Gesperrte Meerenge, gescheiterte Diplomatie",
     "image_url": "issues/images/2026-04-19_na-und_1.jpg",
-    "word_count": 19
+    "word_count": 15
   },
   {
     "filename": "2026-04-17_na-und.html",
@@ -117,7 +117,7 @@
     "title_slug": "na-und",
     "first_topic": "Straße von Hormus – Fragile Öffnung und internationale Reaktionen",
     "image_url": "issues/images/2026-04-17_na-und_1.jpg",
-    "word_count": 8
+    "word_count": 15
   },
   {
     "filename": "2026-04-15_morgenpost.html",
@@ -125,6 +125,6 @@
     "title_slug": "morgenpost",
     "first_topic": "",
     "image_url": "",
-    "word_count": 8
+    "word_count": 15
   }
 ]
