@@ -172,20 +172,32 @@
   function initNotifications() {
     if (!('Notification' in window) || Notification.permission !== 'default') return;
     if (!document.querySelector('.featured')) return;
+    // Auf iOS muss die App installiert sein — PushManager ist sonst nicht verfügbar
+    const pushSupported = 'serviceWorker' in navigator && 'PushManager' in window;
+    if (!pushSupported) return;
+
     setTimeout(() => {
       const banner = document.createElement('div');
       banner.id = 'naund-notif-prompt';
       banner.innerHTML = `
-        <span>&#128276; Benachrichtigungen aktivieren wenn eine neue Ausgabe erscheint?</span>
+        <span>&#128276; Benachrichtigungen bei neuen Ausgaben aktivieren?</span>
         <button id="btn-notif-yes">Ja, bitte</button>
         <button id="btn-notif-no">Nein</button>`;
       document.body.appendChild(banner);
-      document.getElementById('btn-notif-yes').addEventListener('click', () => {
-        Notification.requestPermission().then(p => {
-          banner.remove();
+
+      document.getElementById('btn-notif-yes').addEventListener('click', async () => {
+        banner.remove();
+        // Echte Web-Push-Subscription erstellen (speichert im Cloudflare Worker)
+        if (typeof window._naundPush !== 'undefined') {
+          const ok = await window._naundPush.subscribe();
+          if (ok) toast('Benachrichtigungen aktiviert ✓');
+        } else {
+          // Fallback: nur Permission anfordern (kein Push gespeichert)
+          const p = await Notification.requestPermission();
           if (p === 'granted') toast('Benachrichtigungen aktiviert ✓');
-        });
+        }
       });
+
       document.getElementById('btn-notif-no').addEventListener('click', () => {
         banner.remove();
         localStorage.setItem('naund-notif-dismissed', '1');
