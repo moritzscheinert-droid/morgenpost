@@ -1,7 +1,17 @@
 /* ═══════════════════════════════════════════════════════════
    Na und? — Scroll-Animationen CSS
    Hover-Effekte · Trennlinie · will-change
+   Animationen: rein CSS + IntersectionObserver, kein GSAP.
+   Dauern/Easings hier zentral anpassen:
 ═══════════════════════════════════════════════════════════ */
+
+/* ── Dauer-Tokens (hier ändern um alle Animationen anzupassen) */
+:root {
+  --sa-dur-fast:   0.55s;
+  --sa-dur-normal: 0.75s;
+  --sa-dur-slow:   0.90s;
+  --sa-ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+}
 
 /* ── Performance: will-change nur auf animierte Elemente ── */
 .featured-img {
@@ -9,6 +19,41 @@
 }
 .arch-card {
   will-change: transform, opacity;
+}
+
+/* ── Keyframes ──────────────────────────────────────────── */
+@keyframes sa-fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sa-scaleX {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Hero-Titel: fade-up beim Laden ────────────────────── */
+.sa-hero {
+  animation: sa-fadeUp var(--sa-dur-normal) var(--sa-ease-out) both;
+}
+
+/* ── Allgemeiner Scroll-Reveal (via IntersectionObserver) ─ */
+.sa-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.sa-reveal.sa-visible {
+  animation: sa-fadeUp var(--sa-dur-fast) var(--sa-ease-out) both;
+}
+
+/* ── Trennlinie wächst von links ────────────────────────── */
+.naund-divider.sa-reveal {
+  transform: scaleX(0) !important;
+  transform-origin: left center;
+  opacity: 1;
+}
+.naund-divider.sa-visible {
+  animation: sa-scaleX var(--sa-dur-slow) var(--sa-ease-out) both;
 }
 
 /* ── CTA-Button: Hover mit Pfeil-Bewegung ─────────────────── */

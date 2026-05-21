@@ -1,140 +1,93 @@
 /**
- * Na und? — Scroll-Animationen (Phase 2)
- * GSAP 3 + ScrollTrigger · nur Startseite (index)
- *
- * Genutzte Klassen (alle bereits in newsletter.py vorhanden):
- *   .masthead, .masthead h1, .masthead-right, .subline
- *   .featured, .featured-img, .featured-body
- *   .featured-label, .featured-title, .featured-date,
- *   .featured-topic, .featured-cta, .rss-link
- *   .archive-grid, .arch-card
- *   .container h2  (Archiv-Überschrift)
- *
- * Neu per JS eingefügt:
- *   .naund-divider  (Trennlinie vor dem Archiv-Grid)
+ * Na und? — Scroll-Animationen (kein GSAP)
+ * Rein natives CSS + IntersectionObserver + rAF.
+ * Animationsdauern/Easings in scroll-animations.css (--sa-dur-*, --sa-ease-*).
  */
 (function () {
   'use strict';
 
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-  // Keine Animationen bei prefers-reduced-motion
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  gsap.registerPlugin(ScrollTrigger);
+  // ── 1. Hero-Titel Reveal (sofort beim Laden, gestaffelt) ─────────────────────
+  var heroEls = [
+    document.querySelector('.masthead h1'),
+    document.querySelector('.masthead-right'),
+    document.querySelector('.subline'),
+  ].filter(Boolean);
 
-  // ── 1. Hero-Titel Reveal (einmalig beim Laden) ───────────────────────────────
-  const heroTitle    = document.querySelector('.masthead h1');
-  const heroSubtitle = document.querySelector('.masthead-right');
-  const subline      = document.querySelector('.subline');
+  heroEls.forEach(function (el, i) {
+    el.classList.add('sa-hero');
+    el.style.animationDelay = (i * 0.15) + 's';
+  });
 
-  if (heroTitle) {
-    const els = [heroTitle, heroSubtitle, subline].filter(Boolean);
-    gsap.set(els, { opacity: 0, y: 20 });
+  // ── 2. Hero-Bild Parallax (rAF + scroll) ─────────────────────────────────────
+  var heroImg      = document.querySelector('.featured-img');
+  var heroSection  = heroImg && heroImg.closest('.featured');
+  var rafPending   = false;
 
-    gsap.timeline({ delay: 0.1 })
-      .to(heroTitle,    { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' })
-      .to(heroSubtitle, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.7')
-      .to(subline,      { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.55');
-  }
-
-  // ── 2. Hero-Bild Parallax ────────────────────────────────────────────────────
-  // .featured hat overflow: hidden — das Bild kann sich darin verschieben
-  const heroImg = document.querySelector('.featured-img');
-
-  if (heroImg) {
-    gsap.fromTo(heroImg,
-      { y: -28, scale: 1.06 },
-      {
-        y: 36,
-        scale: 1.0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.featured',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.2,
-        }
-      }
-    );
-  }
-
-  // ── 3. Ausgaben-Info Stagger-Reveal ─────────────────────────────────────────
-  const featuredBody = document.querySelector('.featured-body');
-
-  if (featuredBody) {
-    const items = featuredBody.querySelectorAll(
-      '.featured-label, .featured-title, .featured-date, ' +
-      '.featured-topic, .featured-cta, .rss-link'
-    );
-    if (items.length) {
-      gsap.set(items, { opacity: 0, y: 20 });
-      gsap.to(items, {
-        opacity: 1, y: 0,
-        duration: 0.7,
-        ease: 'power2.out',
-        stagger: 0.10,
-        scrollTrigger: {
-          trigger: featuredBody,
-          start: 'top 82%',
-          toggleActions: 'play none none none',
-        }
-      });
+  if (heroImg && heroSection) {
+    function updateParallax() {
+      var rect     = heroSection.getBoundingClientRect();
+      var vh       = window.innerHeight;
+      // progress 0 = Bild oben im Viewport, 1 = Bild unten raus
+      var progress = (vh - rect.top) / (vh + rect.height);
+      var y        = (progress - 0.5) * 60; // ±30px Versatz
+      heroImg.style.transform = 'translateY(' + y.toFixed(1) + 'px)';
+      rafPending = false;
     }
+
+    window.addEventListener('scroll', function () {
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(updateParallax);
+      }
+    }, { passive: true });
+
+    updateParallax();
   }
 
-  // ── 4. Trennlinie wächst + Archiv-Überschrift ────────────────────────────────
-  const archiveGrid = document.querySelector('.archive-grid');
-  const archiveH2   = document.querySelector('.container h2');
+  // ── 3. IntersectionObserver für alle Scroll-Reveals ──────────────────────────
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('sa-visible');
+      obs.unobserve(e.target);
+    });
+  }, { threshold: 0.10 });
 
-  if (archiveH2 && archiveGrid) {
-    // Trennlinie via JS vor dem Grid einfügen
-    const divider = document.createElement('div');
-    divider.className = 'naund-divider';
+  // Featured Body: gestaffelte Items
+  var featuredItems = document.querySelectorAll(
+    '.featured-label, .featured-title, .featured-date, .featured-topic, .featured-cta'
+  );
+  featuredItems.forEach(function (el, i) {
+    el.classList.add('sa-reveal');
+    el.style.animationDelay = (i * 0.10) + 's';
+    obs.observe(el);
+  });
+
+  // Trennlinie + Archiv-Überschrift
+  var archiveGrid = document.querySelector('.archive-grid');
+  var archiveH2   = document.querySelector('.container h2');
+
+  if (archiveGrid) {
+    var divider = document.createElement('div');
+    divider.className = 'naund-divider sa-reveal';
     archiveGrid.parentElement.insertBefore(divider, archiveGrid);
-
-    gsap.set(divider, { scaleX: 0, transformOrigin: 'left center' });
-    gsap.to(divider, {
-      scaleX: 1,
-      duration: 0.85,
-      ease: 'power3.inOut',
-      scrollTrigger: {
-        trigger: archiveH2,
-        start: 'top 88%',
-        toggleActions: 'play none none none',
-      }
-    });
-
-    gsap.set(archiveH2, { opacity: 0, y: 14 });
-    gsap.to(archiveH2, {
-      opacity: 1, y: 0,
-      duration: 0.6,
-      ease: 'power2.out',
-      delay: 0.15,
-      scrollTrigger: {
-        trigger: archiveH2,
-        start: 'top 88%',
-        toggleActions: 'play none none none',
-      }
-    });
+    obs.observe(divider);
   }
 
-  // ── 5. Archiv-Karten Stagger ─────────────────────────────────────────────────
-  const cards = document.querySelectorAll('.arch-card');
-
-  if (cards.length) {
-    gsap.set(cards, { opacity: 0, y: 32 });
-    gsap.to(cards, {
-      opacity: 1, y: 0,
-      duration: 0.6,
-      ease: 'power2.out',
-      stagger: { amount: 0.45, from: 'start' },
-      scrollTrigger: {
-        trigger: '.archive-grid',
-        start: 'top 88%',
-        toggleActions: 'play none none none',
-      }
-    });
+  if (archiveH2) {
+    archiveH2.classList.add('sa-reveal');
+    archiveH2.style.animationDelay = '0.15s';
+    obs.observe(archiveH2);
   }
+
+  // Archiv-Karten: gestaffelt, max. 0.42s Gesamtverzögerung
+  var cards = document.querySelectorAll('.arch-card');
+  cards.forEach(function (card, i) {
+    card.classList.add('sa-reveal');
+    card.style.animationDelay = Math.min(i * 0.06, 0.42) + 's';
+    obs.observe(card);
+  });
 
 })();

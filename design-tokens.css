@@ -140,6 +140,11 @@
   --font-serif:    'Source Serif 4', Georgia, serif;
   --font-sans:     'Inter', 'Helvetica Neue', Arial, sans-serif;
 
+  /* Semantische Aliasse — verwende diese in neuen Komponenten */
+  --font-headline: var(--font-display);
+  --font-body:     var(--font-serif);
+  --font-ui:       var(--font-sans);
+
   /* Modulare Skala (Basis 16px) */
   --font-size-xs:  0.72rem;   /* ~11.5px */
   --font-size-sm:  0.82rem;   /* ~13px   */

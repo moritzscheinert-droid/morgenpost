@@ -9,7 +9,8 @@
   var SVG_PLAY  = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="16" height="16"><path d="M5 3l14 9-14 9V3z"/></svg>';
   var SVG_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="16" height="16"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
 
-  var SPEEDS = [1, 1.25, 1.5, 2];
+  var SPEEDS    = [1, 1.25, 1.5, 2];
+  var SPEED_KEY = 'naund-audio-speed';
 
   function pad(n) {
     return n < 10 ? '0' + n : String(n);
@@ -31,7 +32,8 @@
 
     // ── Audio-Element ──────────────────────────────────────────────────────
     var audio = new Audio(src);
-    audio.preload = 'metadata';
+    audio.preload       = 'metadata';
+    audio.playbackRate  = SPEEDS[speedIdx];
 
     // ── Player-DOM aufbauen ───────────────────────────────────────────────
     var player = document.createElement('div');
@@ -64,7 +66,10 @@
     var timeEl       = player.querySelector('.naund-ap-time');
     var speedBtn     = player.querySelector('.naund-ap-speed');
 
-    var speedIdx = 0;
+    // Gespeicherte Geschwindigkeit wiederherstellen (oder Default 1×)
+    var savedSpeed = parseFloat(localStorage.getItem(SPEED_KEY) || '1');
+    var speedIdx   = SPEEDS.indexOf(savedSpeed);
+    if (speedIdx < 0) speedIdx = 0;
 
     // ── Mini-Player aufbauen ──────────────────────────────────────────────
     var miniPlayer = document.createElement('div');
@@ -313,13 +318,21 @@
     });
 
     // ── Geschwindigkeit ───────────────────────────────────────────────────
-    speedBtn.addEventListener('click', function () {
-      speedIdx = (speedIdx + 1) % SPEEDS.length;
-      var speed = SPEEDS[speedIdx];
+    function _applySpeed(idx) {
+      var speed = SPEEDS[idx];
       audio.playbackRate = speed;
+      localStorage.setItem(SPEED_KEY, speed);
       var label = speed === 1 ? '1×' : speed + '×';
       speedBtn.textContent = label;
       speedBtn.setAttribute('aria-label', 'Geschwindigkeit: ' + label);
+    }
+
+    // Initialen Button-Label auf gespeicherte Geschwindigkeit setzen
+    _applySpeed(speedIdx);
+
+    speedBtn.addEventListener('click', function () {
+      speedIdx = (speedIdx + 1) % SPEEDS.length;
+      _applySpeed(speedIdx);
     });
 
     // Mini-Player initialisieren
