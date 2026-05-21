@@ -1,6 +1,6 @@
 /**
  * Na und? — App Features
- * Dunkelmodus · Schriftgröße · Vorlesen · Teilen · Lesefortschritt · Suche · Benachrichtigungen
+ * Dunkelmodus · Schriftgröße · Vorlesen · Teilen · Lesefortschritt · Suche · Push-Einstellungen
  */
 (function () {
   'use strict';
@@ -8,7 +8,6 @@
   const DARK_KEY  = 'naund-dark';
   const FONT_KEY  = 'naund-font';
   const scrollKey = () => 'naund-scroll' + location.pathname;
-  const SEEN_KEY  = 'naund-last-seen';
 
   // ── SVG-Icons ────────────────────────────────────────────────────────────────
   const SVG_MOON  = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="14" height="14"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
@@ -98,34 +97,6 @@
     });
   }
 
-  // ── Neue Ausgabe Banner (Index-Seite) ────────────────────────────────────────
-  async function checkNewIssue() {
-    try {
-      const res  = await fetch('/morgenpost/issues/meta.json', { cache: 'no-store' });
-      const meta = await res.json();
-      if (!meta.length) return;
-      const latest = meta[0];
-      const seen   = localStorage.getItem(SEEN_KEY);
-      if (seen && seen !== latest.filename) {
-        showNewIssueBanner(latest);
-      }
-    } catch (_) {}
-  }
-
-  function showNewIssueBanner(issue) {
-    if (document.getElementById('naund-new-banner')) return;
-    const b = document.createElement('div');
-    b.id = 'naund-new-banner';
-    b.setAttribute('role', 'status');
-    b.innerHTML = `
-      <span>Neue Ausgabe</span>
-      <a href="issues/${issue.filename}">Lesen &rarr;</a>
-      <button id="naund-banner-close" aria-label="Schließen">&times;</button>`;
-    document.body.appendChild(b);
-    document.getElementById('naund-banner-close').addEventListener('click', () => b.remove());
-    setTimeout(() => { if (b.parentNode) b.remove(); }, 8000);
-  }
-
   // ── Suche (Index-Seite) ──────────────────────────────────────────────────────
   function initSearch() {
     const grid = document.querySelector('.archive-grid');
@@ -155,12 +126,6 @@
     });
   }
 
-  // ── Ausgabe als gesehen markieren ────────────────────────────────────────────
-  function markSeen() {
-    const match = location.pathname.match(/([^/]+\.html)$/);
-    if (match) localStorage.setItem(SEEN_KEY, match[1]);
-  }
-
   // ── Service Worker ───────────────────────────────────────────────────────────
   function registerSW() {
     if ('serviceWorker' in navigator) {
@@ -168,41 +133,54 @@
     }
   }
 
-  // ── Benachrichtigungen ───────────────────────────────────────────────────────
-  function initNotifications() {
-    if (!('Notification' in window) || Notification.permission !== 'default') return;
-    if (!document.querySelector('.featured')) return;
-    // Auf iOS muss die App installiert sein — PushManager ist sonst nicht verfügbar
-    const pushSupported = 'serviceWorker' in navigator && 'PushManager' in window;
-    if (!pushSupported) return;
+  // ── Push-Einstellungen (Index-Seite) ─────────────────────────────────────────
+  async function initPushSettings() {
+    const btn  = document.getElementById('naund-push-btn');
+    const hint = document.getElementById('naund-push-hint');
+    if (!btn) return;
 
-    setTimeout(() => {
-      const banner = document.createElement('div');
-      banner.id = 'naund-notif-prompt';
-      banner.innerHTML = `
-        <span>&#128276; Benachrichtigungen bei neuen Ausgaben aktivieren?</span>
-        <button id="btn-notif-yes">Ja, bitte</button>
-        <button id="btn-notif-no">Nein</button>`;
-      document.body.appendChild(banner);
-
-      document.getElementById('btn-notif-yes').addEventListener('click', async () => {
-        banner.remove();
-        // Echte Web-Push-Subscription erstellen (speichert im Cloudflare Worker)
-        if (typeof window._naundPush !== 'undefined') {
-          const ok = await window._naundPush.subscribe();
-          if (ok) toast('Benachrichtigungen aktiviert ✓');
-        } else {
-          // Fallback: nur Permission anfordern (kein Push gespeichert)
-          const p = await Notification.requestPermission();
-          if (p === 'granted') toast('Benachrichtigungen aktiviert ✓');
-        }
+    // push-subscription.js wird nach app.js geladen (beide defer) — auf load warten
+    if (typeof window._naundPush === 'undefined') {
+      await new Promise(r => {
+        if (document.readyState === 'complete') { r(); return; }
+        window.addEventListener('load', r, { once: true });
       });
+    }
 
-      document.getElementById('btn-notif-no').addEventListener('click', () => {
-        banner.remove();
-        localStorage.setItem('naund-notif-dismissed', '1');
-      });
-    }, 8000);
+    if (typeof window._naundPush === 'undefined') {
+      btn.textContent = 'Nicht verfügbar';
+      btn.disabled = true;
+      if (hint) hint.textContent = 'Auf iPhone: App zuerst installieren (Teilen → Zum Home-Bildschirm).';
+      return;
+    }
+
+    async function refresh() {
+      const state = await window._naundPush.getState();
+      const labels = { subscribed: '🔔 Aktiv', unsubscribed: 'Aktivieren',
+                       blocked: '🚫 Blockiert', unsupported: 'Nicht verfügbar' };
+      btn.textContent = labels[state] || '?';
+      btn.disabled    = (state === 'blocked' || state === 'unsupported');
+      if (hint) hint.textContent =
+        state === 'subscribed'  ? 'Du erhältst Benachrichtigungen bei neuen Ausgaben.' :
+        state === 'blocked'     ? 'In Browser-Einstellungen entsperren, dann neu laden.' :
+        state === 'unsupported' ? 'Auf iPhone: App zuerst installieren (Teilen → Zum Home-Bildschirm).' : '';
+    }
+
+    btn.addEventListener('click', async () => {
+      const state = await window._naundPush.getState();
+      btn.disabled = true;
+      btn.textContent = '…';
+      if (state === 'subscribed') {
+        await window._naundPush.unsubscribe();
+        toast('Benachrichtigungen deaktiviert.');
+      } else {
+        const ok = await window._naundPush.subscribe();
+        if (ok) toast('Benachrichtigungen aktiviert ✓');
+      }
+      await refresh();
+    });
+
+    await refresh();
   }
 
   // ── Init ─────────────────────────────────────────────────────────────────────
@@ -222,13 +200,11 @@
       initProgress();
       restoreScroll();
       addTopicShare();
-      markSeen();
     }
 
     if (isIndexPage) {
-      checkNewIssue();
       initSearch();
-      if (!localStorage.getItem('naund-notif-dismissed')) initNotifications();
+      initPushSettings();
     }
   }
 
