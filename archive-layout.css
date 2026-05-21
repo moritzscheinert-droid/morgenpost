@@ -280,6 +280,24 @@
   }
 }
 
+/* ── Volltext-Suchergebnis: Themen-Chips ──────────────────── */
+.arch-issue-snippets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: var(--space-sm);
+}
+
+.arch-snippet {
+  font-family: var(--font-ui, var(--font-sans));
+  font-size: var(--font-size-xs);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  padding: 2px 8px;
+  border-radius: 3px;
+  line-height: 1.5;
+}
+
 /* ── Reduced Motion ───────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .arch-issue { opacity: 1; transition: none; }

@@ -160,9 +160,11 @@
             datum:    e.date,
             titel:    'Na und? \u2013 ' + formatDatum(e.date),
             teaser:   e.first_topic || '',
-            lesezeit: 20,
+            lesezeit: e.word_count || 0,
             bild:     e.image_url ? '/morgenpost/' + e.image_url : '',
             url:      '/morgenpost/issues/' + e.filename,
+            topics:   e.topics  || [],
+            intro:    e.intro   || '',
           };
         });
       })
@@ -188,10 +190,10 @@
   }
 
   /* ── Karte als <li>-Element erstellen ─────────────────── */
-  function erstelleKarte(ausgabe) {
+  function erstelleKarte(ausgabe, matchedTopics) {
     var li = document.createElement('li');
     li.className = 'arch-issue';
-    li.dataset.suchtext = (ausgabe.titel + ' ' + ausgabe.teaser + ' ' + ausgabe.datum).toLowerCase();
+    // suchtext wird dynamisch in rendern() berechnet – kein statisches dataset mehr nötig
 
     var a = document.createElement('a');
     a.href = ausgabe.url;
@@ -226,6 +228,20 @@
       '<span class="arch-issue-teaser">' + escapeHtml(ausgabe.teaser) + '</span>' +
       '<span class="arch-issue-meta">ca. ' + ausgabe.lesezeit + ' Min. Lesezeit</span>' +
       '<span class="arch-issue-cta" aria-hidden="true">Lesen →</span>';
+
+    /* Gefundene Themen als Chips */
+    if (matchedTopics && matchedTopics.length) {
+      var chips = document.createElement('span');
+      chips.className = 'arch-issue-snippets';
+      chips.setAttribute('aria-label', 'Gefundene Themen');
+      matchedTopics.forEach(function (t) {
+        var chip = document.createElement('span');
+        chip.className = 'arch-snippet';
+        chip.textContent = t;
+        chips.appendChild(chip);
+      });
+      body.appendChild(chips);
+    }
 
     a.appendChild(body);
     li.appendChild(a);
@@ -289,7 +305,9 @@
 
     var gefiltert = q
       ? sortiert.filter(function (a) {
-          return (a.titel + ' ' + a.teaser + ' ' + a.datum).toLowerCase().indexOf(q) !== -1;
+          var volltext = [a.titel, a.teaser, a.datum, a.topics.join(' '), a.intro]
+            .join(' ').toLowerCase();
+          return volltext.indexOf(q) !== -1;
         })
       : sortiert;
 
@@ -297,7 +315,12 @@
     var empty = document.getElementById('arch-empty');
     var emptyMsg = document.getElementById('arch-empty-msg');
     var frag  = document.createDocumentFragment();
-    var karten = gefiltert.map(erstelleKarte);
+    var karten = gefiltert.map(function (a) {
+      var matched = q
+        ? a.topics.filter(function (t) { return t.toLowerCase().indexOf(q) !== -1; })
+        : [];
+      return erstelleKarte(a, matched);
+    });
 
     karten.forEach(function (li) { frag.appendChild(li); });
     list.innerHTML = '';
