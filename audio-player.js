@@ -30,10 +30,15 @@
     var src = anchor.dataset.audioSrc;
     if (!src) return;
 
+    // Gespeicherte Geschwindigkeit VOR dem Audio-Element initialisieren
+    var savedSpeed = parseFloat(localStorage.getItem(SPEED_KEY) || '1');
+    var speedIdx   = SPEEDS.indexOf(savedSpeed);
+    if (speedIdx < 0) speedIdx = 0;
+
     // ── Audio-Element ──────────────────────────────────────────────────────
     var audio = new Audio(src);
-    audio.preload       = 'metadata';
-    audio.playbackRate  = SPEEDS[speedIdx];
+    audio.preload      = 'metadata';
+    audio.playbackRate = SPEEDS[speedIdx];
 
     // ── Player-DOM aufbauen ───────────────────────────────────────────────
     var player = document.createElement('div');
@@ -65,11 +70,6 @@
     var progressFill = player.querySelector('.naund-ap-progress-fill');
     var timeEl       = player.querySelector('.naund-ap-time');
     var speedBtn     = player.querySelector('.naund-ap-speed');
-
-    // Gespeicherte Geschwindigkeit wiederherstellen (oder Default 1×)
-    var savedSpeed = parseFloat(localStorage.getItem(SPEED_KEY) || '1');
-    var speedIdx   = SPEEDS.indexOf(savedSpeed);
-    if (speedIdx < 0) speedIdx = 0;
 
     // ── Mini-Player aufbauen ──────────────────────────────────────────────
     var miniPlayer = document.createElement('div');
