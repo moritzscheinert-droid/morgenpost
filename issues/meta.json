@@ -1,5 +1,21 @@
 [
   {
+    "filename": "2026-05-24_morgenpost.html",
+    "date": "2026-05-24",
+    "title_slug": "morgenpost",
+    "first_topic": "Kiew unter Beschuss – Russlands schwerster Angriff seit Wochen",
+    "image_url": "issues/images/2026-05-24_morgenpost_1.jpg",
+    "word_count": 14,
+    "topics": [
+      "Kiew unter Beschuss – Russlands schwerster Angriff seit Wochen",
+      "USA und Iran – Wie nah ist der Atomdeal wirklich?",
+      "Serbien – Massenprotest gegen die Regierung in Belgrad",
+      "Plattformarbeit – Lieferdienststreiks und Berliner Politikversagen",
+      "Cannes 2025 – Ein unbequemer Sieger und was er über Europa sagt"
+    ],
+    "intro": "Diese Ausgabe steht im Zeichen von Gewalt und geopolitischer Spannung: Russlands massiver Raketenangriff auf Kiew markiert eine weitere Eskalation im Krieg gegen die Ukraine – während gleichzeitig die USA und Iran einem möglichen Atomdeal näherzurücken scheinen, der globale Energiemärkte und Sicherheitsarchitekturen neu ordnen könnte. In Serbien fo"
+  },
+  {
     "filename": "2026-05-22_morgenpost.html",
     "date": "2026-05-22",
     "title_slug": "morgenpost",
