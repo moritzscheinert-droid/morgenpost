@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-05-05",
-    "topics": [
-      "Amokfahrt in Leipzig – Entsetzen und offene Fragen",
-      "Iran-Konflikt – Eskalation an der Straße von Hormus",
-      "Schwarz-Rote Koalition – Machtspiele nach einem Jahr",
-      "Pressefreiheit in Tschechien – Das Ungarn-Modell als Warnung",
-      "US-Truppenabzug – Sicherheitspolitische Folgen für Deutschland"
-    ]
-  },
-  {
     "date": "2026-05-08",
     "topics": [
       "Iran-Konflikt – Waffenruhe auf dem Prüfstand",
@@ -96,6 +86,16 @@
       "NSDAP-Kartei geöffnet – Familiengeschichte als gesellschaftliche Frage",
       "Strafrecht als Feigenblatt – Deepfakes und der Schutz von Frauen",
       "Hitzerekord im Mai – Klimawandel als Gegenwartsphänomen"
+    ]
+  },
+  {
+    "date": "2026-05-29",
+    "topics": [
+      "USA und Iran – vorläufige Einigung, aber Trump entscheidet noch",
+      "Russische Drohne trifft Rumänien – NATO-Bündnisfall oder Grauzone?",
+      "AfD-Nachwuchs vor der Schule – und die Europabehörde prüft die Mutterpartei",
+      "Klima und Gewalt – eine neue wissenschaftliche Verbindung",
+      "Kinderbetreuung – wessen Aufgabe ist das eigentlich?"
     ]
   }
 ]

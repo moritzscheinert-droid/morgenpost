@@ -1,5 +1,21 @@
 [
   {
+    "filename": "2026-05-29_morgenpost.html",
+    "date": "2026-05-29",
+    "title_slug": "morgenpost",
+    "first_topic": "USA und Iran – vorläufige Einigung, aber Trump entscheidet noch",
+    "image_url": "issues/images/2026-05-29_morgenpost_1.jpg",
+    "word_count": 15,
+    "topics": [
+      "USA und Iran – vorläufige Einigung, aber Trump entscheidet noch",
+      "Russische Drohne trifft Rumänien – NATO-Bündnisfall oder Grauzone?",
+      "AfD-Nachwuchs vor der Schule – und die Europabehörde prüft die Mutterpartei",
+      "Klima und Gewalt – eine neue wissenschaftliche Verbindung",
+      "Kinderbetreuung – wessen Aufgabe ist das eigentlich?"
+    ],
+    "intro": "Diese Ausgabe steht im Zeichen von Eskalation und Ausweichmanövern: Im Iran-Konflikt verdichtet sich die Lage – Vance spricht von einer vorläufigen Einigung, doch Trump hat noch nicht zugestimmt, und die strukturellen Widersprüche zwischen Verhandlung und Kriegsführung bleiben unaufgelöst. Gleichzeitig trifft eine russische Drohne ein Hochhaus im N"
+  },
+  {
     "filename": "2026-05-26_morgenpost.html",
     "date": "2026-05-26",
     "title_slug": "morgenpost",
