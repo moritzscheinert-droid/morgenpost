@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Fri, 29 May 2026 06:16:01 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 31 May 2026 06:15:26 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-05-31</title>
+    <description>USA und Iran – Verhandlungen im Nebel</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-31_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-31_morgenpost.html</guid>
+    <pubDate>Sun, 31 May 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-05-31_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-05-29</title>
     <description>USA und Iran – vorläufige Einigung, aber Trump entscheidet noch</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-17_na-und.html</guid>
     <pubDate>Fri, 17 Apr 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-17_na-und_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-04-15</title>
-    <description></description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-15_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-15_morgenpost.html</guid>
-    <pubDate>Wed, 15 Apr 2026 07:00:00 +0000</pubDate>
-    
   </item>
 </channel>
 </rss>

@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-05-08",
-    "topics": [
-      "Iran-Konflikt – Waffenruhe auf dem Prüfstand",
-      "8. Mai und Gedenkkultur – Ein Datum, zwei Deutungen",
-      "Wehrpflicht und Bundeswehr – Widerstand von unten",
-      "Reform UK und der britische Superwahltag – Europas Rechtspopulismus gewinnt Boden",
-      "Trumps Zölle – Gerichtsstopp und EU-Frist"
-    ]
-  },
-  {
     "date": "2026-05-10",
     "topics": [
       "Putin und Schröder – Moskaus Vermittlungsspiel",
@@ -96,6 +86,15 @@
       "AfD-Nachwuchs vor der Schule – und die Europabehörde prüft die Mutterpartei",
       "Klima und Gewalt – eine neue wissenschaftliche Verbindung",
       "Kinderbetreuung – wessen Aufgabe ist das eigentlich?"
+    ]
+  },
+  {
+    "date": "2026-05-31",
+    "topics": [
+      "USA und Iran – Verhandlungen im Nebel",
+      "Klimaproteste in Deutschland – Gegenwind für die Energiewende",
+      "FDP wählt Kubicki – eine Partei sucht sich selbst",
+      "BAföG-Reform gescheitert – Bildungsgerechtigkeit auf Eis"
     ]
   }
 ]
