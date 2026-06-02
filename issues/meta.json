@@ -1,5 +1,20 @@
 [
   {
+    "filename": "2026-06-02_morgenpost.html",
+    "date": "2026-06-02",
+    "title_slug": "morgenpost",
+    "first_topic": "Russland greift Kiew an – Krieg ohne Verhandlungspause",
+    "image_url": "issues/images/2026-06-02_morgenpost_1.jpg",
+    "word_count": 11,
+    "topics": [
+      "Russland greift Kiew an – Krieg ohne Verhandlungspause",
+      "EU-Abschiebezentren – Europas Migrationspolitik verschärft sich",
+      "Rekordarmut in Deutschland – wer zählt, wer zahlt",
+      "BAföG-Blockade – ein gebrochenes Koalitionsversprechen"
+    ],
+    "intro": "Diese Ausgabe steht im Zeichen sozialer Ungleichheit und migrationspolitischer Weichenstellungen. Während die EU mit neuen Abschiebezentren in Drittstaaten eine umstrittene Verschärfung beschließt, vermeldet der Paritätische Wohlfahrtsverband einen traurigen Rekord: 13,3 Millionen Menschen gelten in Deutschland als einkommensarm. Gleichzeitig droht"
+  },
+  {
     "filename": "2026-05-31_morgenpost.html",
     "date": "2026-05-31",
     "title_slug": "morgenpost",

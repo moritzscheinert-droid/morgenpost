@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-05-10",
-    "topics": [
-      "Putin und Schröder – Moskaus Vermittlungsspiel",
-      "Hantavirus auf der „Hondius\" – Evakuierung vor Teneriffa",
-      "Iran-Krise – Drohungen, Ölteppich und britischer Zerstörer",
-      "Bundesrat stoppt Regierung – Klingbeils Schlappe im Transatlantikflug",
-      "Ungarn nach Orbán – Magyar und der proeuropäische Aufbruch"
-    ]
-  },
-  {
     "date": "2026-05-12",
     "topics": [
       "Iran-Krise – Waffenruhe auf der Intensivstation",
@@ -95,6 +85,15 @@
       "Klimaproteste in Deutschland – Gegenwind für die Energiewende",
       "FDP wählt Kubicki – eine Partei sucht sich selbst",
       "BAföG-Reform gescheitert – Bildungsgerechtigkeit auf Eis"
+    ]
+  },
+  {
+    "date": "2026-06-02",
+    "topics": [
+      "Russland greift Kiew an – Krieg ohne Verhandlungspause",
+      "EU-Abschiebezentren – Europas Migrationspolitik verschärft sich",
+      "Rekordarmut in Deutschland – wer zählt, wer zahlt",
+      "BAföG-Blockade – ein gebrochenes Koalitionsversprechen"
     ]
   }
 ]
