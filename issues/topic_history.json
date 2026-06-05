@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-05-12",
-    "topics": [
-      "Iran-Krise – Waffenruhe auf der Intensivstation",
-      "Koalitionsausschuss – CDU/CSU und SPD suchen Kurs nach Entlastungspremieren-Desaster",
-      "EU-Medikamentenversorgung – Einigung auf mehr Eigenproduktion",
-      "Ukraine – Waffenruhe endet, Drohnenangriffe beginnen",
-      "EU-Siedlersanktionen und Netanjahus Reaktion"
-    ]
-  },
-  {
     "date": "2026-05-15",
     "topics": [
       "Russischer Angriff auf Kiew – mindestens 21 Tote",
@@ -94,6 +84,16 @@
       "EU-Abschiebezentren – Europas Migrationspolitik verschärft sich",
       "Rekordarmut in Deutschland – wer zählt, wer zahlt",
       "BAföG-Blockade – ein gebrochenes Koalitionsversprechen"
+    ]
+  },
+  {
+    "date": "2026-06-05",
+    "topics": [
+      "EuGH gegen Deutschland – Asylleistungen und das Recht auf Würde",
+      "Selenskyj schlägt Putin Treffen vor – eine neue Phase?",
+      "Sachsen-Wahl – Wenn Rechtsextreme Rathäuser übernehmen",
+      "Chipindustrie und Wasser – wer trägt das Risiko?",
+      "Deutschlands UN-Niederlage – verdient, aber nicht ohne Ironie"
     ]
   }
 ]

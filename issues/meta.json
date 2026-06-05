@@ -1,5 +1,21 @@
 [
   {
+    "filename": "2026-06-05_morgenpost.html",
+    "date": "2026-06-05",
+    "title_slug": "morgenpost",
+    "first_topic": "EuGH gegen Deutschland – Asylleistungen und das Recht auf Würde",
+    "image_url": "issues/images/2026-06-05_morgenpost_1.jpg",
+    "word_count": 13,
+    "topics": [
+      "EuGH gegen Deutschland – Asylleistungen und das Recht auf Würde",
+      "Selenskyj schlägt Putin Treffen vor – eine neue Phase?",
+      "Sachsen-Wahl – Wenn Rechtsextreme Rathäuser übernehmen",
+      "Chipindustrie und Wasser – wer trägt das Risiko?",
+      "Deutschlands UN-Niederlage – verdient, aber nicht ohne Ironie"
+    ],
+    "intro": "Diese Ausgabe versammelt Themen, die gesellschaftliche Grundfragen berühren: Wie stabil ist die westliche Ukraine-Unterstützung, wenn der US-Kongress gegen seinen eigenen Präsidenten stimmt? Was bedeutet es für den Rechtsstaat, wenn der EuGH deutsches Asylrecht für rechtswidrig erklärt – und die Politik reagiert mit Verschärfungen statt Korrekturen"
+  },
+  {
     "filename": "2026-06-02_morgenpost.html",
     "date": "2026-06-02",
     "title_slug": "morgenpost",

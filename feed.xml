@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Tue, 02 Jun 2026 06:15:59 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 05 Jun 2026 06:17:02 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-06-05</title>
+    <description>EuGH gegen Deutschland – Asylleistungen und das Recht auf Würde</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-05_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-05_morgenpost.html</guid>
+    <pubDate>Fri, 05 Jun 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-05_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-06-02</title>
     <description>Russland greift Kiew an – Krieg ohne Verhandlungspause</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-21_na-und.html</guid>
     <pubDate>Tue, 21 Apr 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-21_na-und_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-04-19</title>
-    <description>Iran-Krise: Gesperrte Meerenge, gescheiterte Diplomatie</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-19_na-und.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-19_na-und.html</guid>
-    <pubDate>Sun, 19 Apr 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-19_na-und_1.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>
