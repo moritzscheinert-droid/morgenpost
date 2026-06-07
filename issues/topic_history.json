@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-05-15",
-    "topics": [
-      "Russischer Angriff auf Kiew – mindestens 21 Tote",
-      "Trump trifft Xi – vorsichtige Annäherung in Peking",
-      "Regierungskrise in Großbritannien – Starmer verliert Gesundheitsminister",
-      "AfD, DDR-Vergangenheit und Verwaltungsumbau – zwei Berichte, ein Muster",
-      "NSDAP-Datenbank online – digitale Erinnerung, private Erschütterung"
-    ]
-  },
-  {
     "date": "2026-05-17",
     "topics": [
       "Ukraine – Gegenangriffe und die Eskalationsfrage",
@@ -94,6 +84,16 @@
       "Sachsen-Wahl – Wenn Rechtsextreme Rathäuser übernehmen",
       "Chipindustrie und Wasser – wer trägt das Risiko?",
       "Deutschlands UN-Niederlage – verdient, aber nicht ohne Ironie"
+    ]
+  },
+  {
+    "date": "2026-06-07",
+    "topics": [
+      "Armenien zwischen Moskau und Brüssel",
+      "D-Day als Bühne – Hegseths Invasions-Rhetorik",
+      "Schröder bei Putin – Privatsache mit politischen Folgen",
+      "Protest gegen AfD-Parteitag – demokratische Grenze oder legitimer Widerstand?",
+      "Elterngeld – soziale Leistung mit Schieflage?"
     ]
   }
 ]
