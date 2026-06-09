@@ -1,5 +1,21 @@
 [
   {
+    "filename": "2026-06-09_morgenpost.html",
+    "date": "2026-06-09",
+    "title_slug": "morgenpost",
+    "first_topic": "Israel, Iran und Trump – wer entscheidet über Krieg und Frieden im Nahen Osten?",
+    "image_url": "issues/images/2026-06-09_morgenpost_1.jpg",
+    "word_count": 15,
+    "topics": [
+      "Israel, Iran und Trump – wer entscheidet über Krieg und Frieden im Nahen Osten?",
+      "Angriffe auf das Stromnetz – Sabotage an der kritischen Infrastruktur Deutschlands",
+      "IStGH-Chefankläger suspendiert – Krise der internationalen Justiz",
+      "AfD neben KZ-Gedenkstätte – Provokation oder Gleichgültigkeit?",
+      "Asylpolitik im Umbruch – GEAS, Grenzkontrollen und der Koalitionsstreit"
+    ],
+    "intro": "Die Welt eskaliert schneller als internationale Institutionen reagieren können: Im Nahen Osten haben Iran und Israel nach gegenseitigen Angriffen eine fragile Feuerpause vereinbart – doch Trumps widersprüchliche Signale an Netanjahu zeigen, wie instabil diese Ordnung ist. In Deutschland sorgen mutmaßliche Sabotageakte am Stromnetz für wachsende Sic"
+  },
+  {
     "filename": "2026-06-07_morgenpost.html",
     "date": "2026-06-07",
     "title_slug": "morgenpost",
