@@ -1,5 +1,21 @@
 [
   {
+    "filename": "2026-06-12_morgenpost.html",
+    "date": "2026-06-12",
+    "title_slug": "morgenpost",
+    "first_topic": "Europas Asylpolitik verschärft sich – und ihr Preis wird außerhalb Europas bezahlt",
+    "image_url": "issues/images/2026-06-12_morgenpost_1.jpg",
+    "word_count": 14,
+    "topics": [
+      "Europas Asylpolitik verschärft sich – und ihr Preis wird außerhalb Europas bezahlt",
+      "Drohnenabwehr und hybride Bedrohung – Deutschland sucht eine Antwort",
+      "Masken, Milliarden, Verantwortung – Spahn vor Gericht",
+      "X, Musk und Belfast – Wenn Plattformen zu Brandbeschleunigern werden",
+      "Lieferdienste und ihre unsichtbaren Fahrer – Ausbeutung im Systemdesign"
+    ],
+    "intro": "Diese Ausgabe versammelt Themen, die auf den ersten Blick wenig gemeinsam haben – und doch zusammen ein Bild des demokratischen Zustands der Gegenwart ergeben. Das Iran-Dossier zeigt, wie fragil Diplomatie wird, wenn sie von einem einzigen unberechenbaren Akteur abhängt. Die EU-Asylreform tritt in Kraft – zugleich plant Europa Abschiebezentren in L"
+  },
+  {
     "filename": "2026-06-09_morgenpost.html",
     "date": "2026-06-09",
     "title_slug": "morgenpost",
