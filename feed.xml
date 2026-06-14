@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Fri, 12 Jun 2026 06:16:35 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 14 Jun 2026 06:16:07 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-06-14</title>
+    <description>Iran-Deal oder Geburtstagsspektakel? Trumps Diplomatie zwischen Abkommen und Inszenierung</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-14_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-14_morgenpost.html</guid>
+    <pubDate>Sun, 14 Jun 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-14_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-06-12</title>
     <description>Europas Asylpolitik verschärft sich – und ihr Preis wird außerhalb Europas bezahlt</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-01_na-und.html</guid>
     <pubDate>Fri, 01 May 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-05-01_na-und_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-04-28</title>
-    <description>Iran-Konflikt – Verhärtete Fronten, Moskauer Schachzug und Piraterie-Vorwürfe</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-28_na-und.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-04-28_na-und.html</guid>
-    <pubDate>Tue, 28 Apr 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-04-28_na-und_1.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>
