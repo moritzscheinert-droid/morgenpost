@@ -1,14 +1,5 @@
 [
   {
-    "date": "2026-05-26",
-    "topics": [
-      "USA greift Iran an – mitten in Verhandlungen",
-      "NSDAP-Kartei geöffnet – Familiengeschichte als gesellschaftliche Frage",
-      "Strafrecht als Feigenblatt – Deepfakes und der Schutz von Frauen",
-      "Hitzerekord im Mai – Klimawandel als Gegenwartsphänomen"
-    ]
-  },
-  {
     "date": "2026-05-29",
     "topics": [
       "USA und Iran – vorläufige Einigung, aber Trump entscheidet noch",
@@ -92,6 +83,15 @@
       "Neue Grundsicherung und Sozialwohnungsmangel – der Sozialstaat unter Druck",
       "Elon Musk gegen ZDF – Pressefreiheit als Schlachtfeld",
       "Aufrüstung und Verfassung – Mützenichs Widerspruch"
+    ]
+  },
+  {
+    "date": "2026-06-19",
+    "topics": [
+      "Iran-Abkommen – unterzeichnet, aber brüchig",
+      "Labour unter Druck – Burnham zieht ins Parlament ein",
+      "EU und China – die zögerliche Kurskorrektur",
+      "Heizgesetz unter verfassungsrechtlichem Beschuss"
     ]
   }
 ]
