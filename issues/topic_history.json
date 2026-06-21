@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-05-29",
-    "topics": [
-      "USA und Iran – vorläufige Einigung, aber Trump entscheidet noch",
-      "Russische Drohne trifft Rumänien – NATO-Bündnisfall oder Grauzone?",
-      "AfD-Nachwuchs vor der Schule – und die Europabehörde prüft die Mutterpartei",
-      "Klima und Gewalt – eine neue wissenschaftliche Verbindung",
-      "Kinderbetreuung – wessen Aufgabe ist das eigentlich?"
-    ]
-  },
-  {
     "date": "2026-05-31",
     "topics": [
       "USA und Iran – Verhandlungen im Nebel",
@@ -92,6 +82,15 @@
       "Labour unter Druck – Burnham zieht ins Parlament ein",
       "EU und China – die zögerliche Kurskorrektur",
       "Heizgesetz unter verfassungsrechtlichem Beschuss"
+    ]
+  },
+  {
+    "date": "2026-06-21",
+    "topics": [
+      "Rentenreform – Systemumbau mit Ansage",
+      "Polen und Ukraine – Geschichte als Waffe",
+      "Heizungsgesetz – Reiches Rollback nimmt Fahrt auf",
+      "AMOC-Kollaps – Die ignorierte Katastrophe"
     ]
   }
 ]
