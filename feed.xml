@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Sun, 21 Jun 2026 06:15:49 +0000</lastBuildDate>
+  <lastBuildDate>Tue, 23 Jun 2026 06:23:55 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-06-23</title>
+    <description>Rentenreform – Jetzt wird es politisch</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-23_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-23_morgenpost.html</guid>
+    <pubDate>Tue, 23 Jun 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-23_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-06-21</title>
     <description>Rentenreform – Systemumbau mit Ansage</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-10_morgenpost.html</guid>
     <pubDate>Sun, 10 May 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-05-10_morgenpost_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-05-08</title>
-    <description>8. Mai und Gedenkkultur – Ein Datum, zwei Deutungen</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-08_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-08_morgenpost.html</guid>
-    <pubDate>Fri, 08 May 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-05-08_morgenpost_2.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>

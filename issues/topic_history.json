@@ -1,14 +1,5 @@
 [
   {
-    "date": "2026-05-31",
-    "topics": [
-      "USA und Iran – Verhandlungen im Nebel",
-      "Klimaproteste in Deutschland – Gegenwind für die Energiewende",
-      "FDP wählt Kubicki – eine Partei sucht sich selbst",
-      "BAföG-Reform gescheitert – Bildungsgerechtigkeit auf Eis"
-    ]
-  },
-  {
     "date": "2026-06-02",
     "topics": [
       "Russland greift Kiew an – Krieg ohne Verhandlungspause",
@@ -91,6 +82,15 @@
       "Polen und Ukraine – Geschichte als Waffe",
       "Heizungsgesetz – Reiches Rollback nimmt Fahrt auf",
       "AMOC-Kollaps – Die ignorierte Katastrophe"
+    ]
+  },
+  {
+    "date": "2026-06-23",
+    "topics": [
+      "Rentenreform – Jetzt wird es politisch",
+      "§ 188 StGB – Wer darf Politiker beleidigen?",
+      "Die Linke nach Potsdam – neue Namen, offene Fragen",
+      "Zehn Jahre Brexit – Ernüchterung ohne Umkehr"
     ]
   }
 ]
