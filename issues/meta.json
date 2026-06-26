@@ -1,5 +1,21 @@
 [
   {
+    "filename": "2026-06-26_morgenpost.html",
+    "date": "2026-06-26",
+    "title_slug": "morgenpost",
+    "first_topic": "Klimaerhitzung – Europa brennt, Politik zaudert",
+    "image_url": "issues/images/2026-06-26_morgenpost_1.jpg",
+    "word_count": 14,
+    "topics": [
+      "Klimaerhitzung – Europa brennt, Politik zaudert",
+      "Glyphosat und Bayer – Wenn Konzernrecht Verbraucherrecht schlägt",
+      "Ukraine-Krieg – Die Diplomatie-Falle",
+      "AfD und Demokratie – Ein Kongress und seine Widersprüche",
+      "Elke Kahr in Graz – Was kommunistische Kommunalpolitik lehrt"
+    ],
+    "intro": "Diese Ausgabe steht im Zeichen mehrerer Konfliktlinien, die weit über den Newstag hinausreichen. Die dramatisch zunehmende Häufigkeit von Sturmfluten und die anhaltende Hitzewelle in Europa verdeutlichen, wie sehr Klimapolitik zur Grundbedingung von Wirtschaft und Daseinsvorsorge wird – während der Wirtschaftsflügel der Union genau diese Verbindung"
+  },
+  {
     "filename": "2026-06-23_morgenpost.html",
     "date": "2026-06-23",
     "title_slug": "morgenpost",

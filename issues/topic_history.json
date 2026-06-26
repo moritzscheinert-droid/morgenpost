@@ -1,14 +1,5 @@
 [
   {
-    "date": "2026-06-02",
-    "topics": [
-      "Russland greift Kiew an – Krieg ohne Verhandlungspause",
-      "EU-Abschiebezentren – Europas Migrationspolitik verschärft sich",
-      "Rekordarmut in Deutschland – wer zählt, wer zahlt",
-      "BAföG-Blockade – ein gebrochenes Koalitionsversprechen"
-    ]
-  },
-  {
     "date": "2026-06-05",
     "topics": [
       "EuGH gegen Deutschland – Asylleistungen und das Recht auf Würde",
@@ -91,6 +82,16 @@
       "§ 188 StGB – Wer darf Politiker beleidigen?",
       "Die Linke nach Potsdam – neue Namen, offene Fragen",
       "Zehn Jahre Brexit – Ernüchterung ohne Umkehr"
+    ]
+  },
+  {
+    "date": "2026-06-26",
+    "topics": [
+      "Klimaerhitzung – Europa brennt, Politik zaudert",
+      "Glyphosat und Bayer – Wenn Konzernrecht Verbraucherrecht schlägt",
+      "Ukraine-Krieg – Die Diplomatie-Falle",
+      "AfD und Demokratie – Ein Kongress und seine Widersprüche",
+      "Elke Kahr in Graz – Was kommunistische Kommunalpolitik lehrt"
     ]
   }
 ]

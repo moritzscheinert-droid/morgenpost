@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Tue, 23 Jun 2026 06:23:55 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 26 Jun 2026 06:15:40 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-06-26</title>
+    <description>Klimaerhitzung – Europa brennt, Politik zaudert</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-26_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-26_morgenpost.html</guid>
+    <pubDate>Fri, 26 Jun 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-26_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-06-23</title>
     <description>Rentenreform – Jetzt wird es politisch</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-12_morgenpost.html</guid>
     <pubDate>Tue, 12 May 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-05-12_morgenpost_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-05-10</title>
-    <description>Putin und Schröder – Moskaus Vermittlungsspiel</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-10_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-10_morgenpost.html</guid>
-    <pubDate>Sun, 10 May 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-05-10_morgenpost_1.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>
