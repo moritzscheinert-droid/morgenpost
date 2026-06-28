@@ -1,5 +1,21 @@
 [
   {
+    "filename": "2026-06-28_morgenpost.html",
+    "date": "2026-06-28",
+    "title_slug": "morgenpost",
+    "first_topic": "USA gegen Iran – Eskalation am Persischen Golf",
+    "image_url": "issues/images/2026-06-28_morgenpost_1.jpg",
+    "word_count": 13,
+    "topics": [
+      "USA gegen Iran – Eskalation am Persischen Golf",
+      "Temperaturrekord und Bahnkollaps – Infrastruktur unter Extremdruck",
+      "VW-Stellenabbau – Wer zahlt für den Umbau?",
+      "Sudan – Genozid im Schatten der Weltöffentlichkeit",
+      "Deutschland und China – Bilateralismus oder europäischer Rahmen?"
+    ],
+    "intro": "Die Nachrichtenlage dieser Ausgabe wird von zwei geopolitischen Schwergewichten bestimmt: Im Nahen Osten eskaliert der Konflikt zwischen USA und Iran militärisch, mit Angriffen auf Ziele in Kuwait und Bahrain – eine Entwicklung mit unabsehbaren regionalen Folgen. In Deutschland brennt derweil die Infrastrukturfrage: Ein erneuter Temperaturrekord vo"
+  },
+  {
     "filename": "2026-06-26_morgenpost.html",
     "date": "2026-06-26",
     "title_slug": "morgenpost",

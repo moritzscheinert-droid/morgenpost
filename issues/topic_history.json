@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-06-05",
-    "topics": [
-      "EuGH gegen Deutschland – Asylleistungen und das Recht auf Würde",
-      "Selenskyj schlägt Putin Treffen vor – eine neue Phase?",
-      "Sachsen-Wahl – Wenn Rechtsextreme Rathäuser übernehmen",
-      "Chipindustrie und Wasser – wer trägt das Risiko?",
-      "Deutschlands UN-Niederlage – verdient, aber nicht ohne Ironie"
-    ]
-  },
-  {
     "date": "2026-06-07",
     "topics": [
       "Armenien zwischen Moskau und Brüssel",
@@ -92,6 +82,16 @@
       "Ukraine-Krieg – Die Diplomatie-Falle",
       "AfD und Demokratie – Ein Kongress und seine Widersprüche",
       "Elke Kahr in Graz – Was kommunistische Kommunalpolitik lehrt"
+    ]
+  },
+  {
+    "date": "2026-06-28",
+    "topics": [
+      "USA gegen Iran – Eskalation am Persischen Golf",
+      "Temperaturrekord und Bahnkollaps – Infrastruktur unter Extremdruck",
+      "VW-Stellenabbau – Wer zahlt für den Umbau?",
+      "Sudan – Genozid im Schatten der Weltöffentlichkeit",
+      "Deutschland und China – Bilateralismus oder europäischer Rahmen?"
     ]
   }
 ]
