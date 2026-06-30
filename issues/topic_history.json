@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-06-07",
-    "topics": [
-      "Armenien zwischen Moskau und Brüssel",
-      "D-Day als Bühne – Hegseths Invasions-Rhetorik",
-      "Schröder bei Putin – Privatsache mit politischen Folgen",
-      "Protest gegen AfD-Parteitag – demokratische Grenze oder legitimer Widerstand?",
-      "Elterngeld – soziale Leistung mit Schieflage?"
-    ]
-  },
-  {
     "date": "2026-06-09",
     "topics": [
       "Israel, Iran und Trump – wer entscheidet über Krieg und Frieden im Nahen Osten?",
@@ -92,6 +82,16 @@
       "VW-Stellenabbau – Wer zahlt für den Umbau?",
       "Sudan – Genozid im Schatten der Weltöffentlichkeit",
       "Deutschland und China – Bilateralismus oder europäischer Rahmen?"
+    ]
+  },
+  {
+    "date": "2026-06-30",
+    "topics": [
+      "Pakistan bombardiert Afghanistan – der vergessene Krieg am Hindukusch",
+      "Berliner Wohnungen vergesellschaften – und jetzt drohen die USA?",
+      "USA-Iran – von Eskalation zu Doha-Gesprächen",
+      "Bürgergeld wird Grundsicherung – ein stiller Systemwechsel",
+      "Wagenknecht, Weidel und der Kampf ums rechte Wählerreservoir"
     ]
   }
 ]
