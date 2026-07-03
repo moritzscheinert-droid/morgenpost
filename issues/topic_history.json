@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-06-09",
-    "topics": [
-      "Israel, Iran und Trump – wer entscheidet über Krieg und Frieden im Nahen Osten?",
-      "Angriffe auf das Stromnetz – Sabotage an der kritischen Infrastruktur Deutschlands",
-      "IStGH-Chefankläger suspendiert – Krise der internationalen Justiz",
-      "AfD neben KZ-Gedenkstätte – Provokation oder Gleichgültigkeit?",
-      "Asylpolitik im Umbruch – GEAS, Grenzkontrollen und der Koalitionsstreit"
-    ]
-  },
-  {
     "date": "2026-06-12",
     "topics": [
       "Europas Asylpolitik verschärft sich – und ihr Preis wird außerhalb Europas bezahlt",
@@ -92,6 +82,16 @@
       "USA-Iran – von Eskalation zu Doha-Gesprächen",
       "Bürgergeld wird Grundsicherung – ein stiller Systemwechsel",
       "Wagenknecht, Weidel und der Kampf ums rechte Wählerreservoir"
+    ]
+  },
+  {
+    "date": "2026-07-03",
+    "topics": [
+      "Schwarz-Rotes Reformpaket – Entlastung für wen?",
+      "Vergesellschaftung verboten – Bund gegen Länder",
+      "AfD-Parteitag in Erfurt – Protest, Blockade, Verbotsdebatte",
+      "Russlands schwerster Angriff auf Kiew – und Israels Rolle im Iran-Konflikt",
+      "Trumps Abschiebepolitik vor Gericht – und der Wandel der US-Demokraten"
     ]
   }
 ]
