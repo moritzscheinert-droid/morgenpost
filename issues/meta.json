@@ -1,5 +1,21 @@
 [
   {
+    "filename": "2026-07-05_morgenpost.html",
+    "date": "2026-07-05",
+    "title_slug": "morgenpost",
+    "first_topic": "AfD nach Erfurt – Weidel siegt, Höcke bleibt, Protest verhallt",
+    "image_url": "issues/images/2026-07-05_morgenpost_1.jpg",
+    "word_count": 15,
+    "topics": [
+      "AfD nach Erfurt – Weidel siegt, Höcke bleibt, Protest verhallt",
+      "250 Jahre USA – Trumps Jubiläumsshow und das Ende der Brot-und-Spiele-Formel",
+      "Klimamilliarden für Haushaltslöcher – Energiewende auf Sparflamme",
+      "Russland greift Sumy an – NATO-Gipfel unter Druck",
+      "Ostdeutsche Identität – wer darf Geschichte erzählen?"
+    ],
+    "intro": "Diese Ausgabe kreist um drei politische Schwerkraftzentren: In Erfurt ist der AfD-Parteitag trotz massiver Gegenproteste abgelaufen – und hat die Partei intern gestärkt, nicht geschwächt. In Washington feiern die USA ihren 250. Geburtstag in einem politisch gespaltenen Klima, das Trump für Eigenlob nutzt, während wirtschaftliche Frustration seine B"
+  },
+  {
     "filename": "2026-07-03_morgenpost.html",
     "date": "2026-07-03",
     "title_slug": "morgenpost",

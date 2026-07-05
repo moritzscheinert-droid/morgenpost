@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-06-12",
-    "topics": [
-      "Europas Asylpolitik verschärft sich – und ihr Preis wird außerhalb Europas bezahlt",
-      "Drohnenabwehr und hybride Bedrohung – Deutschland sucht eine Antwort",
-      "Masken, Milliarden, Verantwortung – Spahn vor Gericht",
-      "X, Musk und Belfast – Wenn Plattformen zu Brandbeschleunigern werden",
-      "Lieferdienste und ihre unsichtbaren Fahrer – Ausbeutung im Systemdesign"
-    ]
-  },
-  {
     "date": "2026-06-14",
     "topics": [
       "Iran-Deal oder Geburtstagsspektakel? Trumps Diplomatie zwischen Abkommen und Inszenierung",
@@ -92,6 +82,16 @@
       "AfD-Parteitag in Erfurt – Protest, Blockade, Verbotsdebatte",
       "Russlands schwerster Angriff auf Kiew – und Israels Rolle im Iran-Konflikt",
       "Trumps Abschiebepolitik vor Gericht – und der Wandel der US-Demokraten"
+    ]
+  },
+  {
+    "date": "2026-07-05",
+    "topics": [
+      "AfD nach Erfurt – Weidel siegt, Höcke bleibt, Protest verhallt",
+      "250 Jahre USA – Trumps Jubiläumsshow und das Ende der Brot-und-Spiele-Formel",
+      "Klimamilliarden für Haushaltslöcher – Energiewende auf Sparflamme",
+      "Russland greift Sumy an – NATO-Gipfel unter Druck",
+      "Ostdeutsche Identität – wer darf Geschichte erzählen?"
     ]
   }
 ]
