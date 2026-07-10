@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Tue, 07 Jul 2026 06:20:20 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 10 Jul 2026 06:20:09 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-07-10</title>
+    <description>VW in der Krise – Sparpläne ohne Klarheit, Gewerkschaften vor einer Entscheidung</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-07-10_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-07-10_morgenpost.html</guid>
+    <pubDate>Fri, 10 Jul 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-07-10_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-07-07</title>
     <description>NATO-Gipfel Ankara – Erdoğan zwischen den Mächten</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-26_morgenpost.html</guid>
     <pubDate>Tue, 26 May 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-05-26_morgenpost_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-05-24</title>
-    <description>Kiew unter Beschuss – Russlands schwerster Angriff seit Wochen</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-24_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-24_morgenpost.html</guid>
-    <pubDate>Sun, 24 May 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-05-24_morgenpost_1.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>

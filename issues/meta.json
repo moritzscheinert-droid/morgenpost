@@ -1,5 +1,21 @@
 [
   {
+    "filename": "2026-07-10_morgenpost.html",
+    "date": "2026-07-10",
+    "title_slug": "morgenpost",
+    "first_topic": "VW in der Krise – Sparpläne ohne Klarheit, Gewerkschaften vor einer Entscheidung",
+    "image_url": "issues/images/2026-07-10_morgenpost_1.jpg",
+    "word_count": 14,
+    "topics": [
+      "VW in der Krise – Sparpläne ohne Klarheit, Gewerkschaften vor einer Entscheidung",
+      "Khamenei ist tot – was folgt im Iran?",
+      "Krankenversicherungsreform – Hausärzte, Kassenbeiträge und der Bundesrat",
+      "Trump und die Wahlkommission – Demokratie unter Druck",
+      "Social-Media-Altersgesetze – Schutz oder Symbolpolitik?"
+    ],
+    "intro": "Diese Ausgabe steht im Zeichen von drei strukturellen Spannungen: Erstens vertieft sich der Konflikt zwischen Sozialstaatsabbau und Aufrüstung – von der Regierungserklärung des Kanzlers bis zur Krise bei Volkswagen und der geplanten Krankenversicherungsreform. Zweitens verschiebt sich die geopolitische Ordnung spürbar: Der Tod von Khamenei öffnet e"
+  },
+  {
     "filename": "2026-07-07_morgenpost.html",
     "date": "2026-07-07",
     "title_slug": "morgenpost",
