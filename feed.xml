@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Fri, 10 Jul 2026 06:20:09 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 12 Jul 2026 06:19:00 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-07-12</title>
+    <description>Hormus-Krise – USA und Iran am Rande eines offenen Krieges</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-07-12_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-07-12_morgenpost.html</guid>
+    <pubDate>Sun, 12 Jul 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-07-12_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-07-10</title>
     <description>VW in der Krise – Sparpläne ohne Klarheit, Gewerkschaften vor einer Entscheidung</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-29_morgenpost.html</guid>
     <pubDate>Fri, 29 May 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-05-29_morgenpost_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-05-26</title>
-    <description>USA greift Iran an – mitten in Verhandlungen</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-26_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-05-26_morgenpost.html</guid>
-    <pubDate>Tue, 26 May 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-05-26_morgenpost_1.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>

@@ -1,14 +1,5 @@
 [
   {
-    "date": "2026-06-19",
-    "topics": [
-      "Iran-Abkommen – unterzeichnet, aber brüchig",
-      "Labour unter Druck – Burnham zieht ins Parlament ein",
-      "EU und China – die zögerliche Kurskorrektur",
-      "Heizgesetz unter verfassungsrechtlichem Beschuss"
-    ]
-  },
-  {
     "date": "2026-06-21",
     "topics": [
       "Rentenreform – Systemumbau mit Ansage",
@@ -94,6 +85,16 @@
       "Krankenversicherungsreform – Hausärzte, Kassenbeiträge und der Bundesrat",
       "Trump und die Wahlkommission – Demokratie unter Druck",
       "Social-Media-Altersgesetze – Schutz oder Symbolpolitik?"
+    ]
+  },
+  {
+    "date": "2026-07-12",
+    "topics": [
+      "Hormus-Krise – USA und Iran am Rande eines offenen Krieges",
+      "Ukraine – Der Punkt ohne Rückkehr",
+      "Berliner CDU – Stefan Evers und der Neustart mit altem Personal",
+      "Pressefreiheit – Gilt sie auch für Rechte?",
+      "VW – Beruhigung ohne Klarheit"
     ]
   }
 ]
