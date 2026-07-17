@@ -1,14 +1,5 @@
 [
   {
-    "date": "2026-06-23",
-    "topics": [
-      "Rentenreform – Jetzt wird es politisch",
-      "§ 188 StGB – Wer darf Politiker beleidigen?",
-      "Die Linke nach Potsdam – neue Namen, offene Fragen",
-      "Zehn Jahre Brexit – Ernüchterung ohne Umkehr"
-    ]
-  },
-  {
     "date": "2026-06-26",
     "topics": [
       "Klimaerhitzung – Europa brennt, Politik zaudert",
@@ -96,6 +87,15 @@
       "Fünf Jahre Ahrtal – Klimapolitik zwischen Gedenken und Versagen",
       "Kirchen gegen AfD – Zivilgesellschaft in Sachsen-Anhalt formiert sich",
       "ICE tötet wieder – Trumps Einwanderungsvollzug und seine Opfer"
+    ]
+  },
+  {
+    "date": "2026-07-17",
+    "topics": [
+      "Ukraine – Kabinettsumbau mitten im Krieg",
+      "Trump, Wahlen und China – der vorgezogene Zweifel",
+      "Jens Spahn, Leihmutterschaft und die Glaubwürdigkeit der Union",
+      "KI-Rechenzentren – der unsichtbare Boom"
     ]
   }
 ]

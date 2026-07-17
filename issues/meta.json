@@ -1,5 +1,20 @@
 [
   {
+    "filename": "2026-07-17_morgenpost.html",
+    "date": "2026-07-17",
+    "title_slug": "morgenpost",
+    "first_topic": "Ukraine – Kabinettsumbau mitten im Krieg",
+    "image_url": "issues/images/2026-07-17_morgenpost_1.jpg",
+    "word_count": 11,
+    "topics": [
+      "Ukraine – Kabinettsumbau mitten im Krieg",
+      "Trump, Wahlen und China – der vorgezogene Zweifel",
+      "Jens Spahn, Leihmutterschaft und die Glaubwürdigkeit der Union",
+      "KI-Rechenzentren – der unsichtbare Boom"
+    ],
+    "intro": "Diese Ausgabe bündelt vier Themen mit erheblicher demokratischer Tragweite: In der Ukraine erschüttert ein Kabinettsumbau mitten im Krieg das Vertrauen in Selenskyjs Führung – mit direkten Konsequenzen für die europäische Sicherheitspolitik. In den USA untergräbt Trump systematisch das Vertrauen in demokratische Wahlen – diesmal mit China als Feind"
+  },
+  {
     "filename": "2026-07-14_morgenpost.html",
     "date": "2026-07-14",
     "title_slug": "morgenpost",
