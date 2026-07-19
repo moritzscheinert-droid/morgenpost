@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-06-26",
-    "topics": [
-      "Klimaerhitzung – Europa brennt, Politik zaudert",
-      "Glyphosat und Bayer – Wenn Konzernrecht Verbraucherrecht schlägt",
-      "Ukraine-Krieg – Die Diplomatie-Falle",
-      "AfD und Demokratie – Ein Kongress und seine Widersprüche",
-      "Elke Kahr in Graz – Was kommunistische Kommunalpolitik lehrt"
-    ]
-  },
-  {
     "date": "2026-06-28",
     "topics": [
       "USA gegen Iran – Eskalation am Persischen Golf",
@@ -96,6 +86,15 @@
       "Trump, Wahlen und China – der vorgezogene Zweifel",
       "Jens Spahn, Leihmutterschaft und die Glaubwürdigkeit der Union",
       "KI-Rechenzentren – der unsichtbare Boom"
+    ]
+  },
+  {
+    "date": "2026-07-19",
+    "topics": [
+      "Spahn tritt zurück – und die Union hat ein größeres Problem",
+      "Russland bombardiert Kiew – und die USA eskalieren gegen Iran",
+      "Berliner Wohnungspolitik – Volksbegehren ignoriert, Mehrheit besteht",
+      "Scam-Zentren in Südostasien – Menschenhandel im digitalen Kapitalismus"
     ]
   }
 ]

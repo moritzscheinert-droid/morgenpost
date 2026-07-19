@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Fri, 17 Jul 2026 06:20:13 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 19 Jul 2026 06:17:36 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-07-19</title>
+    <description>Spahn tritt zurück – und die Union hat ein größeres Problem</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-07-19_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-07-19_morgenpost.html</guid>
+    <pubDate>Sun, 19 Jul 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-07-19_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-07-17</title>
     <description>Ukraine – Kabinettsumbau mitten im Krieg</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-05_morgenpost.html</guid>
     <pubDate>Fri, 05 Jun 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-05_morgenpost_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-06-02</title>
-    <description>Russland greift Kiew an – Krieg ohne Verhandlungspause</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-02_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-02_morgenpost.html</guid>
-    <pubDate>Tue, 02 Jun 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-02_morgenpost_1.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>
