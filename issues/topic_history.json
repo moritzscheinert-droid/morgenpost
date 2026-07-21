@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-06-28",
-    "topics": [
-      "USA gegen Iran – Eskalation am Persischen Golf",
-      "Temperaturrekord und Bahnkollaps – Infrastruktur unter Extremdruck",
-      "VW-Stellenabbau – Wer zahlt für den Umbau?",
-      "Sudan – Genozid im Schatten der Weltöffentlichkeit",
-      "Deutschland und China – Bilateralismus oder europäischer Rahmen?"
-    ]
-  },
-  {
     "date": "2026-06-30",
     "topics": [
       "Pakistan bombardiert Afghanistan – der vergessene Krieg am Hindukusch",
@@ -95,6 +85,15 @@
       "Russland bombardiert Kiew – und die USA eskalieren gegen Iran",
       "Berliner Wohnungspolitik – Volksbegehren ignoriert, Mehrheit besteht",
       "Scam-Zentren in Südostasien – Menschenhandel im digitalen Kapitalismus"
+    ]
+  },
+  {
+    "date": "2026-07-21",
+    "topics": [
+      "USA gegen Iran – Zehn Nächte Krieg, keine Strategie",
+      "„Gipfel gegen Linksextremismus\" – Wenn der Staat die Rahmung übernimmt",
+      "Tarifbindung – Der Staat als schlechtes Vorbild",
+      "Bologna – Polizeigewalt, Migration und die Frage der Rechenschaft"
     ]
   }
 ]
