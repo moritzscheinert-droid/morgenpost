@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Fri, 24 Jul 2026 06:17:16 +0000</lastBuildDate>
+  <lastBuildDate>Sun, 26 Jul 2026 06:16:43 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-07-26</title>
+    <description>Anschlag beim Berliner CSD – ein Festtag wird zum Tatort</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-07-26_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-07-26_morgenpost.html</guid>
+    <pubDate>Sun, 26 Jul 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-07-26_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-07-24</title>
     <description>Iran – 13 Nächte, kein Ende, neue Forderungen</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-12_morgenpost.html</guid>
     <pubDate>Fri, 12 Jun 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-12_morgenpost_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-06-09</title>
-    <description>Israel, Iran und Trump – wer entscheidet über Krieg und Frieden im Nahen Osten?</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-09_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-09_morgenpost.html</guid>
-    <pubDate>Tue, 09 Jun 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-09_morgenpost_1.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>

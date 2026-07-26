@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-07-03",
-    "topics": [
-      "Schwarz-Rotes Reformpaket – Entlastung für wen?",
-      "Vergesellschaftung verboten – Bund gegen Länder",
-      "AfD-Parteitag in Erfurt – Protest, Blockade, Verbotsdebatte",
-      "Russlands schwerster Angriff auf Kiew – und Israels Rolle im Iran-Konflikt",
-      "Trumps Abschiebepolitik vor Gericht – und der Wandel der US-Demokraten"
-    ]
-  },
-  {
     "date": "2026-07-05",
     "topics": [
       "AfD nach Erfurt – Weidel siegt, Höcke bleibt, Protest verhallt",
@@ -94,6 +84,15 @@
       "Windkraft unter Beschuss – Reiche und die Energiewende-Wende",
       "AfD zwischen Bühne und Büro – Auftritte und Standorte",
       "Litauen – Leben im Vorhof des möglichen Krieges"
+    ]
+  },
+  {
+    "date": "2026-07-26",
+    "topics": [
+      "Anschlag beim Berliner CSD – ein Festtag wird zum Tatort",
+      "Merz' Kabinett im Verfassungstest – Vereidigung und Umbesetzung",
+      "KI-Boom vs. Stromnetz – wessen Energiebedarf hat Vorrang?",
+      "Brasilien – die Bolsonaro-Dynastie meldet sich zurück"
     ]
   }
 ]

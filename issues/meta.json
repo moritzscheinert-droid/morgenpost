@@ -1,5 +1,20 @@
 [
   {
+    "filename": "2026-07-26_morgenpost.html",
+    "date": "2026-07-26",
+    "title_slug": "morgenpost",
+    "first_topic": "Anschlag beim Berliner CSD – ein Festtag wird zum Tatort",
+    "image_url": "issues/images/2026-07-26_morgenpost_1.jpg",
+    "word_count": 11,
+    "topics": [
+      "Anschlag beim Berliner CSD – ein Festtag wird zum Tatort",
+      "Merz' Kabinett im Verfassungstest – Vereidigung und Umbesetzung",
+      "KI-Boom vs. Stromnetz – wessen Energiebedarf hat Vorrang?",
+      "Brasilien – die Bolsonaro-Dynastie meldet sich zurück"
+    ],
+    "intro": "Der Anschlag auf den Berliner CSD dominiert diese Ausgabe: Ein Auto wurde beim Christopher Street Day als Waffe eingesetzt – ein Mensch starb, 16 wurden verletzt. Die Tat trifft symbolisch ins Mark: Ein Fest für queere Sichtbarkeit wird zum Tatort. Parallel dazu gerät die neue Bundesregierung unter Druck – sowohl durch eine verfassungsrechtlich fra"
+  },
+  {
     "filename": "2026-07-24_morgenpost.html",
     "date": "2026-07-24",
     "title_slug": "morgenpost",
