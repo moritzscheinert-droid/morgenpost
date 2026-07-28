@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-07-05",
-    "topics": [
-      "AfD nach Erfurt – Weidel siegt, Höcke bleibt, Protest verhallt",
-      "250 Jahre USA – Trumps Jubiläumsshow und das Ende der Brot-und-Spiele-Formel",
-      "Klimamilliarden für Haushaltslöcher – Energiewende auf Sparflamme",
-      "Russland greift Sumy an – NATO-Gipfel unter Druck",
-      "Ostdeutsche Identität – wer darf Geschichte erzählen?"
-    ]
-  },
-  {
     "date": "2026-07-07",
     "topics": [
       "NATO-Gipfel Ankara – Erdoğan zwischen den Mächten",
@@ -93,6 +83,16 @@
       "Merz' Kabinett im Verfassungstest – Vereidigung und Umbesetzung",
       "KI-Boom vs. Stromnetz – wessen Energiebedarf hat Vorrang?",
       "Brasilien – die Bolsonaro-Dynastie meldet sich zurück"
+    ]
+  },
+  {
+    "date": "2026-07-28",
+    "topics": [
+      "CSD-Attentat – Trauer, Instrumentalisierung und die Frage der Deutungshoheit",
+      "Merz und die CDU – Personalchaos als Führungsproblem",
+      "USA vs. Europa – Riss im Westen wird sichtbarer",
+      "Europas Waldbrände und das Sanktionsdilemma",
+      "USA und Iran – Vertrauen als politische Ressource"
     ]
   }
 ]
