@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-07-07",
-    "topics": [
-      "NATO-Gipfel Ankara – Erdoğan zwischen den Mächten",
-      "Le Pen vor Gericht – Demokratie oder Justiz als Waffe?",
-      "Elterngeld im Sparvisier – Familienpolitik unter Haushaltsdruck",
-      "Berlin nach dem Blackout – Resilienz als politische Frage",
-      "WM-Skandal Balogun – wenn Politik den Sport übernimmt"
-    ]
-  },
-  {
     "date": "2026-07-10",
     "topics": [
       "VW in der Krise – Sparpläne ohne Klarheit, Gewerkschaften vor einer Entscheidung",
@@ -93,6 +83,15 @@
       "USA vs. Europa – Riss im Westen wird sichtbarer",
       "Europas Waldbrände und das Sanktionsdilemma",
       "USA und Iran – Vertrauen als politische Ressource"
+    ]
+  },
+  {
+    "date": "2026-07-31",
+    "topics": [
+      "Gaza: Trump verkündet Hamas-Entwaffnung – doch wer hat zugestimmt?",
+      "Europas Waldbrände: Das Megafeuer-Problem",
+      "Merz unter Druck: Rentenpolitik und CDU-Dissens im Osten",
+      "AfD bei der Kommunalwahl: Verfassungsschutz trifft Wahlrecht"
     ]
   }
 ]

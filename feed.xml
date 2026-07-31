@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Tue, 28 Jul 2026 06:17:01 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 31 Jul 2026 06:16:57 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-07-31</title>
+    <description>Gaza: Trump verkündet Hamas-Entwaffnung – doch wer hat zugestimmt?</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-07-31_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-07-31_morgenpost.html</guid>
+    <pubDate>Fri, 31 Jul 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-07-31_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-07-28</title>
     <description>CSD-Attentat – Trauer, Instrumentalisierung und die Frage der Deutungshoheit</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-16_morgenpost.html</guid>
     <pubDate>Tue, 16 Jun 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-16_morgenpost_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-06-14</title>
-    <description>Iran-Deal oder Geburtstagsspektakel? Trumps Diplomatie zwischen Abkommen und Inszenierung</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-14_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-14_morgenpost.html</guid>
-    <pubDate>Sun, 14 Jun 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-14_morgenpost_1.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>
