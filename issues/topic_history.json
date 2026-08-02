@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-07-10",
-    "topics": [
-      "VW in der Krise – Sparpläne ohne Klarheit, Gewerkschaften vor einer Entscheidung",
-      "Khamenei ist tot – was folgt im Iran?",
-      "Krankenversicherungsreform – Hausärzte, Kassenbeiträge und der Bundesrat",
-      "Trump und die Wahlkommission – Demokratie unter Druck",
-      "Social-Media-Altersgesetze – Schutz oder Symbolpolitik?"
-    ]
-  },
-  {
     "date": "2026-07-12",
     "topics": [
       "Hormus-Krise – USA und Iran am Rande eines offenen Krieges",
@@ -92,6 +82,15 @@
       "Europas Waldbrände: Das Megafeuer-Problem",
       "Merz unter Druck: Rentenpolitik und CDU-Dissens im Osten",
       "AfD bei der Kommunalwahl: Verfassungsschutz trifft Wahlrecht"
+    ]
+  },
+  {
+    "date": "2026-08-02",
+    "topics": [
+      "Iran und USA – Deeskalation oder Aufschub?",
+      "Ceuta – Wenn Grenzschutz zur Menschenrechtsfrage wird",
+      "Hamburgs Radikalenerlass – Wiederkehr eines Instruments",
+      "SPD-Führungskrise – Strukturproblem oder Personaldebatte?"
     ]
   }
 ]

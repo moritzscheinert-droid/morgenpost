@@ -1,5 +1,20 @@
 [
   {
+    "filename": "2026-08-02_morgenpost.html",
+    "date": "2026-08-02",
+    "title_slug": "morgenpost",
+    "first_topic": "Iran und USA – Deeskalation oder Aufschub?",
+    "image_url": "issues/images/2026-08-02_morgenpost_1.jpg",
+    "word_count": 12,
+    "topics": [
+      "Iran und USA – Deeskalation oder Aufschub?",
+      "Ceuta – Wenn Grenzschutz zur Menschenrechtsfrage wird",
+      "Hamburgs Radikalenerlass – Wiederkehr eines Instruments",
+      "SPD-Führungskrise – Strukturproblem oder Personaldebatte?"
+    ],
+    "intro": "Diese Ausgabe steht im Zeichen mehrerer demokratisch bedeutsamer Entwicklungen: Die sich abzeichnende Einigung zwischen den USA und dem Iran könnte einen Wendepunkt in der nuklearen Nichtverbreitungspolitik darstellen – oder ein weiteres unerfülltes Versprechen bleiben. In Ceuta eskaliert die Spannung zwischen humanitärer Verantwortung und EU-Außen"
+  },
+  {
     "filename": "2026-07-31_morgenpost.html",
     "date": "2026-07-31",
     "title_slug": "morgenpost",
