@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-07-12",
-    "topics": [
-      "Hormus-Krise – USA und Iran am Rande eines offenen Krieges",
-      "Ukraine – Der Punkt ohne Rückkehr",
-      "Berliner CDU – Stefan Evers und der Neustart mit altem Personal",
-      "Pressefreiheit – Gilt sie auch für Rechte?",
-      "VW – Beruhigung ohne Klarheit"
-    ]
-  },
-  {
     "date": "2026-07-14",
     "topics": [
       "Tomahawk in Deutschland – Sicherheitsgewinn oder Eskalationsspirale?",
@@ -91,6 +81,16 @@
       "Ceuta – Wenn Grenzschutz zur Menschenrechtsfrage wird",
       "Hamburgs Radikalenerlass – Wiederkehr eines Instruments",
       "SPD-Führungskrise – Strukturproblem oder Personaldebatte?"
+    ]
+  },
+  {
+    "date": "2026-08-04",
+    "topics": [
+      "Rentenstreit – Machtkampf zwischen Parteibasis, Ost-Ländern und Bundesfraktion",
+      "Trump-Zölle vor Gericht – Föderalismus als letztes Bollwerk",
+      "Max-Planck-Gesellschaft und der Gazakrieg – Wenn Wissenschaft politisch wird",
+      "Rheinmetall und die NS-Vergangenheit – Rüstungskonzern ohne Aufarbeitung",
+      "Ceuta und die europäische Grenzpolitik – Härtere Fakten, gleiche Fragen"
     ]
   }
 ]

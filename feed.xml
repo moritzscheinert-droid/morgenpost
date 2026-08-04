@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Sun, 02 Aug 2026 06:16:53 +0000</lastBuildDate>
+  <lastBuildDate>Tue, 04 Aug 2026 06:15:01 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-08-04</title>
+    <description>Rentenstreit – Machtkampf zwischen Parteibasis, Ost-Ländern und Bundesfraktion</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-08-04_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-08-04_morgenpost.html</guid>
+    <pubDate>Tue, 04 Aug 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-08-04_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-08-02</title>
     <description>Iran und USA – Deeskalation oder Aufschub?</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-21_morgenpost.html</guid>
     <pubDate>Sun, 21 Jun 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-21_morgenpost_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-06-19</title>
-    <description>Iran-Abkommen – unterzeichnet, aber brüchig</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-19_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-19_morgenpost.html</guid>
-    <pubDate>Fri, 19 Jun 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-19_morgenpost_1.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>
