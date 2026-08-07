@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-07-14",
-    "topics": [
-      "Tomahawk in Deutschland – Sicherheitsgewinn oder Eskalationsspirale?",
-      "USA und Iran – Dritte Angriffsnacht, erste Tankerattacken",
-      "Fünf Jahre Ahrtal – Klimapolitik zwischen Gedenken und Versagen",
-      "Kirchen gegen AfD – Zivilgesellschaft in Sachsen-Anhalt formiert sich",
-      "ICE tötet wieder – Trumps Einwanderungsvollzug und seine Opfer"
-    ]
-  },
-  {
     "date": "2026-07-17",
     "topics": [
       "Ukraine – Kabinettsumbau mitten im Krieg",
@@ -91,6 +81,16 @@
       "Max-Planck-Gesellschaft und der Gazakrieg – Wenn Wissenschaft politisch wird",
       "Rheinmetall und die NS-Vergangenheit – Rüstungskonzern ohne Aufarbeitung",
       "Ceuta und die europäische Grenzpolitik – Härtere Fakten, gleiche Fragen"
+    ]
+  },
+  {
+    "date": "2026-08-07",
+    "topics": [
+      "Polizeigewalt vor Gericht – Der Prozess um Ibrahima Barry",
+      "Sachsen-Anhalt vor der Wahl – Demokratie unter Druck",
+      "Drohne über Leipzig – Hybride Bedrohung trifft auf Zuständigkeitslücken",
+      "Iran, Jemen, Saudi-Arabien – Eskalation gefährdet fragile Diplomatie",
+      "Pflegekrise – Deutschland schaut zu, während andere handeln"
     ]
   }
 ]

@@ -6,7 +6,15 @@
   <link>https://moritzscheinert-droid.github.io/morgenpost/</link>
   <atom:link href="https://moritzscheinert-droid.github.io/morgenpost/feed.xml" rel="self" type="application/rss+xml"/>
   <language>de</language>
-  <lastBuildDate>Tue, 04 Aug 2026 06:15:01 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 07 Aug 2026 06:14:22 +0000</lastBuildDate>
+  <item>
+    <title>Na und? – 2026-08-07</title>
+    <description>Polizeigewalt vor Gericht – Der Prozess um Ibrahima Barry</description>
+    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-08-07_morgenpost.html</link>
+    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-08-07_morgenpost.html</guid>
+    <pubDate>Fri, 07 Aug 2026 07:00:00 +0000</pubDate>
+    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-08-07_morgenpost_1.jpg" type="image/jpeg"/>
+  </item>
   <item>
     <title>Na und? – 2026-08-04</title>
     <description>Rentenstreit – Machtkampf zwischen Parteibasis, Ost-Ländern und Bundesfraktion</description>
@@ -158,14 +166,6 @@
     <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-23_morgenpost.html</guid>
     <pubDate>Tue, 23 Jun 2026 07:00:00 +0000</pubDate>
     <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-23_morgenpost_1.jpg" type="image/jpeg"/>
-  </item>
-  <item>
-    <title>Na und? – 2026-06-21</title>
-    <description>Rentenreform – Systemumbau mit Ansage</description>
-    <link>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-21_morgenpost.html</link>
-    <guid>https://moritzscheinert-droid.github.io/morgenpost/issues/2026-06-21_morgenpost.html</guid>
-    <pubDate>Sun, 21 Jun 2026 07:00:00 +0000</pubDate>
-    <enclosure url="https://moritzscheinert-droid.github.io/morgenpost/issues/images/2026-06-21_morgenpost_1.jpg" type="image/jpeg"/>
   </item>
 </channel>
 </rss>
