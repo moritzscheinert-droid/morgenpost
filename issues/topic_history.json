@@ -1,14 +1,5 @@
 [
   {
-    "date": "2026-07-17",
-    "topics": [
-      "Ukraine – Kabinettsumbau mitten im Krieg",
-      "Trump, Wahlen und China – der vorgezogene Zweifel",
-      "Jens Spahn, Leihmutterschaft und die Glaubwürdigkeit der Union",
-      "KI-Rechenzentren – der unsichtbare Boom"
-    ]
-  },
-  {
     "date": "2026-07-19",
     "topics": [
       "Spahn tritt zurück – und die Union hat ein größeres Problem",
@@ -91,6 +82,15 @@
       "Drohne über Leipzig – Hybride Bedrohung trifft auf Zuständigkeitslücken",
       "Iran, Jemen, Saudi-Arabien – Eskalation gefährdet fragile Diplomatie",
       "Pflegekrise – Deutschland schaut zu, während andere handeln"
+    ]
+  },
+  {
+    "date": "2026-08-09",
+    "topics": [
+      "Drohne, Raketen, Russland – Hybride Kriegsführung eskaliert",
+      "Straße von Hormus – Irans Forderungen gefährden Atomdeal",
+      "Rente mit 63 – Volksinstinkt gegen Reformdruck",
+      "Wohnungsfrage – Vergesellschaftung auf dem Prüfstand"
     ]
   }
 ]
