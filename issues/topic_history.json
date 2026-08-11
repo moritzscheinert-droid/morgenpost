@@ -1,14 +1,5 @@
 [
   {
-    "date": "2026-07-19",
-    "topics": [
-      "Spahn tritt zurück – und die Union hat ein größeres Problem",
-      "Russland bombardiert Kiew – und die USA eskalieren gegen Iran",
-      "Berliner Wohnungspolitik – Volksbegehren ignoriert, Mehrheit besteht",
-      "Scam-Zentren in Südostasien – Menschenhandel im digitalen Kapitalismus"
-    ]
-  },
-  {
     "date": "2026-07-21",
     "topics": [
       "USA gegen Iran – Zehn Nächte Krieg, keine Strategie",
@@ -91,6 +82,16 @@
       "Straße von Hormus – Irans Forderungen gefährden Atomdeal",
       "Rente mit 63 – Volksinstinkt gegen Reformdruck",
       "Wohnungsfrage – Vergesellschaftung auf dem Prüfstand"
+    ]
+  },
+  {
+    "date": "2026-08-11",
+    "topics": [
+      "Russland schließt letzte Anti-Kriegs-Partei von der Wahl aus",
+      "Russische Luftangriffe – Ukraine zwischen Erschöpfung und Widerstand",
+      "Türkei und PKK – ein Friedensversuch mit vielen Fragezeichen",
+      "„Armutspolitischer Totalausfall\" – Sozialbilanz der Bundesregierung",
+      "Drohnenabwehr – Sicherheitsstaat zwischen Bürgerrecht und Bedrohungslage"
     ]
   }
 ]
