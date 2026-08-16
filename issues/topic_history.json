@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-07-24",
-    "topics": [
-      "Iran – 13 Nächte, kein Ende, neue Forderungen",
-      "Trumps Zölle – neue Runde, neue Begründung",
-      "Windkraft unter Beschuss – Reiche und die Energiewende-Wende",
-      "AfD zwischen Bühne und Büro – Auftritte und Standorte",
-      "Litauen – Leben im Vorhof des möglichen Krieges"
-    ]
-  },
-  {
     "date": "2026-07-26",
     "topics": [
       "Anschlag beim Berliner CSD – ein Festtag wird zum Tatort",
@@ -93,6 +83,16 @@
       "SPD zwischen Personalstreit und Identitätskrise",
       "Nigel Farage zurück im Unterhaus – Europas Rechtsruck hält an",
       "Afghanistan fünf Jahre nach Taliban-Rückkehr – internationale Isolation bröckelt"
+    ]
+  },
+  {
+    "date": "2026-08-16",
+    "topics": [
+      "Drohnenkrieg eskaliert – Ukraine trifft Moskau, Russland trifft Zivilinfrastruktur",
+      "Russlands Justiz gegen die letzte Opposition – Schlosberg drohen zwölf Jahre Haft",
+      "Brandmauer oder Einbindung? Eine Streitfrage über den Umgang mit der AfD",
+      "Syrer verlieren Schutzstatus – und Hessen trennt Familien bei Abschiebungen",
+      "Kommunen am Limit – Bund erhöht Rüstung, Städte und Gemeinden bluten aus"
     ]
   }
 ]
